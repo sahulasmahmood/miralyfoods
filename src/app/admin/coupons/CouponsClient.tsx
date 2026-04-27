@@ -388,7 +388,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                           <>
                             <IndianRupee
                               size={14}
-                              className="text-[#2E7D32] sm:w-5 sm:h-5"
+                              className="text-[#D4A373] sm:w-5 sm:h-5"
                             />
                             {coupon.discountValue}
                           </>

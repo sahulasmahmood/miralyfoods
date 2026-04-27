@@ -94,7 +94,7 @@ interface DashboardData {
   }[];
 }
 
-const COLORS = ["#B71C1C", "#2E7D32", "#8b4513", "#556b2f", "#d2691e"];
+const COLORS = ["#D32F2F", "#D4A373", "#8b4513", "#556b2f", "#d2691e"];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -170,8 +170,8 @@ export default function DashboardClient({
   if (loading && !data) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <div className="w-16 h-16 border-4 border-[#B71C1C] border-t-[#2E7D32] rounded-full animate-spin mb-4" />
-        <p className="text-[#B71C1C] font-black uppercase tracking-widest text-[10px]">
+        <div className="w-16 h-16 border-4 border-[#D32F2F] border-t-[#D4A373] rounded-full animate-spin mb-4" />
+        <p className="text-[#D32F2F] font-black uppercase tracking-widest text-[10px]">
           Processing Live Data...
         </p>
       </div>
@@ -191,7 +191,7 @@ export default function DashboardClient({
           <div className="min-w-0">
             <motion.h1
               variants={itemVariants}
-              className="text-xl sm:text-3xl lg:text-5xl font-serif font-black text-[#B71C1C] leading-none"
+              className="text-xl sm:text-3xl lg:text-5xl font-serif font-black text-[#D32F2F] leading-none"
             >
               Dashboard
             </motion.h1>
@@ -201,10 +201,10 @@ export default function DashboardClient({
             >
               <Zap
                 size={14}
-                className="text-[#2E7D32] fill-[#2E7D32] shrink-0"
+                className="text-[#D4A373] fill-[#D4A373] shrink-0"
               />
               Live overview for{" "}
-              <span className="text-[#B71C1C] font-black underline decoration-[#2E7D32]/50">
+              <span className="text-[#D32F2F] font-black underline decoration-[#D4A373]/50">
                 Miraly Foods
               </span>
             </motion.p>
@@ -220,8 +220,8 @@ export default function DashboardClient({
                 onClick={() => setDateRange(r)}
                 className={`flex-1 sm:flex-none px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] transition-all touch-manipulation whitespace-nowrap ${
                   dateRange === r
-                    ? "bg-[#B71C1C] text-white shadow-lg shadow-primary/20 scale-[1.02]"
-                    : "text-gray-400 hover:text-[#B71C1C] hover:bg-white"
+                    ? "bg-[#D32F2F] text-white shadow-lg shadow-primary/20 scale-[1.02]"
+                    : "text-gray-400 hover:text-[#D32F2F] hover:bg-white"
                 }`}
               >
                 {r}
@@ -241,12 +241,12 @@ export default function DashboardClient({
           <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:scale-110 transition-transform">
             <TrendingUp
               size={60}
-              className="text-[#B71C1C] sm:w-[80px] sm:h-[80px]"
+              className="text-[#D32F2F] sm:w-[80px] sm:h-[80px]"
             />
           </div>
           <div className="relative z-10 h-full flex flex-col justify-between">
             <div className="flex justify-between items-start mb-4 sm:mb-6">
-              <div className="p-2.5 sm:p-3 bg-green-50 text-[#B71C1C] rounded-xl sm:rounded-2xl">
+              <div className="p-2.5 sm:p-3 bg-green-50 text-[#D32F2F] rounded-xl sm:rounded-2xl">
                 <TrendingUp size={20} className="sm:w-6 sm:h-6" />
               </div>
               <GrowthIndicator value={data.stats.revenue.growth} />
@@ -255,7 +255,7 @@ export default function DashboardClient({
               <p className="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 leading-none">
                 Period Revenue
               </p>
-              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#B71C1C]">
+              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#D32F2F]">
                 {formatCurrency(data.stats.revenue.current)}
               </h3>
               <p className="text-[8px] sm:text-[10px] text-gray-400 mt-2.5 flex items-center gap-1 font-medium italic">
@@ -273,12 +273,12 @@ export default function DashboardClient({
           <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:scale-110 transition-transform">
             <ShoppingBag
               size={60}
-              className="text-[#2E7D32] sm:w-[80px] sm:h-[80px]"
+              className="text-[#D4A373] sm:w-[80px] sm:h-[80px]"
             />
           </div>
           <div className="relative z-10 h-full flex flex-col justify-between">
             <div className="flex justify-between items-start mb-4 sm:mb-6">
-              <div className="p-2.5 sm:p-3 bg-amber-50 text-[#2E7D32] rounded-xl sm:rounded-2xl">
+              <div className="p-2.5 sm:p-3 bg-amber-50 text-[#D4A373] rounded-xl sm:rounded-2xl">
                 <ShoppingBag size={20} className="sm:w-6 sm:h-6" />
               </div>
               <GrowthIndicator value={data.stats.orders.growth} />
@@ -287,7 +287,7 @@ export default function DashboardClient({
               <p className="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 leading-none">
                 New Transactions
               </p>
-              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#B71C1C]">
+              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#D32F2F]">
                 {data.stats.orders.current}
               </h3>
               <div className="flex flex-wrap gap-2 mt-2.5">
@@ -323,7 +323,7 @@ export default function DashboardClient({
               <p className="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 leading-none">
                 Active Catalog
               </p>
-              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#B71C1C]">
+              <h3 className="text-xl sm:text-3xl font-serif font-black text-[#D32F2F]">
                 {data.stats.products.total}
               </h3>
               <div className="flex flex-wrap gap-2 mt-2.5">
@@ -356,7 +356,7 @@ export default function DashboardClient({
               <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                 Customer Base
               </p>
-              <h3 className="text-2xl sm:text-3xl font-serif font-black text-[#B71C1C]">
+              <h3 className="text-2xl sm:text-3xl font-serif font-black text-[#D32F2F]">
                 {data.stats.customers.total}
               </h3>
               <p className="text-[9px] sm:text-[10px] text-emerald-600 mt-2 font-bold flex items-center gap-1">
@@ -376,7 +376,7 @@ export default function DashboardClient({
         >
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 md:mb-10">
             <div>
-              <h3 className="text-lg md:text-2xl font-serif font-black text-[#B71C1C] text-balance">
+              <h3 className="text-lg md:text-2xl font-serif font-black text-[#D32F2F] text-balance">
                 Revenue Velocity
               </h3>
               <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] mt-1">
@@ -385,7 +385,7 @@ export default function DashboardClient({
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#B71C1C]" />
+                <div className="w-2 h-2 rounded-full bg-[#D32F2F]" />
                 <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">
                   Revenue
                 </span>
@@ -398,8 +398,8 @@ export default function DashboardClient({
               <AreaChart data={data.salesTrend}>
                 <defs>
                   <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#B71C1C" stopOpacity={0.15} />
-                    <stop offset="95%" stopColor="#B71C1C" stopOpacity={0.01} />
+                    <stop offset="5%" stopColor="#D32F2F" stopOpacity={0.15} />
+                    <stop offset="95%" stopColor="#D32F2F" stopOpacity={0.01} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid
@@ -417,15 +417,15 @@ export default function DashboardClient({
                 <YAxis hide domain={[0, "auto"]} />
                 <RechartsTooltip
                   cursor={{
-                    stroke: "#B71C1C",
+                    stroke: "#D32F2F",
                     strokeWidth: 1,
                     strokeDasharray: "5 5",
                   }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="bg-[#B71C1C] text-white p-5 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-xl">
-                          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#2E7D32] mb-2">
+                        <div className="bg-[#D32F2F] text-white p-5 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-xl">
+                          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#D4A373] mb-2">
                             {payload[0].payload.fullDate ||
                               payload[0].payload.date}
                           </p>
@@ -456,7 +456,7 @@ export default function DashboardClient({
                 <Area
                   type="monotone"
                   dataKey="amount"
-                  stroke="#B71C1C"
+                  stroke="#D32F2F"
                   strokeWidth={4}
                   fillOpacity={1}
                   fill="url(#colorRev)"
@@ -473,7 +473,7 @@ export default function DashboardClient({
           className="bg-white p-4 sm:p-6 md:p-10 rounded-[2rem] sm:rounded-[40px] shadow-sm border border-gray-100 flex flex-col"
         >
           <div className="mb-6 sm:mb-8">
-            <h3 className="text-lg md:text-2xl font-serif font-black text-[#B71C1C] text-balance">
+            <h3 className="text-lg md:text-2xl font-serif font-black text-[#D32F2F] text-balance">
               Order Split
             </h3>
             <p className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.3em] mt-1">
@@ -510,7 +510,7 @@ export default function DashboardClient({
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="bg-[#B71C1C] text-white px-4 py-2 rounded-2xl shadow-xl font-black text-[10px] uppercase tracking-widest">
+                        <div className="bg-[#D32F2F] text-white px-4 py-2 rounded-2xl shadow-xl font-black text-[10px] uppercase tracking-widest">
                           {payload[0].name}: {payload[0].value}
                         </div>
                       );
@@ -525,7 +525,7 @@ export default function DashboardClient({
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">
                   Total
                 </p>
-                <p className="text-2xl font-serif font-black text-[#B71C1C]">
+                <p className="text-2xl font-serif font-black text-[#D32F2F]">
                   {data.stats.orders.current}
                 </p>
               </div>
@@ -545,7 +545,7 @@ export default function DashboardClient({
                       {label}
                     </span>
                   </div>
-                  <span className="text-sm font-serif font-black text-[#B71C1C] pl-4">
+                  <span className="text-sm font-serif font-black text-[#D32F2F] pl-4">
                     {value}
                   </span>
                 </div>
@@ -564,7 +564,7 @@ export default function DashboardClient({
         >
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h3 className="text-xl md:text-2xl font-serif font-black text-[#B71C1C] text-balance">
+              <h3 className="text-xl md:text-2xl font-serif font-black text-[#D32F2F] text-balance">
                 Signature Items
               </h3>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mt-1">
@@ -577,7 +577,7 @@ export default function DashboardClient({
             {data.topProducts.map((product, i) => (
               <div key={product._id} className="group relative">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-black text-[#B71C1C] uppercase tracking-tight">
+                  <span className="text-xs font-black text-[#D32F2F] uppercase tracking-tight">
                     {product.name}
                   </span>
                   <span className="text-[10px] font-bold text-gray-400">
@@ -591,7 +591,7 @@ export default function DashboardClient({
                       width: `${(product.totalSold / data.topProducts[0].totalSold) * 100}%`,
                     }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-[#B71C1C] to-[#2E7D32] rounded-full"
+                    className="h-full bg-gradient-to-r from-[#D32F2F] to-[#D4A373] rounded-full"
                   />
                 </div>
               </div>
@@ -606,7 +606,7 @@ export default function DashboardClient({
         >
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h3 className="text-xl md:text-2xl font-serif font-black text-[#B71C1C] text-balance">
+              <h3 className="text-xl md:text-2xl font-serif font-black text-[#D32F2F] text-balance">
                 Profit Centers
               </h3>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mt-1">
@@ -638,7 +638,7 @@ export default function DashboardClient({
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="bg-[#B71C1C] text-white px-4 py-2 rounded-2xl shadow-xl font-serif font-black text-xs">
+                        <div className="bg-[#D32F2F] text-white px-4 py-2 rounded-2xl shadow-xl font-serif font-black text-xs">
                           {formatCurrency(payload[0].value as number)}
                         </div>
                       );
@@ -648,7 +648,7 @@ export default function DashboardClient({
                 />
                 <Bar
                   dataKey="value"
-                  fill="#B71C1C"
+                  fill="#D32F2F"
                   radius={[12, 12, 0, 0]}
                   barSize={40}
                   animationDuration={1500}
@@ -656,7 +656,7 @@ export default function DashboardClient({
                   {data.stats.revenueByCategory.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={index === 0 ? "#B71C1C" : "#B71C1C33"}
+                      fill={index === 0 ? "#D32F2F" : "#D32F2F33"}
                     />
                   ))}
                 </Bar>
@@ -673,7 +673,7 @@ export default function DashboardClient({
       >
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 md:mb-10">
           <div>
-            <h3 className="text-xl md:text-2xl font-serif font-black text-[#B71C1C] text-balance">
+            <h3 className="text-xl md:text-2xl font-serif font-black text-[#D32F2F] text-balance">
               Recent Transactions
             </h3>
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mt-1">
@@ -682,7 +682,7 @@ export default function DashboardClient({
           </div>
           <Link
             href="/admin/orders"
-            className="group flex items-center gap-2 px-6 py-2.5 bg-gray-50 hover:bg-[#B71C1C] text-[#B71C1C] hover:text-white rounded-2xl transition-colors duration-300 font-black text-[10px] uppercase tracking-widest self-start sm:self-auto"
+            className="group flex items-center gap-2 px-6 py-2.5 bg-gray-50 hover:bg-[#D32F2F] text-[#D32F2F] hover:text-white rounded-2xl transition-colors duration-300 font-black text-[10px] uppercase tracking-widest self-start sm:self-auto"
           >
             Full Ledger
             <ChevronRight
@@ -707,15 +707,15 @@ export default function DashboardClient({
               {data.recentOrders.map((order) => (
                 <tr
                   key={order._id}
-                  className="group hover:bg-[#2E7D32]/5 transition-colors"
+                  className="group hover:bg-[#D4A373]/5 transition-colors"
                 >
                   <td className="py-6 pl-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center text-[#B71C1C] text-xs font-black border border-gray-200">
+                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center text-[#D32F2F] text-xs font-black border border-gray-200">
                         {order.shippingAddress?.fullName?.[0] || "G"}
                       </div>
                       <div>
-                        <p className="text-sm font-black text-[#B71C1C] tracking-tight">
+                        <p className="text-sm font-black text-[#D32F2F] tracking-tight">
                           {order.shippingAddress?.fullName || "Guest"}
                         </p>
                         <p className="text-[10px] text-gray-400 font-medium">
@@ -729,7 +729,7 @@ export default function DashboardClient({
                       {order.paymentMethod}
                     </span>
                   </td>
-                  <td className="py-6 text-sm font-serif font-black text-[#B71C1C]">
+                  <td className="py-6 text-sm font-serif font-black text-[#D32F2F]">
                     {formatCurrency(order.totalPrice)}
                   </td>
                   <td className="py-6">
@@ -751,7 +751,7 @@ export default function DashboardClient({
                   <td className="py-6 text-right pr-4">
                     <Link
                       href={`/admin/orders?id=${order._id}`}
-                      className="p-2 text-gray-300 hover:text-[#B71C1C] hover:bg-gray-50 rounded-xl transition-colors inline-block"
+                      className="p-2 text-gray-300 hover:text-[#D32F2F] hover:bg-gray-50 rounded-xl transition-colors inline-block"
                     >
                       <ExternalLink size={18} />
                     </Link>
@@ -771,11 +771,11 @@ export default function DashboardClient({
             >
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#B71C1C] font-black text-xs">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#D32F2F] font-black text-xs">
                     {order.shippingAddress?.fullName?.[0] || "G"}
                   </div>
                   <div>
-                    <h4 className="text-xs font-black text-[#B71C1C] leading-none mb-1">
+                    <h4 className="text-xs font-black text-[#D32F2F] leading-none mb-1">
                       {order.shippingAddress?.fullName || "Guest"}
                     </h4>
                     <span className="text-[9px] font-bold text-gray-400 font-mono">
@@ -784,7 +784,7 @@ export default function DashboardClient({
                   </div>
                 </div>
                 <div className="flex flex-col items-end">
-                  <p className="text-sm font-black text-[#B71C1C] leading-none mb-1">
+                  <p className="text-sm font-black text-[#D32F2F] leading-none mb-1">
                     {formatCurrency(order.totalPrice)}
                   </p>
                   <div className="flex items-center gap-1.5 px-2 py-0.5 bg-white rounded-full border border-gray-100">
@@ -800,7 +800,7 @@ export default function DashboardClient({
               <div className="flex gap-2 pt-2 border-t border-gray-100/50">
                 <Link
                   href={`/admin/orders?id=${order._id}`}
-                  className="flex-1 py-2.5 bg-white border border-gray-200 rounded-xl flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-widest text-[#B71C1C] active:scale-95 transition-all"
+                  className="flex-1 py-2.5 bg-white border border-gray-200 rounded-xl flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-widest text-[#D32F2F] active:scale-95 transition-all"
                 >
                   <Eye size={12} />
                   View Track

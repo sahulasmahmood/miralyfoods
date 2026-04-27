@@ -2,7 +2,7 @@ export default function ProductLoading() {
   return (
     <div className="min-h-screen bg-white">
       {/* Nav placeholder */}
-      <div className="h-24 bg-[#B71C1C]" />
+      <div className="h-24 bg-[#D32F2F]" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Image skeleton */}

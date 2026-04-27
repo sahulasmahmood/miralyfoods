@@ -66,9 +66,9 @@ export default function AdminLayout({
 
   if (isPending) {
     return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#B71C1C]">
-        <Loader2 className="animate-spin text-[#2E7D32] mb-4" size={48} />
-        <p className="text-white/60 font-black uppercase tracking-[0.3em] text-[10px]">
+      <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#D32F2F]">
+        <Loader2 className="animate-spin text-[#D4A373] mb-4" size={48} />
+        <p className="text-white/90 font-black uppercase tracking-[0.3em] text-[10px]">
           Verifying credentials...
         </p>
       </div>
@@ -110,7 +110,7 @@ export default function AdminLayout({
         position="top-right"
         toastOptions={{
           style: {
-            background: "#B71C1C",
+            background: "#D32F2F",
             color: "#fff",
             borderRadius: "16px",
             fontSize: "14px",
@@ -119,7 +119,7 @@ export default function AdminLayout({
           },
           success: {
             iconTheme: {
-              primary: "#2E7D32",
+              primary: "#D4A373",
               secondary: "#fff",
             },
           },
@@ -127,7 +127,7 @@ export default function AdminLayout({
       />
 
       {/* Mobile Top Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#B71C1C] text-white z-40 flex items-center justify-between px-4 shadow-md">
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#D32F2F] text-white z-40 flex items-center justify-between px-4 shadow-md">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-0.5 overflow-hidden">
             {settings?.logo ? (
@@ -139,8 +139,8 @@ export default function AdminLayout({
                 height={32}
               />
             ) : (
-              <span className="text-[#B71C1C] font-black italic text-[10px]">
-                SN
+              <span className="text-[#D32F2F] font-black italic text-[10px]">
+                MF
               </span>
             )}
           </div>
@@ -169,15 +169,15 @@ export default function AdminLayout({
         initial={{ x: "-100%" }}
         animate={{ x: isMobileOpen ? 0 : "-100%" }}
         transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-        className="md:hidden fixed inset-y-0 left-0 w-[280px] bg-[#B71C1C] text-white flex flex-col shadow-2xl z-50 overflow-y-auto custom-scrollbar"
+        className="md:hidden fixed inset-y-0 left-0 w-[280px] bg-[#D32F2F] text-white flex flex-col shadow-2xl z-50 overflow-y-auto custom-scrollbar"
       >
         <div className="p-4 flex items-center justify-between border-b border-white/10 shrink-0">
-          <span className="text-xs text-[#2E7D32] uppercase font-black tracking-[0.2em]">
+          <span className="text-xs text-[#D4A373] uppercase font-black tracking-[0.2em]">
             Menu
           </span>
           <button
             onClick={() => setIsMobileOpen(false)}
-            className="p-2 touch-manipulation focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:outline-none rounded-xl hover:bg-white/10 transition-colors"
+            className="p-2 touch-manipulation focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none rounded-xl hover:bg-white/10 transition-colors"
           >
             <X size={20} />
           </button>
@@ -190,10 +190,10 @@ export default function AdminLayout({
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileOpen(false)}
-                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:outline-none touch-manipulation ${
+                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none touch-manipulation ${
                   isActive
-                    ? "bg-[#F5F5F5] text-[#B71C1C] shadow-lg"
-                    : "text-white/60 hover:text-white hover:bg-white/5"
+                    ? "bg-[#F5F5F5] text-[#D32F2F] shadow-lg"
+                    : "text-white/90 hover:text-white hover:bg-white/5"
                 }`}
               >
                 <item.icon
@@ -207,7 +207,7 @@ export default function AdminLayout({
                   {item.label}
                 </span>
                 {isActive && (
-                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#2E7D32]" />
+                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#D4A373]" />
                 )}
               </Link>
             );
@@ -221,10 +221,10 @@ export default function AdminLayout({
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileOpen(false)}
-                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:outline-none touch-manipulation ${
+                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none touch-manipulation ${
                   isActive
                     ? "bg-white/10 text-white"
-                    : "hover:bg-white/5 text-white/60 hover:text-white"
+                    : "hover:bg-white/5 text-white/90 hover:text-white"
                 }`}
               >
                 <item.icon size={20} />
@@ -253,11 +253,11 @@ export default function AdminLayout({
       <motion.aside
         initial={false}
         animate={{ width: isCollapsed ? 80 : 300 }}
-        className="hidden md:flex bg-[#B71C1C] text-white flex-col shadow-2xl z-20 relative transition-all duration-300 ease-in-out"
+        className="hidden md:flex bg-[#D32F2F] text-white flex-col shadow-2xl z-20 relative transition-all duration-300 ease-in-out"
       >
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-10 bg-[#2E7D32] text-white p-1 rounded-full shadow-lg hover:scale-110 transition-transform z-30 ring-2 ring-[#F5F5F5] focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none touch-manipulation"
+          className="absolute -right-3 top-10 bg-[#D4A373] text-white p-1 rounded-full shadow-lg hover:scale-110 transition-transform z-30 ring-2 ring-[#F5F5F5] focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none touch-manipulation"
         >
           {isCollapsed ? (
             <ChevronRight size={14} strokeWidth={3} />
@@ -279,7 +279,7 @@ export default function AdminLayout({
                 height={64}
               />
             ) : (
-              <span className="text-[#B71C1C] font-black italic">SN</span>
+              <span className="text-[#D32F2F] font-black italic">MF</span>
             )}
           </div>
           {!isCollapsed && (
@@ -292,7 +292,7 @@ export default function AdminLayout({
               <h1 className="text-lg font-serif font-black tracking-tight leading-none uppercase text-[#F5F5F5]">
                 {settings?.shopName || "Miraly Foods"}
               </h1>
-              <p className="text-[9px] text-[#2E7D32] uppercase font-black tracking-[0.2em] mt-1">
+              <p className="text-[9px] text-[#D4A373] uppercase font-black tracking-[0.2em] mt-1">
                 Admin Portal
               </p>
             </motion.div>
@@ -306,17 +306,17 @@ export default function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors group relative focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:outline-none touch-manipulation ${
+                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors group relative focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none touch-manipulation ${
                   isActive
-                    ? "bg-[#F5F5F5] text-[#B71C1C] shadow-lg"
-                    : "text-white/60 hover:text-white hover:bg-white/5"
+                    ? "bg-[#F5F5F5] text-[#D32F2F] shadow-lg"
+                    : "text-white/90 hover:text-white hover:bg-white/5"
                 } ${isCollapsed ? "justify-center" : ""}`}
                 title={isCollapsed ? item.label : undefined}
               >
                 <item.icon
                   size={20}
                   strokeWidth={isActive ? 2.5 : 2}
-                  className={`shrink-0 transition-transform ${isActive ? "text-[#B71C1C]" : "group-hover:scale-110"}`}
+                  className={`shrink-0 transition-transform ${isActive ? "text-[#D32F2F]" : "group-hover:scale-110"}`}
                 />
                 {!isCollapsed && (
                   <motion.span
@@ -328,7 +328,7 @@ export default function AdminLayout({
                   </motion.span>
                 )}
                 {isActive && !isCollapsed && (
-                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#2E7D32]" />
+                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#D4A373]" />
                 )}
               </Link>
             );
@@ -342,10 +342,10 @@ export default function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:outline-none touch-manipulation ${
+                className={`flex items-center gap-4 p-3.5 rounded-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#D4A373] focus-visible:outline-none touch-manipulation ${
                   isActive
                     ? "bg-white/10 text-white"
-                    : "hover:bg-white/5 text-white/60 hover:text-white"
+                    : "hover:bg-white/5 text-white/90 hover:text-white"
                 } ${isCollapsed ? "justify-center" : ""}`}
                 title={item.label}
               >
@@ -390,7 +390,7 @@ export default function AdminLayout({
       <main className="flex-grow overflow-hidden bg-[#F5F5F5] relative h-full pt-16 md:pt-0">
         <div className="h-full overflow-y-auto w-full max-w-[100vw]">
           {/* Decorative header blur */}
-          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#B71C1C]/5 to-transparent pointer-events-none z-0 hidden md:block" />
+          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#D32F2F]/5 to-transparent pointer-events-none z-0 hidden md:block" />
 
           <div className="px-4 py-6 md:p-8 lg:p-12 relative z-10 w-full lg:max-w-7xl mx-auto pb-20">
             {children}

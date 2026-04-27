@@ -104,7 +104,7 @@ export default function HeroCarousel({
   const slide = slides[current];
 
   return (
-    <section className="relative h-[400px] md:h-[600px] w-full overflow-hidden group">
+    <section className="relative h-[450px] md:h-[650px] w-full overflow-hidden group">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}

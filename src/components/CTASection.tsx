@@ -39,7 +39,7 @@ export default function CTASection() {
                 </h2>
                 <p
                   className="text-white/60 text-lg leading-relaxed max-w-md"
-                  style={{ fontFamily: "var(--font-poppins), sans-serif" }}
+                  style={{ fontFamily: "var(--font-inter), sans-serif" }}
                 >
                   Handcrafted sweets and artisanal snacks made daily with pure
                   ingredients. Delivered fresh across India.
@@ -98,7 +98,7 @@ export default function CTASection() {
                     </h3>
                     <p
                       className="text-white/50 text-sm leading-relaxed"
-                      style={{ fontFamily: "var(--font-poppins), sans-serif" }}
+                      style={{ fontFamily: "var(--font-inter), sans-serif" }}
                     >
                       {item.desc}
                     </p>

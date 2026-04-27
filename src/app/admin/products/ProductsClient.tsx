@@ -168,7 +168,7 @@ export default function ProductsClient({
               <p className="text-[7px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-1 leading-none">
                 {kpi.label}
               </p>
-              <h3 className="text-sm sm:text-2xl font-serif font-black text-[#B71C1C] tabular-nums truncate">
+              <h3 className="text-sm sm:text-2xl font-serif font-black text-[#D32F2F] tabular-nums truncate">
                 {kpi.value}
               </h3>
             </div>
@@ -184,8 +184,8 @@ export default function ProductsClient({
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 bg-white p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[3rem] border border-gray-100 shadow-sm transition-all">
         <div className="min-w-0">
-          <h1 className="text-xl sm:text-3xl lg:text-4xl font-serif font-black text-[#B71C1C] leading-none">
-            Product <span className="text-[#2E7D32] italic">Vault</span>
+          <h1 className="text-xl sm:text-3xl lg:text-4xl font-serif font-black text-[#D32F2F] leading-none">
+            Product <span className="text-[#D4A373] italic">Vault</span>
           </h1>
           <p className="text-gray-400 mt-2 font-medium text-[10px] sm:text-sm truncate">
             Manage your high-quality product catalog and stock.
@@ -196,7 +196,7 @@ export default function ProductsClient({
             setEditingProduct(null);
             setIsModalOpen(true);
           }}
-          className="w-full sm:w-auto bg-[#B71C1C] text-white px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-lg shadow-primary/20 hover:bg-[#8E0000] transition-all flex items-center justify-center gap-2 active:scale-95 text-[10px] sm:text-xs uppercase tracking-widest"
+          className="w-full sm:w-auto bg-[#D32F2F] text-white px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-lg shadow-primary/20 hover:bg-[#8E0000] transition-all flex items-center justify-center gap-2 active:scale-95 text-[10px] sm:text-xs uppercase tracking-widest"
         >
           <Plus size={18} />
           <span>New Product</span>
@@ -207,7 +207,7 @@ export default function ProductsClient({
       <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between sticky top-0 z-30 py-3 sm:py-5 bg-[#F5F5F5]/90 backdrop-blur-md">
         <div className="relative flex-grow max-w-full md:max-w-md group bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-sm">
           <Search
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#B71C1C] transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#D32F2F] transition-colors"
             size={16}
           />
           <input
@@ -215,7 +215,7 @@ export default function ProductsClient({
             placeholder="Find items..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent py-3 sm:py-4 pl-12 pr-4 outline-none font-bold text-[#B71C1C] placeholder:text-gray-300 touch-manipulation text-[11px] sm:text-sm"
+            className="w-full bg-transparent py-3 sm:py-4 pl-12 pr-4 outline-none font-bold text-[#D32F2F] placeholder:text-gray-300 touch-manipulation text-[11px] sm:text-sm"
           />
         </div>
         <div className="flex gap-2 sm:gap-3">
@@ -223,19 +223,19 @@ export default function ProductsClient({
             onClick={() => setShowFilters(!showFilters)}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 sm:py-4 rounded-xl font-black uppercase tracking-widest text-[9px] sm:text-[10px] transition-all touch-manipulation shadow-sm ${
               showFilters
-                ? "bg-[#B71C1C] text-white shadow-lg shadow-primary/20"
-                : "bg-white border border-gray-100 text-gray-400 hover:text-[#B71C1C]"
+                ? "bg-[#D32F2F] text-white shadow-lg shadow-primary/20"
+                : "bg-white border border-gray-100 text-gray-400 hover:text-[#D32F2F]"
             }`}
           >
             <Filter size={14} /> <span>Show Filter</span>
             {selectedCategory !== "all" && (
-              <span className="w-1.5 h-1.5 bg-[#2E7D32] rounded-full animate-pulse" />
+              <span className="w-1.5 h-1.5 bg-[#D4A373] rounded-full animate-pulse" />
             )}
           </button>
 
           <Link
             href="/admin/uom"
-            className="hidden sm:flex items-center justify-center gap-2 px-6 py-4 bg-white border border-gray-100 rounded-2xl font-black text-gray-400 hover:text-[#B71C1C] transition-all shadow-sm uppercase tracking-widest text-[10px]"
+            className="hidden sm:flex items-center justify-center gap-2 px-6 py-4 bg-white border border-gray-100 rounded-2xl font-black text-gray-400 hover:text-[#D32F2F] transition-all shadow-sm uppercase tracking-widest text-[10px]"
           >
             <Package size={14} /> Units
           </Link>
@@ -253,14 +253,14 @@ export default function ProductsClient({
           >
             <div className="bg-white rounded-[20px] p-6 border border-gray-100 shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#B71C1C]">
+                <h3 className="text-sm font-black uppercase tracking-widest text-[#D32F2F]">
                   Filter Products
                 </h3>
                 <button
                   onClick={() => {
                     setSelectedCategory("all");
                   }}
-                  className="text-xs font-bold text-[#2E7D32] hover:underline uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation rounded"
+                  className="text-xs font-bold text-[#D4A373] hover:underline uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation rounded"
                 >
                   Clear All
                 </button>
@@ -277,7 +277,7 @@ export default function ProductsClient({
                       onClick={() => setSelectedCategory("all")}
                       className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation ${
                         selectedCategory === "all"
-                          ? "bg-[#B71C1C] text-white shadow-md"
+                          ? "bg-[#D32F2F] text-white shadow-md"
                           : "bg-gray-50 text-gray-500 hover:bg-gray-100"
                       }`}
                     >
@@ -289,7 +289,7 @@ export default function ProductsClient({
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation ${
                           selectedCategory === cat
-                            ? "bg-[#B71C1C] text-white shadow-md"
+                            ? "bg-[#D32F2F] text-white shadow-md"
                             : "bg-gray-50 text-gray-500 hover:bg-gray-100"
                         }`}
                       >
@@ -310,7 +310,7 @@ export default function ProductsClient({
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {selectedCategory !== "all" && (
-                      <span className="px-3 py-1 bg-[#F5F5F5] text-[#B71C1C] text-xs font-bold rounded-full flex items-center gap-2">
+                      <span className="px-3 py-1 bg-[#F5F5F5] text-[#D32F2F] text-xs font-bold rounded-full flex items-center gap-2">
                         Category: {selectedCategory}
                         <button
                           onClick={() => setSelectedCategory("all")}
@@ -333,7 +333,7 @@ export default function ProductsClient({
       <div className="space-y-4">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-16 h-16 border-4 border-[#2E7D32] border-t-transparent rounded-full animate-spin mb-6" />
+            <div className="w-16 h-16 border-4 border-[#D4A373] border-t-transparent rounded-full animate-spin mb-6" />
             <p className="font-bold text-gray-400 uppercase tracking-widest text-xs">
               Loading Inventory...
             </p>
@@ -341,7 +341,7 @@ export default function ProductsClient({
         ) : filteredProducts.length === 0 ? (
           <div className="bg-white rounded-[2rem] p-12 text-center border-2 border-dashed border-gray-100">
             <Package className="w-16 h-16 text-gray-200 mx-auto mb-4" />
-            <h3 className="text-xl font-serif font-bold text-[#B71C1C] mb-2">
+            <h3 className="text-xl font-serif font-bold text-[#D32F2F] mb-2">
               No Products Found
             </h3>
             <p className="text-gray-400 max-w-md mx-auto mb-8">
@@ -350,7 +350,7 @@ export default function ProductsClient({
             </p>
             <button
               onClick={() => setSearchQuery("")}
-              className="text-[#2E7D32] font-bold hover:underline"
+              className="text-[#D4A373] font-bold hover:underline"
             >
               Clear Search
             </button>
@@ -370,10 +370,10 @@ export default function ProductsClient({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ delay: i * 0.05 }}
-                  className="group bg-white rounded-2xl sm:rounded-[20px] p-3 sm:p-4 border border-gray-100 hover:border-[#2E7D32]/30 hover:shadow-lg hover:shadow-[#2E7D32]/5 transition-all duration-300 flex flex-row items-center gap-3 sm:gap-6 relative overflow-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation"
+                  className="group bg-white rounded-2xl sm:rounded-[20px] p-3 sm:p-4 border border-gray-100 hover:border-[#D4A373]/30 hover:shadow-lg hover:shadow-[#D4A373]/5 transition-all duration-300 flex flex-row items-center gap-3 sm:gap-6 relative overflow-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation"
                 >
                   {/* Decoration Line */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#B71C1C] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#D32F2F] opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Image */}
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#F5F5F5] rounded-lg sm:rounded-2xl overflow-hidden flex-shrink-0 relative group-hover:scale-105 transition-transform duration-500">
@@ -386,7 +386,7 @@ export default function ProductsClient({
                         height={80}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[#B71C1C]/20">
+                      <div className="w-full h-full flex items-center justify-center text-[#D32F2F]/20">
                         <Package size={20} className="sm:w-6 sm:h-6" />
                       </div>
                     )}
@@ -397,10 +397,10 @@ export default function ProductsClient({
                     {/* Info */}
                     <div className="flex-grow min-w-0">
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1 min-w-0">
-                        <h3 className="font-bold text-sm sm:text-lg text-[#B71C1C] leading-tight truncate">
+                        <h3 className="font-bold text-sm sm:text-lg text-[#D32F2F] leading-tight truncate">
                           {p.name}
                         </h3>
-                        <span className="px-2 py-0.5 bg-[#F5F5F5] text-[#B71C1C]/60 text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-full w-fit border border-[#B71C1C]/5 shrink-0">
+                        <span className="px-2 py-0.5 bg-[#F5F5F5] text-[#D32F2F]/60 text-[8px] sm:text-[10px] font-black uppercase tracking-widest rounded-full w-fit border border-[#D32F2F]/5 shrink-0">
                           {p.category}
                         </span>
                       </div>
@@ -424,7 +424,7 @@ export default function ProductsClient({
                         <p className="text-[8px] sm:text-[10px] font-black text-gray-300 uppercase tracking-widest mb-0.5 sm:mb-1">
                           Price
                         </p>
-                        <p className="text-sm sm:text-lg font-serif font-black text-[#B71C1C] tabular-nums">
+                        <p className="text-sm sm:text-lg font-serif font-black text-[#D32F2F] tabular-nums">
                           ₹{minPrice}
                         </p>
                       </div>
@@ -438,7 +438,7 @@ export default function ProductsClient({
                             setEditingProduct(p);
                             setIsModalOpen(true);
                           }}
-                          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#B71C1C] hover:bg-[#F5F5F5] transition-colors border border-transparent focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation"
+                          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#D32F2F] hover:bg-[#F5F5F5] transition-colors border border-transparent focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation"
                         >
                           <Edit2
                             size={14}

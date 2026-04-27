@@ -2,7 +2,7 @@ export default function ShopLoading() {
   return (
     <div className="min-h-screen bg-secondary/30">
       {/* Nav placeholder */}
-      <div className="h-24 bg-[#B71C1C]" />
+      <div className="h-24 bg-[#D32F2F]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         {/* Filter bar skeleton */}
         <div className="h-12 bg-gray-200 rounded-xl animate-pulse mb-8 w-full max-w-md" />

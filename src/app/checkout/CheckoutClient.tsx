@@ -288,7 +288,7 @@ export default function CheckoutClient({
           email: address.email,
           contact: address.phone,
         },
-        theme: { color: "#B71C1C" },
+        theme: { color: "#D32F2F" },
         modal: {
           ondismiss: function () {
             setLoading(false);
@@ -745,7 +745,7 @@ export default function CheckoutClient({
               className="bg-white rounded-2xl shadow-xl border border-gray-100 sticky top-24 overflow-hidden"
             >
               {/* Summary Header with Gradient */}
-              <div className="bg-gradient-to-r from-[#2E7D32] to-[#43A047] px-5 md:px-8 py-4 md:py-6">
+              <div className="bg-gradient-to-r from-[#D4A373] to-[#43A047] px-5 md:px-8 py-4 md:py-6">
                 <h2 className="text-lg md:text-xl font-bold text-white">
                   Order Summary
                 </h2>

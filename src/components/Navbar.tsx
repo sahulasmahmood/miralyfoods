@@ -38,6 +38,7 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
   const [mounted, setMounted] = useState(false);
 
   const isActive = (path: string) => {
@@ -54,10 +55,11 @@ export default function Navbar() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery("");
-    }
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) params.set("search", searchQuery.trim());
+    if (searchCategory) params.set("category", searchCategory);
+    router.push(`/shop${params.toString() ? `?${params.toString()}` : ""}`);
+    setSearchQuery("");
   };
 
   return (
@@ -140,7 +142,7 @@ export default function Navbar() {
               </button>
               <Link href="/" className="flex-shrink-0">
                 {settings?.logo ? (
-                  <div className="h-10 md:h-12 w-32 md:w-40 relative">
+                  <div className="h-12 md:h-16 w-40 md:w-56 relative">
                     <Image
                       src={settings.logo}
                       alt={settings.shopName || "Miraly Foods"}
@@ -163,9 +165,18 @@ export default function Navbar() {
               className="hidden md:flex flex-1 max-w-xl mx-4"
             >
               <div className="relative w-full flex items-center bg-white rounded overflow-hidden">
-                <div className="px-4 py-2 text-text-body border-r border-gray-200 hidden lg:flex items-center gap-2 bg-gray-50 text-sm whitespace-nowrap cursor-pointer">
-                  All Categories <ChevronDown size={14} />
-                </div>
+                <select
+                  value={searchCategory}
+                  onChange={(e) => setSearchCategory(e.target.value)}
+                  className="px-4 py-2 text-text-body border-r border-gray-200 hidden lg:block bg-gray-50 text-sm cursor-pointer outline-none appearance-none pr-8 bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23555%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.5rem_center]"
+                >
+                  <option value="">All Categories</option>
+                  {categories.map((cat) => (
+                    <option key={cat._id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
                 <input
                   type="text"
                   placeholder="I'm looking for..."
@@ -208,36 +219,36 @@ export default function Navbar() {
                           ? "/profile"
                           : "/login"
                     }
-                    className="hover:text-accent transition-colors"
+                    className="hover:text-yellow-300 transition-colors"
                   >
                     <User size={24} />
                   </Link>
                 ) : (
                   <Link
                     href="/login"
-                    className="hover:text-accent transition-colors"
+                    className="hover:text-yellow-300 transition-colors"
                   >
                     <User size={24} />
                   </Link>
                 )}
                 <Link
                   href="/wishlist"
-                  className="hover:text-accent transition-colors relative"
+                  className="hover:text-yellow-300 transition-colors relative"
                 >
                   <Heart size={24} />
                   {mounted && (
-                    <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-yellow-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                       {wishlistCount}
                     </span>
                   )}
                 </Link>
                 <button
                   onClick={() => setIsCartOpen(true)}
-                  className="hover:text-accent transition-colors relative"
+                  className="hover:text-yellow-300 transition-colors relative"
                 >
                   <ShoppingBag size={24} />
                   {mounted && (
-                    <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-yellow-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                       {cartCount}
                     </span>
                   )}
@@ -254,10 +265,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/"
-                  className={`hover:text-accent transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/") && pathname === "/"
-                      ? "border-accent text-accent"
-                      : "border-transparent hover:border-accent"
+                      ? "border-yellow-300 text-yellow-300"
+                      : "border-transparent hover:border-yellow-300"
                   }`}
                 >
                   Home
@@ -266,10 +277,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/shop"
-                  className={`hover:text-accent transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/shop")
-                      ? "border-accent text-accent"
-                      : "border-transparent hover:border-accent"
+                      ? "border-yellow-300 text-yellow-300"
+                      : "border-transparent hover:border-yellow-300"
                   }`}
                 >
                   All Products
@@ -279,7 +290,7 @@ export default function Navbar() {
                 <li key={cat._id} className="group relative py-1">
                   <Link
                     href={`/shop?category=${encodeURIComponent(cat.name)}`}
-                    className="hover:text-accent transition-colors cursor-pointer flex items-center gap-1 uppercase"
+                    className="hover:text-yellow-300 transition-colors cursor-pointer flex items-center gap-1 uppercase"
                   >
                     {cat.name}
                   </Link>
@@ -288,10 +299,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/about"
-                  className={`hover:text-accent transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/about")
-                      ? "border-accent text-accent"
-                      : "border-transparent hover:border-accent"
+                      ? "border-yellow-300 text-yellow-300"
+                      : "border-transparent hover:border-yellow-300"
                   }`}
                 >
                   About
@@ -300,10 +311,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/contact"
-                  className={`hover:text-accent transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/contact")
-                      ? "border-accent text-accent"
-                      : "border-transparent hover:border-accent"
+                      ? "border-yellow-300 text-yellow-300"
+                      : "border-transparent hover:border-yellow-300"
                   }`}
                 >
                   Contact
@@ -337,7 +348,7 @@ export default function Navbar() {
       </header>
 
       {/* Spacer for fixed header */}
-      <div className={isScrolled ? "h-[64px]" : "h-[180px] md:h-[200px] lg:h-[220px]"} />
+      <div className={isScrolled ? "h-[70px]" : "h-[130px] md:h-[150px] lg:h-[160px]"} />
 
       {/* Mobile Drawer */}
       <AnimatePresence>
@@ -359,7 +370,7 @@ export default function Navbar() {
             >
               <div className="flex justify-between items-center">
                 {settings?.logo ? (
-                  <div className="h-8 w-28 relative">
+                  <div className="h-12 w-40 relative">
                     <Image
                       src={settings.logo}
                       alt={settings.shopName || "Miraly Foods"}

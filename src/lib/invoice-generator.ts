@@ -98,7 +98,7 @@ export const generateInvoiceHTML = async (order: any) => {
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #e5e7eb;">
           <div>
             ${logoHtml}
-            <div style="font-size:30px;font-weight:700;color:#B71C1C;font-family:Georgia,serif;margin-bottom:4px;">${shopNamePart1}</div>
+            <div style="font-size:30px;font-weight:700;color:#D32F2F;font-family:Georgia,serif;margin-bottom:4px;">${shopNamePart1}</div>
             <div style="font-size:15px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:#6b7280;margin-bottom:10px;">${shopNamePart2}</div>
             <div style="font-size:12px;color:#6b7280;line-height:1.7;">
               ${addressLine1}<br>
@@ -162,7 +162,7 @@ export const generateInvoiceHTML = async (order: any) => {
             </div>
             ${taxRow}
             ${discountRow}
-            <div style="display:flex;justify-content:space-between;align-items:center;border-top:2px solid #f3f4f6;margin-top:8px;padding-top:16px;font-size:20px;font-weight:700;color:#B71C1C;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:2px solid #f3f4f6;margin-top:8px;padding-top:16px;font-size:20px;font-weight:700;color:#D32F2F;">
               <span>Total</span><span>&#8377;${order.totalPrice.toFixed(2)}</span>
             </div>
           </div>
