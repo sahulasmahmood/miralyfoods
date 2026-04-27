@@ -236,7 +236,7 @@ export default function UOMPage() {
                   <span className="text-[9px] sm:text-[10px] uppercase font-black tracking-widest leading-none">
                     Code:
                   </span>
-                  <span className="font-mono text-[10px] sm:text-xs font-bold bg-[#ece0cc]/30 px-2 py-0.5 rounded text-primary-dark">
+                  <span className="font-mono text-[10px] sm:text-xs font-bold bg-[#F5F5F5]/30 px-2 py-0.5 rounded text-primary-dark">
                     {uom.code}
                   </span>
                 </div>

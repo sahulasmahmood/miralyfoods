@@ -23,7 +23,7 @@ function generateUserId(): string {
 export async function GET() {
   try {
     // Get admin credentials from environment
-    const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@sainandhini.com";
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@miralyfoods.com";
     const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
     await connectDB();

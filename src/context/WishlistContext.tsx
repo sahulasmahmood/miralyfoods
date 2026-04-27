@@ -37,7 +37,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
 
   // Load wishlist from localStorage on mount
   useEffect(() => {
-    const savedWishlist = localStorage.getItem("sai_nandhini_wishlist");
+    const savedWishlist = localStorage.getItem("miraly_foods_wishlist");
     if (savedWishlist) {
       try {
         setWishlistItems(JSON.parse(savedWishlist));
@@ -51,7 +51,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
   // Save wishlist to localStorage on change (but not on initial load)
   useEffect(() => {
     if (!isInitialLoad.current) {
-      localStorage.setItem("sai_nandhini_wishlist", JSON.stringify(wishlistItems));
+      localStorage.setItem("miraly_foods_wishlist", JSON.stringify(wishlistItems));
     }
   }, [wishlistItems]);
 

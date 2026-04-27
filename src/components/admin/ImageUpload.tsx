@@ -78,11 +78,11 @@ export default function ImageUpload({
             </div>
           </div>
         ) : (
-          <label className="w-full aspect-video md:aspect-[2/1] border-2 border-dashed border-gray-200 hover:border-[#f8bf51] rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer bg-gray-50/50 hover:bg-white transition-all group active:scale-[0.98]">
-            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-300 group-hover:text-[#f8bf51] group-hover:scale-110 transition-all shadow-sm mb-3">
+          <label className="w-full aspect-video md:aspect-[2/1] border-2 border-dashed border-gray-200 hover:border-[#2E7D32] rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer bg-gray-50/50 hover:bg-white transition-all group active:scale-[0.98]">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-300 group-hover:text-[#2E7D32] group-hover:scale-110 transition-all shadow-sm mb-3">
               <Upload size={24} />
             </div>
-            <p className="text-[11px] font-black text-[#234d1b] uppercase tracking-widest mb-1">
+            <p className="text-[11px] font-black text-[#B71C1C] uppercase tracking-widest mb-1">
               Select Asset
             </p>
             <p className="text-[10px] text-gray-400 font-medium tracking-wide">
@@ -99,7 +99,7 @@ export default function ImageUpload({
       </div>
       {hint && (
         <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#f8bf51] shrink-0"></span>
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#2E7D32] shrink-0"></span>
           Recommended: {hint}
         </p>
       )}

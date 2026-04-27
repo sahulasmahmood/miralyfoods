@@ -70,7 +70,7 @@ export default function CorporateEnquiry() {
   };
 
   const inputClass =
-    "w-full bg-white border border-[#234d1b]/10 focus:border-[#f8bf51] focus:ring-2 focus:ring-[#f8bf51]/10 rounded-xl px-5 py-4 text-sm font-medium text-[#234d1b] outline-none transition-all placeholder:text-[#234d1b]/30";
+    "w-full bg-white border border-primary-dark/10 focus:border-accent focus:ring-2 focus:ring-accent/10 rounded-xl px-5 py-4 text-sm font-medium text-primary-dark outline-none transition-all placeholder:text-primary-dark/30";
 
   if (success) {
     return (
@@ -88,7 +88,7 @@ export default function CorporateEnquiry() {
               Request Received!
             </h3>
             <p className="text-emerald-600 text-sm leading-relaxed">
-              Thank you for considering Sai Nandhini. Our corporate team will
+              Thank you for considering Miraly Foods. Our corporate team will
               contact you within 24 hours.
             </p>
             <button
@@ -106,8 +106,8 @@ export default function CorporateEnquiry() {
   return (
     <section className="py-28 bg-white relative overflow-hidden">
       {/* Decorative */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f8bf51]/[0.03] rounded-full blur-[150px] -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#234d1b]/[0.03] rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/[0.03] rounded-full blur-[150px] -translate-y-1/3 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-dark/[0.03] rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -119,17 +119,17 @@ export default function CorporateEnquiry() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#f8bf51] block">
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent block">
               Partner With Us
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-black text-[#234d1b] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-black text-text-heading tracking-tight">
               Bulk Orders & <br className="hidden md:block" />
-              <span className="text-[#f8bf51] italic">Event Catering</span>
+              <span className="text-accent italic">Event Catering</span>
             </h2>
-            <div className="w-16 h-1 bg-[#f8bf51] rounded-full" />
-            <p className="text-[#234d1b]/50 leading-relaxed max-w-md text-sm font-medium">
+            <div className="w-16 h-1 bg-accent rounded-full" />
+            <p className="text-primary-dark/50 leading-relaxed max-w-md text-sm font-medium">
               From office celebrations to grand weddings, bring the authentic
-              taste of Madurai to your special occasions.
+              taste of Salem to your special occasions.
             </p>
 
             <div className="space-y-3 mt-6">
@@ -156,16 +156,16 @@ export default function CorporateEnquiry() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + i * 0.1 }}
-                  className="flex gap-4 p-5 bg-[#ece0cc]/60 rounded-2xl border border-[#234d1b]/5 hover:border-[#f8bf51]/30 hover:bg-[#ece0cc] transition-all duration-300 group"
+                  className="flex gap-4 p-5 bg-brand-bg/60 rounded-2xl border border-primary-dark/5 hover:border-accent/30 hover:bg-brand-bg transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-[#234d1b] rounded-xl flex items-center justify-center text-white shrink-0 group-hover:bg-[#f8bf51] group-hover:text-[#234d1b] transition-all duration-300 shadow-lg shadow-[#234d1b]/10">
+                  <div className="w-12 h-12 bg-primary-dark rounded-xl flex items-center justify-center text-white shrink-0 group-hover:bg-accent group-hover:text-primary-dark transition-all duration-300 shadow-lg shadow-primary-dark/10">
                     <item.icon size={20} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#234d1b] text-base mb-0.5">
+                    <h4 className="font-bold text-primary-dark text-base mb-0.5">
                       {item.title}
                     </h4>
-                    <p className="text-xs text-[#234d1b]/40 font-medium">
+                    <p className="text-xs text-primary-dark/40 font-medium">
                       {item.desc}
                     </p>
                   </div>
@@ -180,23 +180,23 @@ export default function CorporateEnquiry() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#ece0cc]/40 p-8 md:p-10 rounded-3xl border border-[#234d1b]/5 shadow-xl shadow-[#234d1b]/3 relative overflow-hidden"
+            className="bg-brand-bg/40 p-8 md:p-10 rounded-3xl border border-primary-dark/5 shadow-xl shadow-primary-dark/3 relative overflow-hidden"
           >
             {/* Subtle form decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#f8bf51]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="flex items-center gap-2.5 mb-6 relative z-10">
-              <div className="w-8 h-8 bg-[#f8bf51] rounded-lg flex items-center justify-center">
-                <Sparkles size={16} className="text-[#234d1b]" />
+              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                <Sparkles size={16} className="text-primary-dark" />
               </div>
-              <h3 className="text-lg font-bold text-[#234d1b]">
+              <h3 className="text-lg font-bold text-primary-dark">
                 Send an Enquiry
               </h3>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                  <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                     Your Name
                   </label>
                   <input
@@ -213,7 +213,7 @@ export default function CorporateEnquiry() {
                   <FormError message={fieldErrors.name} />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                  <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                     Company
                   </label>
                   <input
@@ -225,7 +225,7 @@ export default function CorporateEnquiry() {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                   Email
                 </label>
                 <input
@@ -244,7 +244,7 @@ export default function CorporateEnquiry() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                  <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                     Phone
                   </label>
                   <input
@@ -261,7 +261,7 @@ export default function CorporateEnquiry() {
                   <FormError message={fieldErrors.phone} />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                  <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                     Type
                   </label>
                   <select
@@ -282,7 +282,7 @@ export default function CorporateEnquiry() {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-[#234d1b]/40 mb-1.5 block uppercase tracking-wide">
+                <label className="text-xs font-bold text-primary-dark/40 mb-1.5 block uppercase tracking-wide">
                   Requirements
                 </label>
                 <textarea
@@ -301,7 +301,7 @@ export default function CorporateEnquiry() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#234d1b] text-white font-bold uppercase tracking-wider py-4 rounded-xl shadow-lg shadow-[#234d1b]/15 hover:bg-[#f8bf51] hover:text-[#234d1b] transition-all duration-300 active:scale-95 flex items-center justify-center gap-2.5 disabled:opacity-70 group text-sm"
+                className="w-full bg-primary-dark text-white font-bold uppercase tracking-wider py-4 rounded-xl shadow-lg shadow-primary-dark/15 hover:bg-accent hover:text-primary-dark transition-all duration-300 active:scale-95 flex items-center justify-center gap-2.5 disabled:opacity-70 group text-sm"
               >
                 {loading ? (
                   "Sending..."

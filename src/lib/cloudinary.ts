@@ -70,7 +70,7 @@ export const getUrlFromPublicId = (
  */
 export const uploadToCloudinary = async (
   file: string,
-  folder = "sainandhini/images",
+  folder = "miralyfoods/images",
   customPublicId: string | null = null,
 ) => {
   const options: Record<string, any> = {

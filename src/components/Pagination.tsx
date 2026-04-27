@@ -53,7 +53,7 @@ export default function Pagination({
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#234d1b] hover:text-white disabled:opacity-20 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-primary-dark hover:text-white disabled:opacity-20 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all"
           >
             <ChevronLeft size={18} />
           </button>
@@ -72,8 +72,8 @@ export default function Pagination({
                   onClick={() => onPageChange(page as number)}
                   className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl text-xs font-black transition-all ${
                     currentPage === page
-                      ? "bg-[#234d1b] text-white shadow-lg shadow-[#234d1b]/20 scale-110"
-                      : "bg-gray-50 text-gray-400 hover:bg-[#234d1b]/10 hover:text-[#234d1b]"
+                      ? "bg-primary-dark text-white shadow-lg shadow-primary-dark/20 scale-110"
+                      : "bg-gray-50 text-gray-400 hover:bg-primary-dark/10 hover:text-primary-dark"
                   }`}
                 >
                   {page}
@@ -84,7 +84,7 @@ export default function Pagination({
           <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#234d1b] hover:text-white disabled:opacity-20 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-primary-dark hover:text-white disabled:opacity-20 disabled:hover:bg-gray-50 disabled:hover:text-gray-400 disabled:cursor-not-allowed transition-all"
           >
             <ChevronRight size={18} />
           </button>

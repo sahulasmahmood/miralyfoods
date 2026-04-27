@@ -388,7 +388,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                           <>
                             <IndianRupee
                               size={14}
-                              className="text-[#f8bf51] sm:w-5 sm:h-5"
+                              className="text-[#2E7D32] sm:w-5 sm:h-5"
                             />
                             {coupon.discountValue}
                           </>
@@ -471,7 +471,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 className="bg-white rounded-[2.5rem] shadow-2xl w-[95%] md:w-full max-w-lg md:max-w-2xl max-h-[90vh] flex flex-col overflow-hidden relative"
               >
-                <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-[#ece0cc]">
+                <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-[#F5F5F5]">
                   <div>
                     <h2 className="text-2xl font-serif font-black text-primary-dark">
                       {currentCoupon._id ? "Edit Coupon" : "Create New Coupon"}
@@ -510,7 +510,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                             });
                             setFieldErrors((prev) => ({ ...prev, code: "" }));
                           }}
-                          className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-black text-lg uppercase tracking-wider text-primary-dark placeholder:text-gray-300"
+                          className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-black text-lg uppercase tracking-wider text-primary-dark placeholder:text-gray-300"
                           placeholder="SUMMER2026"
                         />
                         <Ticket
@@ -534,7 +534,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                               discountType: e.target.value,
                             })
                           }
-                          className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-colors font-medium text-gray-700 appearance-none cursor-pointer"
+                          className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-colors font-medium text-gray-700 appearance-none cursor-pointer"
                         >
                           <option value="percentage">Percentage (%)</option>
                           <option value="fixed">Fixed Amount (₹)</option>
@@ -566,7 +566,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                                 });
                                 setFieldErrors((prev) => ({ ...prev, discountValue: "" }));
                               }}
-                              className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
+                              className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
                               placeholder="20"
                             />
                           </div>
@@ -593,7 +593,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                               minOrderValue: Number(e.target.value),
                             })
                           }
-                          className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
+                          className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
                           placeholder="0"
                         />
                       </div>
@@ -615,7 +615,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                                 : undefined,
                             })
                           }
-                          className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
+                          className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
                           placeholder="∞"
                         />
                       </div>
@@ -634,7 +634,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                                 : undefined,
                             })
                           }
-                          className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
+                          className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
                           placeholder="∞"
                         />
                       </div>
@@ -661,7 +661,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                                   : undefined,
                               })
                             }
-                            className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
+                            className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 pl-12 pr-6 outline-none transition-shadow font-bold text-gray-700"
                             placeholder="No limit"
                           />
                         </div>
@@ -681,7 +681,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                             expiresAt: e.target.value,
                           })
                         }
-                        className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
+                        className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
                       />
                     </div>
 
@@ -698,13 +698,13 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                             description: e.target.value,
                           })
                         }
-                        className="w-full bg-[#ece0cc] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
+                        className="w-full bg-[#F5F5F5] border-none focus:ring-2 focus:ring-primary/20 rounded-2xl py-4 px-6 outline-none transition-shadow font-bold text-gray-700"
                         placeholder="E.g. Diwali Special"
                       />
                     </div>
 
                     <div className="flex gap-4">
-                      <label className="flex items-center gap-3 bg-[#ece0cc] py-4 px-6 rounded-2xl cursor-pointer flex-1 border border-transparent hover:border-primary/10 transition-colors">
+                      <label className="flex items-center gap-3 bg-[#F5F5F5] py-4 px-6 rounded-2xl cursor-pointer flex-1 border border-transparent hover:border-primary/10 transition-colors">
                         <input
                           type="checkbox"
                           checked={currentCoupon.isActive}
@@ -721,7 +721,7 @@ export default function CouponsClient({ initialData }: { initialData: any[] }) {
                         </span>
                       </label>
 
-                      <label className="flex items-center gap-3 bg-[#ece0cc] py-4 px-6 rounded-2xl cursor-pointer flex-1 border border-transparent hover:border-primary/10 transition-colors">
+                      <label className="flex items-center gap-3 bg-[#F5F5F5] py-4 px-6 rounded-2xl cursor-pointer flex-1 border border-transparent hover:border-primary/10 transition-colors">
                         <input
                           type="checkbox"
                           checked={currentCoupon.displayInCheckout}
