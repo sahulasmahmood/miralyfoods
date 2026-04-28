@@ -14,14 +14,14 @@ export default {
           dark: "#B71C1C",
         },
         secondary: {
-          DEFAULT: "#F5F5F5",
-          dark: "#FFCDD2",
+          DEFAULT: "#FAFAF8",
+          dark: "#F5E6D3",
         },
         accent: {
-          DEFAULT: "#2E7D32",
-          hover: "#388E3C",
+          DEFAULT: "#D4A373",
+          hover: "#C4956A",
         },
-        "brand-bg": "#F5F5F5",
+        "brand-bg": "#FAFAF8",
         "text-body": "#555555",
         "text-heading": "#1A1A1A",
         brown: {

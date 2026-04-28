@@ -53,10 +53,10 @@ export default function InvoiceClient({
           </h1>
           <p className="text-[10px]">
             {settings?.address ||
-              "# 3/81, 1st Floor, Kaveri Main St, Thirunagar, Salem - 625006"}
+              "177/2, Kaligoundanur, Vellar Post, Mettur Taluk, Salem District - 636451"}
           </p>
           <p className="text-[10px]">
-            WhatsApp: {settings?.contactPhone || "+91 96009 16065"}
+            WhatsApp: {settings?.contactPhone || "+91 8754744204"}
           </p>
           <div className="border-b border-black border-dashed my-2" />
           <p className="font-bold">INVOICE</p>
@@ -161,14 +161,14 @@ export default function InvoiceClient({
           </h2>
           <p className="text-sm text-gray-500">
             {settings?.address?.split(",").slice(0, 2).join(",") ||
-              "# 3/81, 1st Floor, Kaveri Main Street"}
+              "177/2, Kaligoundanur, Vellar Post"}
           </p>
           <p className="text-sm text-gray-500">
             {settings?.address?.split(",").slice(2).join(",") ||
-              "SRV Nagar, Thirunagar, Salem - 625006"}
+              "Mettur Taluk, Salem District - 636451"}
           </p>
           <p className="text-sm text-gray-500">
-            Ph: {settings?.contactPhone || "+91 96009 16065"}
+            Ph: {settings?.contactPhone || "+91 8754744204"}
           </p>
           <p className="text-sm text-gray-500">
             Email: {settings?.contactEmail || "info@miralyfoods.com"}

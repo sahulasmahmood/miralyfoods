@@ -11,19 +11,19 @@ export default function Footer() {
   const [email, setEmail] = useState("");
 
   return (
-    <footer className="bg-primary-dark text-white pt-16 pb-8">
+    <footer className="bg-primary text-white pt-16 pb-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="flex flex-col gap-6">
             <Link href="/">
               {settings?.logo ? (
-                <div className="w-32 h-12 relative">
+                <div className="w-48 h-16 relative">
                   <Image
                     src={settings.logo}
                     alt={settings.shopName || "Miraly Foods"}
                     fill
-                    className="object-contain brightness-0 invert"
+                    className="object-contain"
                   />
                 </div>
               ) : (
@@ -32,7 +32,7 @@ export default function Footer() {
                 </span>
               )}
             </Link>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-white/90 text-sm leading-relaxed">
               Quality food products crafted with care. We believe in bringing the
               finest ingredients to your table, ensuring freshness and purity in
               every product.
@@ -41,15 +41,15 @@ export default function Footer() {
 
           {/* Contact Us */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-xl font-serif font-bold text-white border-b border-white/10 pb-4">
+            <h3 className="text-xl font-serif font-bold text-white border-b border-white/20 pb-4">
               Contact Us
             </h3>
-            <div className="text-sm text-gray-300 leading-relaxed flex flex-col gap-2">
+            <div className="text-sm text-white/90 leading-relaxed flex flex-col gap-2">
               <p>If you have any question, please contact us at:</p>
               {settings?.contactEmail && (
                 <a
                   href={`mailto:${settings.contactEmail}`}
-                  className="text-white hover:text-accent transition-colors"
+                  className="text-white hover:text-yellow-300 transition-colors"
                 >
                   {settings.contactEmail}
                 </a>
@@ -57,7 +57,7 @@ export default function Footer() {
               {settings?.contactPhone && (
                 <a
                   href={`tel:${settings.contactPhone}`}
-                  className="text-white hover:text-accent transition-colors"
+                  className="text-white hover:text-yellow-300 transition-colors"
                 >
                   {settings.contactPhone}
                 </a>
@@ -72,7 +72,7 @@ export default function Footer() {
                     href={settings.socialMedia.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
                   >
                     <Instagram size={16} />
                   </a>
@@ -82,7 +82,7 @@ export default function Footer() {
                     href={settings.socialMedia.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
                   >
                     <Facebook size={16} />
                   </a>
@@ -92,7 +92,7 @@ export default function Footer() {
                     href={settings.socialMedia.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
                   >
                     <Twitter size={16} />
                   </a>
@@ -103,14 +103,14 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-xl font-serif font-bold text-white border-b border-white/10 pb-4">
+            <h3 className="text-xl font-serif font-bold text-white border-b border-white/20 pb-4">
               Quick Links
             </h3>
-            <ul className="text-sm text-gray-300 flex flex-col gap-3">
+            <ul className="text-sm text-white/90 flex flex-col gap-3">
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -118,7 +118,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   Terms & Conditions
                 </Link>
@@ -126,7 +126,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/shipping-policy"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   Shipping Policy
                 </Link>
@@ -134,7 +134,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/return-and-refund"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   Return & Refund Policy
                 </Link>
@@ -142,7 +142,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/track"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   Track Order
                 </Link>
@@ -150,7 +150,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-accent cursor-pointer transition-colors"
+                  className="hover:text-yellow-300 cursor-pointer transition-colors"
                 >
                   About Us
                 </Link>
@@ -160,10 +160,10 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-xl font-serif font-bold text-white border-b border-white/10 pb-4">
+            <h3 className="text-xl font-serif font-bold text-white border-b border-white/20 pb-4">
               Sign Up for Our Newsletter
             </h3>
-            <p className="text-sm text-gray-300 leading-relaxed">
+            <p className="text-sm text-white/90 leading-relaxed">
               Leave your email to get all hot deals & news which benefit you
               most!
             </p>
@@ -177,7 +177,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="absolute right-0 top-0 h-full px-4 text-primary-dark hover:text-accent transition-colors"
+                className="absolute right-0 top-0 h-full px-4 text-primary-dark hover:text-yellow-300 transition-colors"
                 aria-label="Submit"
               >
                 <Send size={18} />
@@ -187,7 +187,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/70">
           <p>
             &copy; {new Date().getFullYear()} Miraly Foods. All Rights Reserved.
           </p>

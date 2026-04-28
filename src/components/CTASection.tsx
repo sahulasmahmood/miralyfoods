@@ -17,7 +17,7 @@ import Link from "next/link";
 
 export default function CTASection() {
   return (
-    <section className="py-24 lg:py-32 bg-[#234d1b]">
+    <section className="py-24 lg:py-32 bg-primary-dark">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-16 lg:p-20 backdrop-blur-sm">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -30,16 +30,16 @@ export default function CTASection() {
               className="space-y-8"
             >
               <div className="space-y-4">
-                <p className="text-[#f8bf51] text-sm font-semibold tracking-widest uppercase flex items-center gap-3">
-                  <span className="w-8 h-[1px] bg-[#f8bf51]"></span>
-                  Sai Nandhini Premium
+                <p className="text-accent text-sm font-semibold tracking-widest uppercase flex items-center gap-3">
+                  <span className="w-8 h-[1px] bg-accent"></span>
+                  Miraly Foods Premium
                 </p>
                 <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white leading-[1.15] tracking-tight">
                   Taste the tradition your family deserves.
                 </h2>
                 <p
                   className="text-white/60 text-lg leading-relaxed max-w-md"
-                  style={{ fontFamily: "var(--font-poppins), sans-serif" }}
+                  style={{ fontFamily: "var(--font-inter), sans-serif" }}
                 >
                   Handcrafted sweets and artisanal snacks made daily with pure
                   ingredients. Delivered fresh across India.
@@ -49,7 +49,7 @@ export default function CTASection() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
                 <Link
                   href="/shop"
-                  className="group bg-[#f8bf51] hover:bg-[#ffd788] text-[#234d1b] px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg w-full sm:w-auto"
+                  className="group bg-accent hover:bg-[#FFCDD2] text-primary-dark px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg w-full sm:w-auto"
                 >
                   Shop All Products
                   <ArrowRight
@@ -89,7 +89,7 @@ export default function CTASection() {
                 <div key={index} className="flex items-start gap-4">
                   <CheckCircle2
                     size={24}
-                    className="text-[#f8bf51] shrink-0 mt-0.5"
+                    className="text-accent shrink-0 mt-0.5"
                     strokeWidth={1.5}
                   />
                   <div>
@@ -98,7 +98,7 @@ export default function CTASection() {
                     </h3>
                     <p
                       className="text-white/50 text-sm leading-relaxed"
-                      style={{ fontFamily: "var(--font-poppins), sans-serif" }}
+                      style={{ fontFamily: "var(--font-inter), sans-serif" }}
                     >
                       {item.desc}
                     </p>

@@ -60,7 +60,7 @@ const emptySlide: HeroSlide = {
 /*  Input Styles                                  */
 /* ────────────────────────────────────────────── */
 const INPUT_CLASS =
-  "w-full rounded-xl border border-gray-200 bg-gray-50/80 text-gray-900 py-3 px-4 outline-none focus:border-[#f8bf51] focus:ring-2 focus:ring-[#f8bf51]/20 transition-all placeholder:text-gray-400 text-sm";
+  "w-full rounded-xl border border-gray-200 bg-gray-50/80 text-gray-900 py-3 px-4 outline-none focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20 transition-all placeholder:text-gray-400 text-sm";
 
 /* ────────────────────────────────────────────── */
 /*  Component                                     */
@@ -209,13 +209,13 @@ export default function HeroSlidesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="animate-spin text-[#f8bf51]" size={40} />
+        <Loader2 className="animate-spin text-[#D4A373]" size={40} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#ece0cc] font-['Inter',sans-serif]">
+    <div className="min-h-screen bg-[#F5F5F5] font-['Inter',sans-serif]">
       <div className="mx-auto py-8 px-4 md:px-8">
         {/* ── Header ── */}
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 bg-white p-5 sm:p-10 rounded-[1.5rem] sm:rounded-[3rem] border border-gray-100 shadow-sm mb-8 sm:mb-10">
@@ -223,15 +223,15 @@ export default function HeroSlidesPage() {
             <nav className="flex text-[10px] sm:text-xs text-gray-400 mb-2 items-center gap-1.5 font-bold uppercase tracking-widest">
               <Link
                 href="/admin/settings"
-                className="hover:text-[#234d1b] transition-colors flex items-center gap-1"
+                className="hover:text-[#D32F2F] transition-colors flex items-center gap-1"
               >
                 <ArrowLeft size={12} /> Settings
               </Link>
               <span className="text-gray-200">/</span>
-              <span className="text-[#234d1b]">Hero Carousel</span>
+              <span className="text-[#D32F2F]">Hero Carousel</span>
             </nav>
-            <h1 className="text-xl sm:text-3xl font-serif font-black text-[#234d1b] leading-none">
-              Carousel <span className="text-[#f8bf51] italic">Manager</span>
+            <h1 className="text-xl sm:text-3xl font-serif font-black text-[#D32F2F] leading-none">
+              Carousel <span className="text-[#D4A373] italic">Manager</span>
             </h1>
             <p className="text-gray-400 mt-2 font-medium text-[10px] sm:text-sm truncate">
               Update home page visual highlight slides.
@@ -240,7 +240,7 @@ export default function HeroSlidesPage() {
 
           <button
             onClick={() => openEditor()}
-            className="w-full sm:w-auto bg-[#f8bf51] text-white px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-lg shadow-[#f8bf51]/20 hover:bg-[#b0934e] transition-all flex items-center justify-center gap-2 active:scale-95 text-[10px] sm:text-xs uppercase tracking-widest"
+            className="w-full sm:w-auto bg-[#D4A373] text-white px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-lg shadow-[#D4A373]/20 hover:bg-[#1B5E20] transition-all flex items-center justify-center gap-2 active:scale-95 text-[10px] sm:text-xs uppercase tracking-widest"
           >
             <Plus size={18} />
             <span>Add New Slide</span>
@@ -257,7 +257,7 @@ export default function HeroSlidesPage() {
             </p>
             <button
               onClick={() => openEditor()}
-              className="mt-6 bg-[#f8bf51] text-white px-6 py-3 rounded-xl font-bold text-sm inline-flex items-center gap-2"
+              className="mt-6 bg-[#D4A373] text-white px-6 py-3 rounded-xl font-bold text-sm inline-flex items-center gap-2"
             >
               <Plus size={16} /> Create First Slide
             </button>
@@ -292,7 +292,7 @@ export default function HeroSlidesPage() {
                   <div className="absolute inset-0 bg-black/40 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                     <button
                       onClick={() => openEditor(slide)}
-                      className="bg-white text-gray-800 p-3 sm:p-2.5 rounded-xl hover:bg-[#f8bf51] hover:text-white transition-all shadow-lg active:scale-95"
+                      className="bg-white text-gray-800 p-3 sm:p-2.5 rounded-xl hover:bg-[#D4A373] hover:text-white transition-all shadow-lg active:scale-95"
                     >
                       <Pencil size={18} className="sm:w-4 sm:h-4" />
                     </button>
@@ -313,7 +313,7 @@ export default function HeroSlidesPage() {
                   </div>
 
                   {/* Tag badge */}
-                  <div className="absolute top-3 left-3 bg-[#f8bf51] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                  <div className="absolute top-3 left-3 bg-[#D4A373] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                     {slide.tag}
                   </div>
 
@@ -325,9 +325,9 @@ export default function HeroSlidesPage() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="font-bold text-[#234d1b] text-base mb-0.5 truncate">
+                  <h3 className="font-bold text-[#D32F2F] text-base mb-0.5 truncate">
                     {slide.title}{" "}
-                    <span className="text-[#f8bf51] italic">
+                    <span className="text-[#D4A373] italic">
                       {slide.titleAccent}
                     </span>
                   </h3>
@@ -337,7 +337,7 @@ export default function HeroSlidesPage() {
 
                   <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center gap-2">
-                      <span className="bg-[#234d1b]/5 text-[#234d1b] text-[9px] sm:text-[10px] font-black px-2.5 py-1.5 rounded-lg uppercase tracking-widest border border-[#234d1b]/10">
+                      <span className="bg-[#D32F2F]/5 text-[#D32F2F] text-[9px] sm:text-[10px] font-black px-2.5 py-1.5 rounded-lg uppercase tracking-widest border border-[#D32F2F]/10">
                         {slide.ctaText}
                       </span>
                     </div>
@@ -386,7 +386,7 @@ export default function HeroSlidesPage() {
                 {/* Modal Header */}
                 <div className="flex items-center justify-between px-6 sm:px-10 py-6 border-b border-gray-100">
                   <div>
-                    <h2 className="text-xl sm:text-2xl font-serif font-black text-[#234d1b]">
+                    <h2 className="text-xl sm:text-2xl font-serif font-black text-[#D32F2F]">
                       {editingSlide._id ? "Edit Slide" : "New Slide"}
                     </h2>
                     <p className="text-gray-400 text-[10px] sm:text-xs font-medium mt-1 uppercase tracking-widest leading-none">
@@ -395,7 +395,7 @@ export default function HeroSlidesPage() {
                   </div>
                   <button
                     onClick={closeEditor}
-                    className="text-gray-400 hover:text-[#234d1b] p-2 bg-gray-50 rounded-xl transition-all"
+                    className="text-gray-400 hover:text-[#D32F2F] p-2 bg-gray-50 rounded-xl transition-all"
                   >
                     <X size={20} />
                   </button>
@@ -632,7 +632,7 @@ export default function HeroSlidesPage() {
                   <button
                     onClick={handleSave}
                     disabled={saving === "save"}
-                    className="bg-[#f8bf51] hover:bg-[#b0934e] text-white px-8 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-[#f8bf51]/20 hover:shadow-xl transition-all"
+                    className="bg-[#D4A373] hover:bg-[#1B5E20] text-white px-8 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-[#D4A373]/20 hover:shadow-xl transition-all"
                   >
                     {saving === "save" ? (
                       <Loader2 size={16} className="animate-spin" />

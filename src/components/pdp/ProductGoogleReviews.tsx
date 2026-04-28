@@ -157,7 +157,7 @@ function ReviewCard({
         </div>
 
         <a
-          href="https://www.google.com/search?q=sai+nandhini+tasty+world+madurai+reviews"
+          href="https://www.google.com/search?q=miraly+foods+salem+reviews"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[10px] text-primary/60 hover:text-primary flex items-center gap-0.5 transition-colors"
@@ -269,7 +269,7 @@ export default function ProductGoogleReviews({ productName, limit = 3 }: Props) 
           )}
 
           <a
-            href="https://www.google.com/search?q=sai+nandhini+tasty+world+madurai+reviews"
+            href="https://www.google.com/search?q=miraly+foods+salem+reviews"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-bold text-primary/70 hover:text-primary transition-colors underline underline-offset-2"

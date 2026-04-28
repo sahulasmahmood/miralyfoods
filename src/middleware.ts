@@ -6,8 +6,8 @@ export function middleware(request: NextRequest) {
     const origin = request.headers.get('origin');
 
     const allowedOrigins = [
-      'https://sntasty.com',
-      'https://www.sntasty.com',
+      'https://miralyfoods.com',
+      'https://www.miralyfoods.com',
       'http://localhost:3000',
     ];
 

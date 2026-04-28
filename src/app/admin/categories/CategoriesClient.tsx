@@ -264,9 +264,9 @@ export default function CategoriesClient({
   return (
     <div className="space-y-8 pb-20 font-sans">
       {/* Header */}
-      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 border-b border-[#234d1b]/5 pb-4 sm:pb-6">
+      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 border-b border-[#D32F2F]/5 pb-4 sm:pb-6">
         <div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-black text-[#234d1b] tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-black text-[#D32F2F] tracking-tight leading-tight">
             Category Management
           </h1>
           <p className="text-gray-400 mt-1 sm:mt-2 font-medium tracking-wide text-[11px] sm:text-xs md:text-sm">
@@ -277,7 +277,7 @@ export default function CategoriesClient({
 
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-12 h-12 border-4 border-[#f8bf51] border-t-transparent rounded-full animate-spin mb-6" />
+          <div className="w-12 h-12 border-4 border-[#D4A373] border-t-transparent rounded-full animate-spin mb-6" />
           <p className="font-bold text-gray-400 uppercase tracking-widest text-xs">Loading Configuration...</p>
         </div>
       ) : (
@@ -292,7 +292,7 @@ export default function CategoriesClient({
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-sm font-black uppercase tracking-widest text-[#234d1b]">Categories</h3>
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#D32F2F]">Categories</h3>
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{categories.length} Total</span>
                 </div>
 
@@ -304,7 +304,7 @@ export default function CategoriesClient({
                     placeholder="Search categories..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="block w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs font-bold text-[#234d1b] outline-none placeholder:text-gray-400 focus:bg-white focus:border-[#f8bf51]/50 focus:ring-2 focus:ring-[#f8bf51]/10 transition-all"
+                    className="block w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs font-bold text-[#D32F2F] outline-none placeholder:text-gray-400 focus:bg-white focus:border-[#D4A373]/50 focus:ring-2 focus:ring-[#D4A373]/10 transition-all"
                   />
                 </div>
 
@@ -316,12 +316,12 @@ export default function CategoriesClient({
                       placeholder="New Category Name..."
                       value={newCategory}
                       onChange={(e) => setNewCategory(e.target.value)}
-                      className="flex-grow bg-[#ece0cc] border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f8bf51]/50 transition-shadow font-bold text-[#234d1b] placeholder:font-medium placeholder:text-gray-400 text-sm"
+                      className="flex-grow bg-[#F5F5F5] border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#D4A373]/50 transition-shadow font-bold text-[#D32F2F] placeholder:font-medium placeholder:text-gray-400 text-sm"
                     />
                     <button
                       onClick={handleAddCategory}
                       disabled={!newCategory || !newCategoryImage || isAddingCategory}
-                      className="bg-[#234d1b] text-white p-3 rounded-xl shadow-lg active:scale-95 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#1a3614] transition-colors"
+                      className="bg-[#D32F2F] text-white p-3 rounded-xl shadow-lg active:scale-95 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#8E0000] transition-colors"
                     >
                       {isAddingCategory ? <Loader2 size={20} className="animate-spin" /> : <Plus size={20} />}
                     </button>
@@ -341,7 +341,7 @@ export default function CategoriesClient({
                             <Image src={cat.image} className="object-cover" alt="" width={40} height={40} />
                           </div>
                           <div className="min-w-0">
-                            <span className="font-black text-xs sm:text-sm truncate block text-[#234d1b]">{cat.name}</span>
+                            <span className="font-black text-xs sm:text-sm truncate block text-[#D32F2F]">{cat.name}</span>
                             <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
                               {(subsByParent[cat._id] || []).length} mapped items
                             </span>
@@ -367,11 +367,11 @@ export default function CategoriesClient({
               {/* Step 1: Create/Pick Names */}
               <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
                 <div className="flex items-center gap-2 mb-5">
-                  <div className="w-7 h-7 rounded-lg bg-[#f8bf51]/10 flex items-center justify-center border border-[#f8bf51]/20">
-                    <Tag size={14} className="text-[#f8bf51]" />
+                  <div className="w-7 h-7 rounded-lg bg-[#D4A373]/10 flex items-center justify-center border border-[#D4A373]/20">
+                    <Tag size={14} className="text-[#D4A373]" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-black uppercase tracking-widest text-[#234d1b]">Step 1 — Create Sub-Category Pool</h3>
+                    <h3 className="text-sm font-black uppercase tracking-widest text-[#D32F2F]">Step 1 — Create Sub-Category Pool</h3>
                     <p className="text-[10px] text-gray-400 font-medium mt-0.5">Define names here to reuse across any category.</p>
                   </div>
                 </div>
@@ -383,12 +383,12 @@ export default function CategoriesClient({
                     value={poolInput}
                     onChange={(e) => setPoolInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && addToPool()}
-                    className="flex-grow bg-[#ece0cc] border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f8bf51]/50 transition-shadow font-bold text-[#234d1b] placeholder:font-medium placeholder:text-gray-400 text-sm"
+                    className="flex-grow bg-[#F5F5F5] border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#D4A373]/50 transition-shadow font-bold text-[#D32F2F] placeholder:font-medium placeholder:text-gray-400 text-sm"
                   />
                   <button
                     onClick={addToPool}
                     disabled={!poolInput.trim()}
-                    className="bg-[#f8bf51] text-white p-3 rounded-xl shadow-lg active:scale-95 flex-shrink-0 disabled:opacity-40 hover:bg-[#b0934e] transition-colors"
+                    className="bg-[#D4A373] text-white p-3 rounded-xl shadow-lg active:scale-95 flex-shrink-0 disabled:opacity-40 hover:bg-[#1B5E20] transition-colors"
                   >
                     <Plus size={20} />
                   </button>
@@ -405,8 +405,8 @@ export default function CategoriesClient({
                         onClick={() => setMapName(mapName === name ? "" : name)}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                           mapName === name
-                            ? "bg-[#234d1b] text-white border-[#234d1b] shadow-md ring-2 ring-[#234d1b]/10"
-                            : "bg-gray-50 text-[#234d1b] border-gray-200 hover:border-[#234d1b]/30"
+                            ? "bg-[#D32F2F] text-white border-[#D32F2F] shadow-md ring-2 ring-[#D32F2F]/10"
+                            : "bg-gray-50 text-[#D32F2F] border-gray-200 hover:border-[#D32F2F]/30"
                         }`}
                       >
                         {name}
@@ -427,11 +427,11 @@ export default function CategoriesClient({
               {/* Step 2: Mapping Selection */}
               <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100 overflow-visible">
                 <div className="flex items-center gap-2 mb-5">
-                  <div className="w-7 h-7 rounded-lg bg-[#234d1b]/10 flex items-center justify-center border border-[#234d1b]/20">
-                    <Link2 size={14} className="text-[#234d1b]" />
+                  <div className="w-7 h-7 rounded-lg bg-[#D32F2F]/10 flex items-center justify-center border border-[#D32F2F]/20">
+                    <Link2 size={14} className="text-[#D32F2F]" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-black uppercase tracking-widest text-[#234d1b]">Step 2 — Map to Category</h3>
+                    <h3 className="text-sm font-black uppercase tracking-widest text-[#D32F2F]">Step 2 — Map to Category</h3>
                     <p className="text-[10px] text-gray-400 font-medium mt-0.5">Select a name + choose category → creates in database.</p>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export default function CategoriesClient({
                     <div className="flex items-center gap-3">
                       <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Sub-Category:</span>
                       {mapName ? (
-                        <span className="text-xs font-black text-[#234d1b] bg-[#f8bf51]/15 px-3 py-1 rounded-lg border border-[#f8bf51]/20">{mapName}</span>
+                        <span className="text-xs font-black text-[#D32F2F] bg-[#D4A373]/15 px-3 py-1 rounded-lg border border-[#D4A373]/20">{mapName}</span>
                       ) : (
                         <span className="text-xs text-gray-400 italic font-medium">← Click a chip in Step 1</span>
                       )}
@@ -455,9 +455,9 @@ export default function CategoriesClient({
                     <button
                       type="button"
                       onClick={() => setIsMapCatDropdownOpen(!isMapCatDropdownOpen)}
-                      className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3.5 text-left font-bold text-sm flex justify-between items-center transition-all focus:ring-2 focus:ring-[#f8bf51]/50 outline-none hover:border-gray-200"
+                      className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3.5 text-left font-bold text-sm flex justify-between items-center transition-all focus:ring-2 focus:ring-[#D4A373]/50 outline-none hover:border-gray-200"
                     >
-                      <span className={selectedCatName ? "text-[#234d1b]" : "text-gray-400 font-medium"}>
+                      <span className={selectedCatName ? "text-[#D32F2F]" : "text-gray-400 font-medium"}>
                         {selectedCatName || "Select parent category..."}
                       </span>
                       <ChevronDown size={18} className={`text-gray-400 transition-transform duration-300 ${isMapCatDropdownOpen ? "rotate-180" : ""}`} />
@@ -476,7 +476,7 @@ export default function CategoriesClient({
                               key={cat._id}
                               type="button"
                               onClick={() => { setMapCategoryId(cat._id); setIsMapCatDropdownOpen(false); }}
-                              className={`w-full text-left px-5 py-4 text-sm font-bold flex items-center gap-4 transition-colors border-b border-gray-50 last:border-0 ${mapCategoryId === cat._id ? "bg-[#234d1b] text-white" : "text-[#234d1b] hover:bg-gray-50"}`}
+                              className={`w-full text-left px-5 py-4 text-sm font-bold flex items-center gap-4 transition-colors border-b border-gray-50 last:border-0 ${mapCategoryId === cat._id ? "bg-[#D32F2F] text-white" : "text-[#D32F2F] hover:bg-gray-50"}`}
                             >
                               <div className="w-7 h-7 rounded-md overflow-hidden shrink-0 border border-black/5">
                                 <Image src={cat.image} alt="" width={28} height={28} className="object-cover" />
@@ -493,7 +493,7 @@ export default function CategoriesClient({
                   <button
                     onClick={handleMap}
                     disabled={!mapName || !mapCategoryId || isMapping}
-                    className="w-full bg-[#f8bf51] text-white py-4 rounded-xl hover:bg-[#b0934e] transition-all shadow-lg active:scale-95 font-black uppercase tracking-widest text-xs disabled:opacity-40 disabled:scale-100 flex items-center justify-center gap-2"
+                    className="w-full bg-[#D4A373] text-white py-4 rounded-xl hover:bg-[#1B5E20] transition-all shadow-lg active:scale-95 font-black uppercase tracking-widest text-xs disabled:opacity-40 disabled:scale-100 flex items-center justify-center gap-2"
                   >
                     {isMapping ? <Loader2 size={16} className="animate-spin" /> : <Link2 size={16} />}
                     {isMapping ? "Mapping..." : `Map "${mapName || "..."}" to ${selectedCatName || "Category"}`}
@@ -503,16 +503,16 @@ export default function CategoriesClient({
 
               {/* Current Mappings List */}
               <div className="bg-white p-6 rounded-[24px] shadow-sm border border-gray-100">
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#234d1b] mb-6">Current Database Mappings</h3>
+                <h3 className="text-sm font-black uppercase tracking-widest text-[#D32F2F] mb-6">Current Database Mappings</h3>
                 {subLoading ? (
                   <div className="flex flex-col items-center py-10 opacity-40">
-                    <Loader2 size={24} className="animate-spin text-[#234d1b] mb-2" />
+                    <Loader2 size={24} className="animate-spin text-[#D32F2F] mb-2" />
                     <p className="text-[10px] font-bold uppercase tracking-widest">Syncing from DB...</p>
                   </div>
                 ) : allSubCategories.length === 0 ? (
                   <div className="flex flex-col items-center justify-center text-center opacity-40 py-12 border-2 border-dashed border-gray-100 rounded-2xl">
-                    <Layers size={40} className="mb-3 text-[#234d1b]" />
-                    <p className="text-xs font-black uppercase tracking-widest text-[#234d1b]">No active mappings found</p>
+                    <Layers size={40} className="mb-3 text-[#D32F2F]" />
+                    <p className="text-xs font-black uppercase tracking-widest text-[#D32F2F]">No active mappings found</p>
                     <p className="text-[10px] font-bold text-gray-400 mt-1 italic leading-relaxed">Follow Steps 1 & 2 above to create mappings.</p>
                   </div>
                 ) : (
@@ -526,8 +526,8 @@ export default function CategoriesClient({
                             <div className="w-6 h-6 rounded-md overflow-hidden shrink-0 border border-black/5">
                               <Image src={cat.image} alt="" width={24} height={24} className="object-cover" />
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-[#234d1b] truncate">{cat.name}</span>
-                            <span className="text-[9px] font-bold bg-[#f8bf51] text-white px-2 py-0.5 rounded-full ml-auto">{subs.length} items</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#D32F2F] truncate">{cat.name}</span>
+                            <span className="text-[9px] font-bold bg-[#D4A373] text-white px-2 py-0.5 rounded-full ml-auto">{subs.length} items</span>
                           </div>
                           <div className="flex flex-wrap gap-2 pl-2">
                             {subs.map((sub: any) => (
@@ -536,7 +536,7 @@ export default function CategoriesClient({
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-bold text-[#234d1b] group hover:border-[#f8bf51]/40 shadow-sm transition-all"
+                                className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-bold text-[#D32F2F] group hover:border-[#D4A373]/40 shadow-sm transition-all"
                               >
                                 {sub.name}
                                 <button
@@ -596,7 +596,7 @@ function EditingCategoryModal({
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onClick={onClose}>
           <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()} className="bg-white rounded-[32px] p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto overscroll-contain shadow-2xl custom-scrollbar relative">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-serif font-black text-[#234d1b]">Edit Category</h2>
+              <h2 className="text-2xl font-serif font-black text-[#D32F2F]">Edit Category</h2>
               <button onClick={onClose} className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-gray-100 transition-colors"><X size={20} /></button>
             </div>
             <div className="space-y-6">
@@ -610,17 +610,17 @@ function EditingCategoryModal({
                       setName(e.target.value);
                       setSlug(e.target.value.toLowerCase().trim().replace(/ /g, "-").replace(/[^\w-]+/g, ""));
                     }}
-                    className="w-full bg-[#ece0cc] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#f8bf51]/50 font-bold text-[#234d1b]"
+                    className="w-full bg-[#F5F5F5] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#D4A373]/50 font-bold text-[#D32F2F]"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Slug</label>
-                  <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} className="w-full bg-[#ece0cc] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#f8bf51]/50 font-bold text-[#234d1b]" />
+                  <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)} className="w-full bg-[#F5F5F5] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#D4A373]/50 font-bold text-[#D32F2F]" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Description</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="w-full bg-[#ece0cc] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#f8bf51]/50 font-bold text-[#234d1b] min-h-[100px] resize-none" />
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="w-full bg-[#F5F5F5] border-none rounded-xl px-4 py-3.5 outline-none focus:ring-2 focus:ring-[#D4A373]/50 font-bold text-[#D32F2F] min-h-[100px] resize-none" />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Image</label>
@@ -628,7 +628,7 @@ function EditingCategoryModal({
               </div>
               <div className="flex gap-4 pt-4">
                 <button onClick={onClose} className="flex-1 py-4 rounded-xl bg-gray-100 text-gray-600 font-bold uppercase tracking-widest text-xs hover:bg-gray-200 transition-colors">Cancel</button>
-                <button onClick={onSave} className="flex-1 bg-[#234d1b] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-[#1a3614] shadow-lg transition-colors flex items-center justify-center gap-2"><Save size={16} /> Update Changes</button>
+                <button onClick={onSave} className="flex-1 bg-[#D32F2F] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-[#8E0000] shadow-lg transition-colors flex items-center justify-center gap-2"><Save size={16} /> Update Changes</button>
               </div>
             </div>
           </motion.div>

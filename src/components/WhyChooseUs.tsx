@@ -47,7 +47,7 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
     const parts = title.split(new RegExp(`(${highlightWord})`, "i"));
     return parts.map((part: string, i: number) => 
       part.toLowerCase() === highlightWord.toLowerCase() ? (
-        <span key={i} className="text-[#f8bf51] italic">{part}</span>
+        <span key={i} className="text-accent italic">{part}</span>
       ) : (
         <span key={i}>{part}</span>
       )
@@ -55,9 +55,9 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
   };
 
   return (
-    <section className="py-28 bg-[#234d1b] relative overflow-hidden">
+    <section className="py-28 bg-primary-dark relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#f8bf51]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       {/* Subtle dot pattern */}
@@ -65,7 +65,7 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(248,191,81,0.5) 1px, transparent 1px)",
+            "radial-gradient(circle, rgba(46,125,50,0.5) 1px, transparent 1px)",
           backgroundSize: "30px 30px",
         }}
       />
@@ -80,13 +80,13 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#f8bf51] mb-5 block">
+              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent mb-5 block">
                 Why Choose Us
               </span>
               <h2 className="text-4xl md:text-6xl font-serif font-black text-white tracking-tight leading-[1.05] mb-3 whitespace-pre-line">
                 {renderTitle()}
               </h2>
-              <div className="w-16 h-1 bg-[#f8bf51] rounded-full mb-8" />
+              <div className="w-16 h-1 bg-accent rounded-full mb-8" />
               <p className="text-white/40 text-base leading-relaxed mb-12 max-w-md whitespace-pre-line">
                 {description}
               </p>
@@ -102,8 +102,8 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
                   viewport={{ once: true }}
                   className="flex gap-5 group p-5 rounded-2xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
                 >
-                  <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#f8bf51] group-hover:scale-105 transition-all duration-300 shadow-lg shadow-black/10">
-                    <span className="text-xl font-serif font-black text-[#f8bf51] group-hover:text-[#234d1b] transition-colors delay-75">
+                  <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:scale-105 transition-all duration-300 shadow-lg shadow-black/10">
+                    <span className="text-xl font-serif font-black text-accent group-hover:text-primary-dark transition-colors delay-75">
                       {item.num}
                     </span>
                   </div>
@@ -138,25 +138,25 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#234d1b]/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/40 via-transparent to-transparent" />
             </div>
 
             {/* Stats badge */}
-            <div className="absolute -bottom-6 -left-6 bg-[#f8bf51] p-7 rounded-3xl shadow-2xl shadow-black/20">
-              <p className="text-4xl font-serif font-black text-[#234d1b] mb-1">
+            <div className="absolute -bottom-6 -left-6 bg-accent p-7 rounded-3xl shadow-2xl shadow-black/20">
+              <p className="text-4xl font-serif font-black text-primary-dark mb-1">
                 {badge1Value}
               </p>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#234d1b]/70">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-primary-dark/70">
                 {badge1Label}
               </p>
             </div>
 
             {/* Secondary badge */}
             <div className="absolute -top-4 -right-4 bg-white p-5 rounded-2xl shadow-2xl shadow-black/10">
-              <p className="text-2xl font-serif font-black text-[#234d1b] mb-0.5">
+              <p className="text-2xl font-serif font-black text-primary-dark mb-0.5">
                 {badge2Value}
               </p>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-[#234d1b]/50">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-primary-dark/50">
                 {badge2Label}
               </p>
             </div>

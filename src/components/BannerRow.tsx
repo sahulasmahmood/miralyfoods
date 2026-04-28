@@ -24,11 +24,11 @@ export default function BannerRow() {
               className="object-cover transition-transform duration-700 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-center p-8 lg:p-12 text-white">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex flex-col justify-center p-8 lg:p-12 text-white">
               <span className="text-xs font-bold uppercase tracking-[10px] mb-4 text-white/80">
                 Fresh & Natural
               </span>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-accent">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-yellow-300">
                 Discover Our <br />
                 Best Sellers
               </h3>
@@ -55,11 +55,11 @@ export default function BannerRow() {
               className="object-cover transition-transform duration-700 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/80 to-transparent flex flex-col justify-center p-8 lg:p-12 text-white">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20 flex flex-col justify-center p-8 lg:p-12 text-white">
               <span className="text-xs font-bold uppercase tracking-[10px] mb-4 text-white/80">
                 Special Offer
               </span>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-yellow-300">
                 Great Deals <br />
                 Await You
               </h3>

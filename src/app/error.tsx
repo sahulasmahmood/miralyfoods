@@ -14,12 +14,12 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-[#ece0cc] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#F5F5F5] flex items-center justify-center px-4">
       <div className="bg-white rounded-3xl shadow-xl p-10 max-w-md w-full text-center">
         <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
           <span className="text-3xl">!</span>
         </div>
-        <h2 className="text-2xl font-serif font-black text-[#234d1b] mb-3">
+        <h2 className="text-2xl font-serif font-black text-[#D32F2F] mb-3">
           Something went wrong
         </h2>
         <p className="text-gray-500 text-sm font-medium mb-8">
@@ -27,7 +27,7 @@ export default function Error({
         </p>
         <button
           onClick={reset}
-          className="px-8 py-3 bg-[#234d1b] text-white rounded-xl font-bold text-sm hover:bg-[#1a3a14] transition-colors"
+          className="px-8 py-3 bg-[#D32F2F] text-white rounded-xl font-bold text-sm hover:bg-[#8E0000] transition-colors"
         >
           Try Again
         </button>

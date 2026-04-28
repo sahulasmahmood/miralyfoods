@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         const base64Image = `data:${file.type};base64,${buffer.toString("base64")}`;
         const { secure_url } = await uploadToCloudinary(
           base64Image,
-          "sainandhini/products",
+          "miralyfoods/products",
         );
         return NextResponse.json({ secure_url });
       }
@@ -97,7 +97,7 @@ export async function POST(req: Request) {
         const base64Image = `data:${file.type};base64,${buffer.toString("base64")}`;
         const { secure_url } = await uploadToCloudinary(
           base64Image,
-          "sainandhini/products",
+          "miralyfoods/products",
         );
         uploadedUrls.push(secure_url);
       }

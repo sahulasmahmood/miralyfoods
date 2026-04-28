@@ -6,18 +6,15 @@ import {
   Filter,
   Search as SearchIcon,
   ChevronDown,
-  Star,
   ShoppingCart,
   Loader2,
   Heart,
-  CheckCircle2,
+  Eye,
   X,
   LayoutGrid,
+  List,
   ChevronLeft,
   ChevronRight,
-  ArrowUpDown,
-  Zap,
-  Package,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -46,26 +43,24 @@ export default function ShopClient({
   const [subCategories, setSubCategories] = useState<any[]>([]);
   const [loadingSubCategories, setLoadingSubCategories] = useState(false);
 
-  // Filters & Sorting
   const [activeCategory, setActiveCategory] = useState(urlCategory);
   const [activeSubCategory, setActiveSubCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState(urlSearch);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  const [sortBy, setSortBy] = useState("Recommended");
+  const [sortBy, setSortBy] = useState("menu_order");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const itemsPerPage = 8;
+  const [showMobileCategories, setShowMobileCategories] = useState(false);
+  const itemsPerPage = 12;
 
-  // Handle URL parameter changes
   useEffect(() => {
     const urlCategory = searchParams.get("category") || "All";
     const urlSearch = searchParams.get("search") || "";
-    
     setActiveCategory(urlCategory);
     setSearchQuery(urlSearch);
   }, [searchParams]);
 
-  // Fetch subcategories when category changes
   useEffect(() => {
     const fetchSubCategories = async () => {
       if (activeCategory === "All") {
@@ -73,12 +68,13 @@ export default function ShopClient({
         setActiveSubCategory("All");
         return;
       }
-
       setLoadingSubCategories(true);
       try {
         const category = categories.find((c) => c.name === activeCategory);
         if (category) {
-          const res = await fetch(`/api/admin/subcategories?categoryId=${category._id}`);
+          const res = await fetch(
+            `/api/admin/subcategories?categoryId=${category._id}`
+          );
           const data = await res.json();
           setSubCategories(data);
           setActiveSubCategory("All");
@@ -90,7 +86,6 @@ export default function ShopClient({
         setLoadingSubCategories(false);
       }
     };
-
     fetchSubCategories();
   }, [activeCategory, categories]);
 
@@ -100,355 +95,418 @@ export default function ShopClient({
         const matchesCategory =
           activeCategory === "All" || p.category === activeCategory;
         const matchesSubCategory =
-          activeSubCategory === "All" || 
-          (p.subCategory && (
-            p.subCategory === activeSubCategory || 
-            p.subCategory._id === activeSubCategory
-          ));
+          activeSubCategory === "All" ||
+          (p.subCategory &&
+            (p.subCategory === activeSubCategory ||
+              p.subCategory._id === activeSubCategory));
         const matchesSearch = p.name
           .toLowerCase()
           .includes(searchQuery.toLowerCase());
         const matchesPrice =
           p.price >= priceRange[0] && p.price <= priceRange[1];
-        return (
-          matchesCategory &&
-          matchesSubCategory &&
-          matchesSearch &&
-          matchesPrice
-        );
+        return matchesCategory && matchesSubCategory && matchesSearch && matchesPrice;
       })
       .sort((a, b) => {
-        if (sortBy === "Price: Low to High") return a.price - b.price;
-        if (sortBy === "Price: High to Low") return b.price - a.price;
-        return 0; // "Recommended"
+        if (sortBy === "price") return a.price - b.price;
+        if (sortBy === "price-desc") return b.price - a.price;
+        if (sortBy === "date")
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        return 0;
       });
-  }, [
-    products,
-    activeCategory,
-    activeSubCategory,
-    searchQuery,
-    priceRange,
-    sortBy,
-  ]);
+  }, [products, activeCategory, activeSubCategory, searchQuery, priceRange, sortBy]);
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
+    currentPage * itemsPerPage
   );
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   return (
-    <div className="bg-[#FCFCFA]">
-      {/* 1. Ultra-Compact Product Header (Reduced Hero Height) */}
-      <section className="bg-secondary border-b border-primary/10 py-10 pt-44 md:pt-44">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="h-px w-8 bg-primary"></span>
-                <span className="text-[10px] font-sans font-black uppercase text-primary tracking-[0.3em]">
-                  Direct from our kitchen
-                </span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-serif font-black text-primary-dark">
-                Authentic Flavors
-              </h1>
-              <p className="text-primary-dark/60 mt-2 text-xs md:text-sm font-sans font-medium">
-                Showing {filteredProducts.length} Premium Treats
-              </p>
-            </div>
-
-            {/* Desktop Quick Search In Header */}
-            <div className="relative hidden md:block w-72">
-              <SearchIcon
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-primary/40"
-                size={16}
-              />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by product..."
-                className="w-full bg-white border border-primary/10 rounded-full py-3 pl-11 pr-4 text-xs font-sans font-bold outline-none focus:ring-2 focus:ring-primary/20 transition-all text-primary-dark placeholder:text-primary/30"
-              />
-            </div>
-
-            {/* Mobile Search */}
-            <div className="relative md:hidden w-full mt-2">
-              <SearchIcon
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-primary/40"
-                size={14}
-              />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products..."
-                className="w-full bg-white border border-primary/10 rounded-full py-2.5 pl-10 pr-4 text-xs font-sans font-bold outline-none focus:ring-2 focus:ring-primary/20 transition-all text-primary-dark placeholder:text-primary/30 shadow-sm"
-              />
-            </div>
-          </div>
+    <div className="bg-white">
+      {/* Breadcrumb Hero Banner */}
+      <section className="relative w-full h-[300px] flex items-center overflow-hidden">
+        <Image
+          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Shop Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-white"
+          >
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-4 text-white">
+              Shop
+            </h1>
+            <nav className="flex items-center gap-2 text-sm font-medium">
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+              <span className="w-4 h-[1px] bg-white" />
+              <span className="text-yellow-300 font-bold">Shop</span>
+            </nav>
+          </motion.div>
         </div>
       </section>
 
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-6 md:py-10">
-        <div className="flex flex-col lg:flex-row gap-6 md:gap-10">
-          {/* 2. Modern Sidebar Filters (Amazon/Flipkart Style) */}
-          {/* 2. Modern Sidebar Filters (Hidden on Mobile) */}
-          <aside className="hidden lg:block lg:w-72 shrink-0 space-y-8 bg-white/50 p-6 rounded-[2rem] border border-primary/5 h-fit sticky top-24">
-            {/* Active Filters Summary */}
-            {(activeCategory !== "All" || activeSubCategory !== "All") && (
-              <div className="bg-primary/5 p-4 rounded-2xl border border-primary/10">
-                <div className="flex justify-between items-center mb-3">
-                  <h4 className="text-[10px] font-sans font-black uppercase tracking-widest text-primary-dark">
-                    Active Filters
-                  </h4>
+      {/* Search Bar (below hero) */}
+      <div className="container-custom py-6">
+        <div className="relative max-w-md">
+          <SearchIcon
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-text-body/40"
+            size={16}
+          />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+            placeholder="Search products..."
+            className="w-full bg-white border border-gray-200 rounded py-2.5 pl-11 pr-4 text-sm focus:outline-none focus:border-primary transition-all text-text-heading placeholder:text-text-body/40"
+          />
+        </div>
+      </div>
+
+      {/* Main Layout */}
+      <div className="container-custom py-8 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Sidebar */}
+          <aside className="hidden lg:flex flex-col gap-10 lg:w-1/4 flex-shrink-0">
+            {/* Product Categories */}
+            <div className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+              <h2 className="text-xl font-serif font-bold mb-6 pb-2 border-b border-gray-100">
+                Product categories
+              </h2>
+              <ul className="flex flex-col gap-3">
+                <li>
                   <button
                     onClick={() => {
                       setActiveCategory("All");
                       setActiveSubCategory("All");
+                      setCurrentPage(1);
                     }}
-                    className="text-[9px] font-sans font-bold text-primary hover:underline"
+                    className={`w-full text-left text-sm transition-colors flex items-center justify-between group ${
+                      activeCategory === "All"
+                        ? "text-primary font-bold"
+                        : "text-text-body hover:text-primary"
+                    }`}
                   >
-                    Clear All
+                    All Products
+                    <span
+                      className={`text-[10px] px-2 py-1 rounded transition-colors ${
+                        activeCategory === "All"
+                          ? "bg-primary text-white"
+                          : "bg-gray-50 text-gray-400 group-hover:bg-primary group-hover:text-white"
+                      }`}
+                    >
+                      ({products.length})
+                    </span>
                   </button>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {activeCategory !== "All" && (
-                    <span className="px-2 py-1 bg-white text-[9px] font-sans font-bold rounded-lg border border-primary/20 text-primary flex items-center gap-1">
-                      {activeCategory}{" "}
-                      <X
-                        size={10}
-                        className="cursor-pointer"
+                </li>
+                {categories.map((cat) => {
+                  const count = products.filter(
+                    (p) => p.category === cat.name
+                  ).length;
+                  return (
+                    <li key={cat._id}>
+                      <button
                         onClick={() => {
-                          setActiveCategory("All");
+                          setActiveCategory(cat.name);
                           setActiveSubCategory("All");
+                          setCurrentPage(1);
                         }}
-                      />
-                    </span>
-                  )}
-                  {activeSubCategory !== "All" && (
-                    <span className="px-2 py-1 bg-white text-[9px] font-sans font-bold rounded-lg border border-primary/20 text-primary flex items-center gap-1">
-                      {subCategories.find(s => s._id === activeSubCategory || s.name === activeSubCategory)?.name || activeSubCategory}{" "}
-                      <X
-                        size={10}
-                        className="cursor-pointer"
-                        onClick={() => setActiveSubCategory("All")}
-                      />
-                    </span>
-                  )}
+                        className={`w-full text-left text-sm transition-colors flex items-center justify-between group ${
+                          activeCategory === cat.name
+                            ? "text-primary font-bold"
+                            : "text-text-body hover:text-primary"
+                        }`}
+                      >
+                        {cat.name}
+                        <span
+                          className={`text-[10px] px-2 py-1 rounded transition-colors ${
+                            activeCategory === cat.name
+                              ? "bg-primary text-white"
+                              : "bg-gray-50 text-gray-400 group-hover:bg-primary group-hover:text-white"
+                          }`}
+                        >
+                          ({count})
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
 
+              {/* Subcategories */}
+              {activeCategory !== "All" && (
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <h3 className="text-sm font-bold text-text-heading mb-3">
+                    Sub Categories
+                  </h3>
+                  {loadingSubCategories ? (
+                    <div className="flex items-center justify-center py-4">
+                      <Loader2
+                        size={16}
+                        className="animate-spin text-primary/40"
+                      />
+                    </div>
+                  ) : subCategories.length > 0 ? (
+                    <ul className="flex flex-col gap-2">
+                      <li>
+                        <button
+                          onClick={() => {
+                            setActiveSubCategory("All");
+                            setCurrentPage(1);
+                          }}
+                          className={`text-sm transition-colors ${
+                            activeSubCategory === "All"
+                              ? "text-primary font-bold"
+                              : "text-text-body hover:text-primary"
+                          }`}
+                        >
+                          All {activeCategory}
+                        </button>
+                      </li>
+                      {subCategories.map((sub) => (
+                        <li key={sub._id}>
+                          <button
+                            onClick={() => {
+                              setActiveSubCategory(sub._id);
+                              setCurrentPage(1);
+                            }}
+                            className={`text-sm transition-colors ${
+                              activeSubCategory === sub._id
+                                ? "text-primary font-bold"
+                                : "text-text-body hover:text-primary"
+                            }`}
+                          >
+                            {sub.name}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-xs text-text-body/50 italic">
+                      No subcategories
+                    </p>
+                  )}
                 </div>
-              </div>
-            )}
-
-            {/* Categories Vertical */}
-            <div>
-              <h3 className="text-[11px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4 flex items-center justify-between">
-                Categories <ChevronDown size={14} className="text-primary/30" />
-              </h3>
-              <div className="space-y-1.5">
-                <button
-                  onClick={() => {
-                    setActiveCategory("All");
-                    setActiveSubCategory("All");
-                  }}
-                  className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-sans font-bold transition-all ${activeCategory === "All" ? "bg-primary-dark text-white" : "text-primary/60 hover:bg-white hover:text-primary-dark"}`}
-                >
-                  All Collection
-                </button>
-                {categories.map((cat) => (
-                  <button
-                    key={cat._id}
-                    onClick={() => {
-                      setActiveCategory(cat.name);
-                      setActiveSubCategory("All");
-                    }}
-                    className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-sans font-bold transition-all ${activeCategory === cat.name ? "bg-primary-dark text-white" : "text-primary/60 hover:bg-white hover:text-primary-dark"}`}
-                  >
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
+              )}
             </div>
 
-            {/* SubCategories */}
-            {activeCategory !== "All" && (
-              <div>
-                <h3 className="text-[11px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4 flex items-center justify-between">
-                  Sub Categories <ChevronDown size={14} className="text-primary/30" />
-                </h3>
-                {loadingSubCategories ? (
-                  <div className="flex items-center justify-center py-4">
-                    <Loader2 size={16} className="animate-spin text-primary/40" />
-                  </div>
-                ) : subCategories.length > 0 ? (
-                  <div className="space-y-1.5">
-                    <button
-                      onClick={() => setActiveSubCategory("All")}
-                      className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-sans font-bold transition-all ${activeSubCategory === "All" ? "bg-primary text-white" : "text-primary/60 hover:bg-white hover:text-primary-dark"}`}
-                    >
-                      All {activeCategory}
-                    </button>
-                    {subCategories.map((sub) => (
-                      <button
-                        key={sub._id}
-                        onClick={() => setActiveSubCategory(sub._id)}
-                        className={`w-full text-left px-4 py-2.5 rounded-xl text-xs font-sans font-bold transition-all ${activeSubCategory === sub._id ? "bg-primary text-white" : "text-primary/60 hover:bg-white hover:text-primary-dark"}`}
-                      >
-                        {sub.name}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-xs text-primary/40 italic px-4">No subcategories</p>
-                )}
-              </div>
-            )}
-
-            {/* Price Range Filter */}
-            <div>
-              <h3 className="text-[11px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4">
-                Price Range
-              </h3>
-              <div className="space-y-4">
-                {/* Price Input Fields */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-[9px] font-sans font-bold text-gray-400 uppercase tracking-wider mb-1.5 block">
-                      Min
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400">
-                        ₹
-                      </span>
-                      <input
-                        type="number"
-                        min="0"
-                        max={priceRange[1]}
-                        value={priceRange[0]}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value) || 0;
-                          setPriceRange([Math.min(val, priceRange[1]), priceRange[1]]);
-                        }}
-                        className="w-full pl-7 pr-3 py-2 border border-gray-200 rounded-lg text-xs font-bold text-primary-dark focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all"
-                        placeholder="0"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-[9px] font-sans font-bold text-gray-400 uppercase tracking-wider mb-1.5 block">
-                      Max
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400">
-                        ₹
-                      </span>
-                      <input
-                        type="number"
-                        min={priceRange[0]}
-                        max="10000"
-                        value={priceRange[1]}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value) || 2000;
-                          setPriceRange([priceRange[0], Math.max(val, priceRange[0])]);
-                        }}
-                        className="w-full pl-7 pr-3 py-2 border border-gray-200 rounded-lg text-xs font-bold text-primary-dark focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all"
-                        placeholder="2000"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Price Range Slider */}
-                <div className="px-2">
+            {/* Filter by Price */}
+            <div className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+              <h2 className="text-xl font-serif font-bold mb-6 pb-2 border-b border-gray-100">
+                Filter by price
+              </h2>
+              <div className="flex flex-col gap-6">
+                <div className="relative">
                   <input
                     type="range"
                     min="0"
                     max="10000"
                     value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                    className="w-full accent-primary h-1.5 bg-secondary border border-primary/10 rounded-lg appearance-none cursor-pointer"
+                    onChange={(e) =>
+                      setPriceRange([priceRange[0], parseInt(e.target.value)])
+                    }
+                    className="w-full accent-primary h-1.5 bg-gray-100 rounded-full appearance-none cursor-pointer"
                   />
-                  <div className="flex justify-between mt-2">
-                    <span className="text-[10px] font-sans font-bold text-gray-400">
-                      ₹{priceRange[0]}
+                </div>
+                <div className="flex justify-between items-center text-sm font-bold text-text-heading">
+                  <button
+                    onClick={() => setCurrentPage(1)}
+                    className="bg-primary text-white px-4 py-1.5 rounded-sm text-xs uppercase tracking-widest hover:bg-primary-dark transition-colors"
+                  >
+                    Filter
+                  </button>
+                  <p className="text-gray-400 font-medium">
+                    Price:{" "}
+                    <span className="text-text-heading">
+                      ₹{priceRange[0]} — ₹{priceRange[1]}
                     </span>
-                    <span className="text-[10px] font-sans font-black text-primary-dark">
-                      ₹{priceRange[1]}
-                    </span>
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
 
-
-
-
-          </aside>
-
-          {/* 3. High-Density Product Grid (Bringing Items Above Fold) */}
-          {/* 3. High-Density Product Grid (Bringing Items Above Fold) */}
-          <div className="flex-grow">
-            {/* Utility Bar */}
-            <div className="flex items-center justify-between mb-6 md:mb-8 bg-white/50 p-3 md:p-4 rounded-xl md:rounded-2xl border border-primary/5 shadow-sm backdrop-blur-sm">
-              <div className="flex items-center gap-2 md:gap-4">
-                <button
-                  onClick={() => setShowMobileFilters(true)}
-                  className="flex lg:hidden items-center gap-2 text-[10px] font-sans font-black text-primary-dark uppercase tracking-widest bg-primary/5 px-3 py-2 rounded-lg"
-                >
-                  <Filter size={14} /> Filters
-                </button>
-                <div className="hidden lg:flex items-center gap-2 text-[10px] font-sans font-black text-primary-dark uppercase tracking-widest">
-                  <Filter size={14} /> Filters
-                </div>
-                <span className="h-4 w-px bg-primary/10"></span>
-                <p className="text-[10px] font-sans font-bold text-primary/40 uppercase tracking-widest">
-                  {filteredProducts.length} Results
+            {/* Featured Banner */}
+            <div className="rounded-lg overflow-hidden relative group cursor-pointer aspect-square">
+              <Image
+                src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Fresh Products"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+                <p className="text-white font-bold text-lg leading-tight">
+                  100% Fresh &amp; Natural
+                  <br />
+                  <span className="text-accent text-sm font-normal">
+                    Guaranteed Quality
+                  </span>
                 </p>
               </div>
+            </div>
+          </aside>
 
-              <div className="flex items-center gap-2 group relative">
-                <ArrowUpDown
-                  size={14}
-                  className="text-primary/30 absolute left-0 pointer-events-none"
+          {/* Main Content */}
+          <div className="lg:w-3/4 flex-grow flex flex-col gap-8">
+            {/* Mobile Categories Toggle */}
+            <div className="lg:hidden flex flex-col gap-4">
+              <button
+                onClick={() => setShowMobileCategories(!showMobileCategories)}
+                className="w-full flex items-center justify-between bg-primary text-white px-6 py-3 rounded font-bold uppercase tracking-wider shadow-md"
+              >
+                <span className="flex items-center gap-2">
+                  <Filter size={18} /> Categories
+                </span>
+                <ChevronDown
+                  size={18}
+                  className={`transition-transform ${showMobileCategories ? "rotate-180" : ""}`}
                 />
-                <select
-                  className="appearance-none bg-transparent pl-5 pr-4 py-1 text-[10px] font-sans font-black text-primary-dark uppercase tracking-widest cursor-pointer outline-none focus:ring-0 border-none"
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                >
-                  <option value="Recommended">Recommended</option>
-                  <option value="Price: Low to High">Price: Low to High</option>
-                  <option value="Price: High to Low">Price: High to Low</option>
-                </select>
+              </button>
+
+              {showMobileCategories && (
+                <div className="bg-white border border-gray-100 rounded-lg p-4 grid grid-cols-1 sm:grid-cols-2 gap-2 shadow-inner max-h-60 overflow-y-auto">
+                  <button
+                    onClick={() => {
+                      setActiveCategory("All");
+                      setActiveSubCategory("All");
+                      setCurrentPage(1);
+                      setShowMobileCategories(false);
+                    }}
+                    className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                      activeCategory === "All"
+                        ? "bg-primary text-white"
+                        : "text-text-body hover:bg-gray-50"
+                    }`}
+                  >
+                    All Products
+                  </button>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat._id}
+                      onClick={() => {
+                        setActiveCategory(cat.name);
+                        setActiveSubCategory("All");
+                        setCurrentPage(1);
+                        setShowMobileCategories(false);
+                      }}
+                      className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                        activeCategory === cat.name
+                          ? "bg-primary text-white"
+                          : "text-text-body hover:bg-gray-50"
+                      }`}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Toolbar */}
+            <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-sm font-medium text-text-body">
+                Showing{" "}
+                {Math.min(
+                  (currentPage - 1) * itemsPerPage + 1,
+                  filteredProducts.length
+                )}
+                –
+                {Math.min(currentPage * itemsPerPage, filteredProducts.length)}{" "}
+                of {filteredProducts.length} results
+              </div>
+
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-bold text-text-heading uppercase">
+                    Sort by:
+                  </span>
+                  <div className="relative">
+                    <select
+                      value={sortBy}
+                      onChange={(e) => {
+                        setSortBy(e.target.value);
+                        setCurrentPage(1);
+                      }}
+                      className="appearance-none bg-gray-50 border border-gray-200 rounded px-4 py-1.5 pr-10 text-sm focus:outline-none focus:border-primary cursor-pointer"
+                    >
+                      <option value="menu_order">Default sorting</option>
+                      <option value="date">Sort by latest</option>
+                      <option value="price">Sort by price: low to high</option>
+                      <option value="price-desc">
+                        Sort by price: high to low
+                      </option>
+                    </select>
+                    <ChevronDown
+                      size={14}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-body"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 border-l border-gray-200 pl-6">
+                  <span className="text-sm font-bold text-text-heading uppercase hidden sm:block">
+                    View:
+                  </span>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-1.5 rounded transition-colors ${
+                      viewMode === "list"
+                        ? "bg-primary text-white"
+                        : "text-text-body hover:bg-gray-100"
+                    }`}
+                  >
+                    <List size={20} />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`p-1.5 rounded transition-colors ${
+                      viewMode === "grid"
+                        ? "bg-primary text-white"
+                        : "text-text-body hover:bg-gray-100"
+                    }`}
+                  >
+                    <LayoutGrid size={20} />
+                  </button>
+                </div>
               </div>
             </div>
 
+            {/* Product Grid */}
             {loading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-                {[...Array(8)].map((_, i) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="bg-white rounded-[2rem] p-4 space-y-4 border border-primary/5"
+                    className="bg-white rounded-lg p-4 space-y-4 border border-gray-100"
                   >
-                    <div className="aspect-[4/5] bg-secondary/20 rounded-2xl animate-pulse" />
-                    <div className="h-4 bg-secondary/20 rounded w-2/3 animate-pulse" />
-                    <div className="h-3 bg-secondary/20 rounded w-1/2 animate-pulse" />
+                    <div className="aspect-square bg-gray-100 rounded animate-pulse" />
+                    <div className="h-4 bg-gray-100 rounded w-2/3 animate-pulse" />
+                    <div className="h-3 bg-gray-100 rounded w-1/2 animate-pulse" />
                   </div>
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="py-20 text-center bg-white/50 rounded-[3rem] border-2 border-dashed border-primary/10">
-                <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6 text-primary/30">
+              <div className="py-20 text-center bg-white rounded-lg border border-gray-100">
+                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6 text-text-body/30">
                   <LayoutGrid size={32} />
                 </div>
-                <h3 className="text-lg font-serif font-black text-primary-dark mb-2">
-                  No Matching Flavors
+                <h3 className="text-lg font-serif font-bold text-text-heading mb-2">
+                  No Products Found
                 </h3>
-                <p className="text-primary/60 text-sm max-w-xs mx-auto font-sans">
-                  We couldn't find any products matching your current filters.
-                  Try adjusting them!
+                <p className="text-text-body text-sm max-w-xs mx-auto">
+                  We couldn&apos;t find any products matching your filters. Try
+                  adjusting them!
                 </p>
                 <button
                   onClick={() => {
@@ -456,162 +514,185 @@ export default function ShopClient({
                     setActiveSubCategory("All");
                     setPriceRange([0, 2000]);
                     setSearchQuery("");
+                    setCurrentPage(1);
                   }}
-                  className="mt-6 px-8 py-3 bg-primary-dark text-white rounded-full text-[10px] font-sans font-black uppercase tracking-widest shadow-xl hover:bg-primary transition-colors"
+                  className="mt-6 btn-primary inline-flex"
                 >
                   Reset All Filters
                 </button>
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                <div
+                  className={`grid gap-6 md:gap-8 ${
+                    viewMode === "grid"
+                      ? "grid-cols-2 md:grid-cols-3"
+                      : "grid-cols-1"
+                  }`}
+                >
                   <AnimatePresence mode="popLayout">
-                    {paginatedProducts.map((p, idx) => {
-                      return (
-                        <motion.div
-                          layout
-                          key={p._id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          className="group relative"
-                        >
-                          <div
-                            className={`h-full bg-white rounded-[2rem] p-2.5 md:p-4 border border-primary/5 hover:border-accent/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 flex flex-col`}
-                          >
-                            {/* Product Image Wrapper */}
-                            <Link href={`/shop/${p.slug || p._id}`} className="block">
-                              <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-secondary/10 mb-4">
-                                <Image
-                                  src={
-                                    p.images?.[0] ||
-                                    "https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=800"
-                                  }
-                                  alt={p.name}
-                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                  fill
-                                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                                  priority={idx < 4}
-                                />
+                    {paginatedProducts.map((p, idx) => (
+                      <motion.div
+                        layout
+                        key={p._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ delay: idx * 0.03 }}
+                        className="group bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300"
+                      >
+                        <div className="relative aspect-square overflow-hidden bg-gray-50">
+                          <Link href={`/shop/${p.slug || p._id}`}>
+                            <Image
+                              src={
+                                p.images?.[0] ||
+                                "https://via.placeholder.com/400x400?text=No+Image"
+                              }
+                              alt={p.name}
+                              fill
+                              sizes="(max-width: 768px) 50vw, 33vw"
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              priority={idx < 4}
+                            />
+                          </Link>
 
-                                {/* Badges */}
-                                {p.badge && (
-                                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-primary-dark px-2.5 py-1 rounded-lg text-[9px] font-sans font-black uppercase tracking-widest shadow-sm">
-                                    {p.badge}
-                                  </div>
-                                )}
-
-                                {/* Wishlist Button */}
-                                <button 
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    if (isInWishlist(p._id)) {
-                                      removeFromWishlist(p._id);
-                                    } else {
-                                      addToWishlist(p);
-                                    }
-                                  }}
-                                  className={`absolute top-4 right-4 w-8 h-8 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 ${
-                                    isInWishlist(p._id)
-                                      ? 'bg-red-500 text-white hover:bg-red-600'
-                                      : 'bg-white/90 text-primary-dark hover:bg-red-500 hover:text-white'
-                                  }`}
-                                >
-                                  <Heart size={14} fill={isInWishlist(p._id) ? 'currentColor' : 'none'} />
-                                </button>
-
-
-                              </div>
-                            </Link>
-
-                            {/* Product Details */}
-                            <div className="flex-grow flex flex-col px-1 pb-1">
-                              <Link href={`/shop/${p.slug || p._id}`} className="block">
-                                <div className="flex justify-between items-start mb-2">
-                                  <p className="text-[10px] font-sans font-black text-primary/60 uppercase tracking-widest truncate">
-                                    {p.category}
-                                  </p>
-                                </div>
-                                <h3 className="text-sm font-serif font-black text-primary-dark line-clamp-2 min-h-[2.5rem] leading-snug group-hover:text-primary transition-colors mb-4">
-                                  {p.name}
-                                </h3>
-
-                                <div className="flex items-baseline gap-2 mb-4">
-                                  <p className="text-xl font-sans font-black text-brown">
-                                    ₹{p.price}
-                                  </p>
-                                  {p.mrp && p.mrp > p.price && (
-                                    <span className="text-xs font-sans text-primary/30 line-through">
-                                      ₹{p.mrp}
-                                    </span>
-                                  )}
-                                </div>
-                              </Link>
-
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  if (p.variants && p.variants.length > 0) {
-                                    const bestVariant = p.variants[0];
-                                    addToCart(
-                                      {
-                                        ...p,
-                                        price: bestVariant.price,
-                                        uom: bestVariant.uom,
-                                      },
-                                      1,
-                                    );
-                                  } else {
-                                    addToCart(p, 1);
-                                  }
-                                }}
-                                className={`w-full py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl flex items-center justify-center gap-2 transition-all active:scale-95 bg-primary text-white hover:bg-primary-dark`}
-                              >
-                                <ShoppingCart size={14} />
-                                Add to Cart
-                              </button>
+                          {/* Discount Badge */}
+                          {p.mrp && p.mrp > p.price && (
+                            <div className="absolute top-3 left-3 bg-primary text-white px-2 py-1 rounded text-[10px] font-bold">
+                              {Math.round(
+                                ((p.mrp - p.price) / p.mrp) * 100
+                              )}
+                              % OFF
                             </div>
+                          )}
+
+                          {/* Hover Actions */}
+                          <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (isInWishlist(p._id)) {
+                                  removeFromWishlist(p._id);
+                                } else {
+                                  addToWishlist(p);
+                                }
+                              }}
+                              className={`p-2 rounded-full shadow-sm transition-colors ${
+                                isInWishlist(p._id)
+                                  ? "bg-primary text-white"
+                                  : "bg-white text-text-body hover:bg-primary hover:text-white"
+                              }`}
+                              aria-label="Add to wishlist"
+                            >
+                              <Heart
+                                size={18}
+                                fill={
+                                  isInWishlist(p._id) ? "currentColor" : "none"
+                                }
+                              />
+                            </button>
+                            <Link
+                              href={`/shop/${p.slug || p._id}`}
+                              className="bg-white p-2 rounded-full text-text-body hover:bg-primary hover:text-white transition-colors shadow-sm"
+                              aria-label="Quick view"
+                            >
+                              <Eye size={18} />
+                            </Link>
                           </div>
-                        </motion.div>
-                      );
-                    })}
+
+                          {/* Add to Cart Overlay */}
+                          <div className="absolute inset-x-4 bottom-4 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (p.variants && p.variants.length > 0) {
+                                  const bestVariant = p.variants[0];
+                                  addToCart(
+                                    {
+                                      ...p,
+                                      price: bestVariant.price,
+                                      uom: bestVariant.uom,
+                                    },
+                                    1
+                                  );
+                                } else {
+                                  addToCart(p, 1);
+                                }
+                              }}
+                              className="w-full bg-primary text-white py-2 rounded font-bold text-sm tracking-wider hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
+                            >
+                              <ShoppingCart size={16} /> ADD TO CART
+                            </button>
+                          </div>
+                        </div>
+
+                        <Link
+                          href={`/shop/${p.slug || p._id}`}
+                          className="block p-4 text-center"
+                        >
+                          {p.category && (
+                            <p className="text-[10px] text-primary uppercase font-bold tracking-widest mb-1">
+                              {typeof p.category === "object"
+                                ? p.category.name
+                                : p.category}
+                            </p>
+                          )}
+                          <h3 className="text-sm font-sans font-semibold text-text-heading mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                            {p.name}
+                          </h3>
+                          <p className="text-primary font-bold">
+                            ₹{p.price}
+                            {p.mrp && p.mrp > p.price && (
+                              <span className="text-text-body/50 text-xs line-through ml-2 font-normal">
+                                ₹{p.mrp}
+                              </span>
+                            )}
+                          </p>
+                        </Link>
+                      </motion.div>
+                    ))}
                   </AnimatePresence>
                 </div>
 
-                {/* Modern Pagination */}
+                {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="mt-16 flex items-center justify-center gap-2">
-                    <button
-                      onClick={() =>
-                        setCurrentPage((prev) => Math.max(1, prev - 1))
-                      }
-                      disabled={currentPage === 1}
-                      className="p-3 rounded-2xl bg-white border border-primary/10 text-primary/40 hover:text-primary hover:border-primary/30 disabled:opacity-30 transition-all shadow-sm"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-
-                    {[...Array(totalPages)].map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`w-12 h-12 rounded-2xl font-sans font-black text-xs transition-all ${currentPage === i + 1 ? "bg-primary-dark text-white shadow-xl scale-110" : "bg-white text-primary/40 border border-primary/10 hover:border-primary/30"}`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-
-                    <button
-                      onClick={() =>
-                        setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-                      }
-                      disabled={currentPage === totalPages}
-                      className="p-3 rounded-2xl bg-white border border-primary/10 text-primary/40 hover:text-primary hover:border-primary/30 disabled:opacity-30 transition-all shadow-sm"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
+                  <div className="flex justify-center mt-12 pb-20">
+                    <ul className="flex items-center gap-2">
+                      {currentPage > 1 && (
+                        <li>
+                          <button
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                            className="w-10 h-10 flex items-center justify-center rounded bg-white text-text-body hover:bg-primary hover:text-white transition-all font-bold border border-gray-200"
+                          >
+                            <ChevronLeft size={16} />
+                          </button>
+                        </li>
+                      )}
+                      {[...Array(totalPages)].map((_, i) => (
+                        <li key={i}>
+                          <button
+                            onClick={() => setCurrentPage(i + 1)}
+                            className={`w-10 h-10 flex items-center justify-center rounded font-bold transition-all ${
+                              currentPage === i + 1
+                                ? "bg-primary text-white shadow-md"
+                                : "bg-white text-text-body hover:bg-primary hover:text-white border border-gray-200"
+                            }`}
+                          >
+                            {i + 1}
+                          </button>
+                        </li>
+                      ))}
+                      {currentPage < totalPages && (
+                        <li>
+                          <button
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                            className="px-4 h-10 flex items-center justify-center rounded bg-white text-text-body hover:bg-primary hover:text-white transition-all font-bold border border-gray-200 uppercase text-xs tracking-widest"
+                          >
+                            Next
+                          </button>
+                        </li>
+                      )}
+                    </ul>
                   </div>
                 )}
               </>
@@ -619,46 +700,6 @@ export default function ShopClient({
           </div>
         </div>
       </div>
-
-      {/* Quick Benefits HUD (Amazon/Flipkart Style) */}
-      <section className="bg-white border-y border-primary/5 py-12 mb-20">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            {
-              icon: <CheckCircle2 className="text-primary-dark" />,
-              title: "Quality Check",
-              desc: "100% Homemade",
-            },
-            {
-              icon: <Zap className="text-accent" />,
-              title: "Fast Shipping",
-              desc: "Ships in 24 Hours",
-            },
-            {
-              icon: <Heart className="text-secondary" />,
-              title: "Family Recipe",
-              desc: "Heritage Taste",
-            },
-            {
-              icon: <Package className="text-brown" />,
-              title: "Secure Packing",
-              desc: "Fragile Protected",
-            },
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-secondary/10 rounded-2xl flex items-center justify-center mb-3 shadow-inner text-primary-dark">
-                {item.icon}
-              </div>
-              <h4 className="text-[11px] font-sans font-black uppercase text-primary-dark mb-1">
-                {item.title}
-              </h4>
-              <p className="text-[10px] text-primary/40 font-sans font-bold uppercase tracking-tighter">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Mobile Filter Drawer */}
       <AnimatePresence>
@@ -680,80 +721,37 @@ export default function ShopClient({
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl font-serif font-black text-primary-dark uppercase tracking-wider">
+                  <h2 className="text-xl font-serif font-bold text-text-heading">
                     Filters
                   </h2>
                   <button
                     onClick={() => setShowMobileFilters(false)}
-                    className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-primary-dark"
+                    className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-text-heading"
                   >
                     <X size={20} />
                   </button>
                 </div>
 
-                <div className="space-y-10 pb-20">
-                  {/* Reuse Sidebar logic inside Drawer */}
-                  <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10">
-                    <div className="flex justify-between items-center mb-4">
-                      <h4 className="text-[10px] font-sans font-black uppercase tracking-widest text-primary-dark">
-                        Active Filters
-                      </h4>
-                      <button
-                        onClick={() => {
-                          setActiveCategory("All");
-                          setActiveSubCategory("All");
-                        }}
-                        className="text-[9px] font-sans font-bold text-primary hover:underline"
-                      >
-                        Clear All
-                      </button>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {activeCategory === "All" && activeSubCategory === "All" && (
-                        <span className="text-[10px] text-gray-400 font-bold uppercase italic">
-                          None Active
-                        </span>
-                      )}
-                      {activeCategory !== "All" && (
-                        <span className="px-3 py-1.5 bg-white text-[10px] font-sans font-bold rounded-lg border border-primary/20 text-primary flex items-center gap-2">
-                          {activeCategory}{" "}
-                          <X
-                            size={12}
-                            className="cursor-pointer"
-                            onClick={() => {
-                              setActiveCategory("All");
-                              setActiveSubCategory("All");
-                            }}
-                          />
-                        </span>
-                      )}
-                      {activeSubCategory !== "All" && (
-                        <span className="px-3 py-1.5 bg-white text-[10px] font-sans font-bold rounded-lg border border-primary/20 text-primary flex items-center gap-2">
-                          {subCategories.find(s => s._id === activeSubCategory)?.name || activeSubCategory}{" "}
-                          <X
-                            size={12}
-                            className="cursor-pointer"
-                            onClick={() => setActiveSubCategory("All")}
-                          />
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
+                <div className="space-y-8 pb-20">
                   {/* Categories */}
                   <div>
-                    <h3 className="text-[12px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4">
+                    <h3 className="text-sm font-bold text-text-heading uppercase mb-4">
                       Categories
                     </h3>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="flex flex-col gap-2">
                       <button
                         onClick={() => {
                           setActiveCategory("All");
                           setActiveSubCategory("All");
+                          setCurrentPage(1);
                         }}
-                        className={`text-left px-4 py-3 rounded-xl text-xs font-sans font-bold transition-all ${activeCategory === "All" ? "bg-primary-dark text-white shadow-lg" : "bg-gray-50 text-primary/60"}`}
+                        className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                          activeCategory === "All"
+                            ? "bg-primary text-white"
+                            : "text-text-body hover:bg-gray-50"
+                        }`}
                       >
-                        All
+                        All Products
                       </button>
                       {categories.map((cat) => (
                         <button
@@ -761,8 +759,13 @@ export default function ShopClient({
                           onClick={() => {
                             setActiveCategory(cat.name);
                             setActiveSubCategory("All");
+                            setCurrentPage(1);
                           }}
-                          className={`text-left px-4 py-3 rounded-xl text-xs font-sans font-bold transition-all ${activeCategory === cat.name ? "bg-primary-dark text-white shadow-lg" : "bg-gray-50 text-primary/60"}`}
+                          className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                            activeCategory === cat.name
+                              ? "bg-primary text-white"
+                              : "text-text-body hover:bg-gray-50"
+                          }`}
                         >
                           {cat.name}
                         </button>
@@ -771,71 +774,71 @@ export default function ShopClient({
                   </div>
 
                   {/* SubCategories */}
-                  {activeCategory !== "All" && (
+                  {activeCategory !== "All" && subCategories.length > 0 && (
                     <div>
-                      <h3 className="text-[12px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4">
+                      <h3 className="text-sm font-bold text-text-heading uppercase mb-4">
                         Sub Categories
                       </h3>
-                      {loadingSubCategories ? (
-                        <div className="flex items-center justify-center py-4">
-                          <Loader2 size={16} className="animate-spin text-primary/40" />
-                        </div>
-                      ) : subCategories.length > 0 ? (
-                        <div className="grid grid-cols-2 gap-2">
+                      <div className="flex flex-col gap-2">
+                        <button
+                          onClick={() => {
+                            setActiveSubCategory("All");
+                            setCurrentPage(1);
+                          }}
+                          className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                            activeSubCategory === "All"
+                              ? "bg-primary text-white"
+                              : "text-text-body hover:bg-gray-50"
+                          }`}
+                        >
+                          All {activeCategory}
+                        </button>
+                        {subCategories.map((sub) => (
                           <button
-                            onClick={() => setActiveSubCategory("All")}
-                            className={`text-left px-4 py-3 rounded-xl text-xs font-sans font-bold transition-all ${activeSubCategory === "All" ? "bg-primary text-white shadow-lg" : "bg-gray-50 text-primary/60"}`}
+                            key={sub._id}
+                            onClick={() => {
+                              setActiveSubCategory(sub._id);
+                              setCurrentPage(1);
+                            }}
+                            className={`text-left text-sm py-2 px-3 rounded transition-colors ${
+                              activeSubCategory === sub._id
+                                ? "bg-primary text-white"
+                                : "text-text-body hover:bg-gray-50"
+                            }`}
                           >
-                            All
+                            {sub.name}
                           </button>
-                          {subCategories.map((sub) => (
-                            <button
-                              key={sub._id}
-                              onClick={() => setActiveSubCategory(sub._id)}
-                              className={`text-left px-4 py-3 rounded-xl text-xs font-sans font-bold transition-all ${activeSubCategory === sub._id ? "bg-primary text-white shadow-lg" : "bg-gray-50 text-primary/60"}`}
-                            >
-                              {sub.name}
-                            </button>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-xs text-primary/40 italic">No subcategories available</p>
-                      )}
+                        ))}
+                      </div>
                     </div>
                   )}
 
                   {/* Price */}
                   <div>
-                    <h3 className="text-[12px] font-sans font-black text-primary-dark uppercase tracking-widest mb-4">
+                    <h3 className="text-sm font-bold text-text-heading uppercase mb-4">
                       Price Range
                     </h3>
                     <input
                       type="range"
                       min="0"
-                      max="2000"
+                      max="10000"
                       value={priceRange[1]}
                       onChange={(e) =>
                         setPriceRange([0, parseInt(e.target.value)])
                       }
-                      className="w-full accent-primary h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer"
+                      className="w-full accent-primary h-1.5 bg-gray-100 rounded-full appearance-none cursor-pointer"
                     />
-                    <div className="flex justify-between mt-3 px-1">
-                      <span className="text-[10px] font-sans font-bold text-gray-400">
-                        ₹0
-                      </span>
-                      <span className="text-[12px] font-sans font-black text-primary-dark">
+                    <div className="flex justify-between mt-3">
+                      <span className="text-sm text-gray-400">₹0</span>
+                      <span className="text-sm font-bold text-text-heading">
                         Up to ₹{priceRange[1]}
                       </span>
                     </div>
                   </div>
 
-
-
-
-
                   <button
                     onClick={() => setShowMobileFilters(false)}
-                    className="w-full py-4 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/20"
+                    className="w-full btn-primary"
                   >
                     Apply Filters
                   </button>

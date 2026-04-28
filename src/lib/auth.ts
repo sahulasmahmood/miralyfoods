@@ -6,7 +6,7 @@ import { openAPI } from "better-auth/plugins";
 export const auth = betterAuth({
   database: mongodbAdapter(client.db()),
   baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
-  trustedOrigins: ["https://sntasty.com", "https://www.sntasty.com", "http://localhost:3000"],
+  trustedOrigins: ["https://miralyfoods.com", "https://www.miralyfoods.com", "http://localhost:3000"],
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,

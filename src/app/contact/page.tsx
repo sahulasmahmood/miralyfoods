@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   MapPin,
@@ -84,82 +86,87 @@ export default function ContactPage() {
       title: "Visit Us",
       content:
         settings?.address ||
-        "# 3/81, 1st Floor, Kaveri Main Street, SRV Nagar, Thirunagar, Salem - 625006",
+        "177/2, Kaligoundanur, Vellar Post, Mettur Taluk, Salem District - 636451",
       icon: MapPin,
     },
     {
       title: "WhatsApp / Call Us",
-      content: settings?.contactPhone || "+91 96009 16065",
+      content: settings?.contactPhone || "+91 8754744204",
       icon: Phone,
     },
     {
       title: "Email Us",
-      content: settings?.contactEmail || "info@miralyfoods.com",
+      content: settings?.contactEmail || "miracmartcare@gmail.com",
       icon: Mail,
     },
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-secondary/30">
+    <main className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="pt-48 pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-24">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block"
+      {/* Breadcrumb Hero Banner */}
+      <section className="relative w-full h-[300px] flex items-center overflow-hidden">
+        <Image
+          src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Contact Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-white"
           >
-            Get in Touch
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-primary-dark"
-          >
-            How Can We <span className="text-primary italic">Help?</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-500 mt-6 max-w-2xl mx-auto font-medium"
-          >
-            Whether you have a question, feedback, or need bulk orders for your
-            event, we're here to assist you.
-          </motion.p>
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-4 text-white">
+              Contact Us
+            </h1>
+            <nav className="flex items-center gap-2 text-sm font-medium">
+              <Link href="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+              <span className="w-4 h-[1px] bg-white" />
+              <span className="text-yellow-300 font-bold">Contact</span>
+            </nav>
+          </motion.div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      {/* Main Content */}
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Info */}
-          <div className="lg:col-span-4 space-y-8">
+          <div className="lg:col-span-4 space-y-6">
             {contactInfos.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 + 0.3 }}
-                className="bg-white p-8 rounded-[2.5rem] shadow-sm flex items-start gap-6 border border-gray-100 group hover:border-primary/20 transition-all"
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-6 rounded-lg shadow-sm flex items-start gap-5 border border-gray-100 group hover:border-primary/20 transition-all"
               >
-                <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
-                  <item.icon size={24} />
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                  <item.icon size={22} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-serif font-bold text-primary-dark mb-2">
+                  <h3 className="text-base font-serif font-bold text-text-heading mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-gray-500 font-medium leading-relaxed text-sm">
+                  <p className="text-text-body text-sm leading-relaxed">
                     {item.content}
                   </p>
                 </div>
               </motion.div>
             ))}
 
-            {/* Corporate Services Info */}
-            <div className="bg-primary-dark p-8 rounded-[2.5rem] text-white relative overflow-hidden">
-              <MessageSquare className="absolute -bottom-4 -right-4 w-32 h-32 text-white/5" />
-              <h3 className="text-xl font-serif font-bold mb-4">
+            {/* Corporate Services */}
+            <div className="bg-primary p-6 rounded-lg text-white relative overflow-hidden">
+              <MessageSquare className="absolute -bottom-4 -right-4 w-28 h-28 text-white/5" />
+              <h3 className="text-lg font-serif font-bold mb-4">
                 Corporate & Events
               </h3>
               <div className="space-y-3 mb-6">
@@ -169,8 +176,8 @@ export default function ContactPage() {
                   { icon: Calendar, text: "Festival Specials" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm">
-                    <item.icon size={16} className="text-accent" />
-                    <span className="text-white/80 font-medium">
+                    <item.icon size={16} className="text-yellow-300" />
+                    <span className="text-white/90 font-medium">
                       {item.text}
                     </span>
                   </div>
@@ -178,7 +185,7 @@ export default function ContactPage() {
               </div>
               <button
                 onClick={() => setActiveTab("corporate")}
-                className="text-xs font-bold uppercase tracking-widest text-accent hover:underline"
+                className="text-xs font-bold uppercase tracking-widest text-yellow-300 hover:underline"
               >
                 Request Quote →
               </button>
@@ -188,19 +195,19 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="lg:col-span-8">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-xl border border-gray-100"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 md:p-10 rounded-lg shadow-sm border border-gray-100"
             >
               {/* Tab Switcher */}
-              <div className="flex gap-4 mb-8 p-2 bg-gray-50 rounded-2xl">
+              <div className="flex gap-3 mb-8 p-1.5 bg-gray-50 rounded-lg">
                 <button
                   onClick={() => {
                     setActiveTab("general");
                     setFormData({ ...formData, type: "General Inquiry" });
                   }}
-                  className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all ${
+                  className={`flex-1 py-3 rounded-md font-bold text-sm uppercase tracking-wider transition-all ${
                     activeTab === "general"
                       ? "bg-white text-primary shadow-sm"
                       : "text-gray-400 hover:text-gray-600"
@@ -213,7 +220,7 @@ export default function ContactPage() {
                     setActiveTab("corporate");
                     setFormData({ ...formData, type: "Corporate Booking" });
                   }}
-                  className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all ${
+                  className={`flex-1 py-3 rounded-md font-bold text-sm uppercase tracking-wider transition-all ${
                     activeTab === "corporate"
                       ? "bg-white text-primary shadow-sm"
                       : "text-gray-400 hover:text-gray-600"
@@ -223,10 +230,10 @@ export default function ContactPage() {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                       Your Name *
                     </label>
                     <input
@@ -238,12 +245,12 @@ export default function ContactPage() {
                         setFieldErrors((prev) => ({ ...prev, name: "" }));
                       }}
                       placeholder="John Doe"
-                      className={`w-full bg-gray-50 border ${fieldErrors.name ? "border-red-300" : "border-transparent"} focus:border-primary/20 focus:bg-white rounded-2xl py-5 px-6 outline-none transition-all font-medium`}
+                      className={`w-full bg-gray-50 border ${fieldErrors.name ? "border-red-300" : "border-gray-200"} focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm`}
                     />
                     <FormError message={fieldErrors.name} />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                       Email Address *
                     </label>
                     <input
@@ -255,15 +262,15 @@ export default function ContactPage() {
                         setFieldErrors((prev) => ({ ...prev, email: "" }));
                       }}
                       placeholder="john@example.com"
-                      className={`w-full bg-gray-50 border ${fieldErrors.email ? "border-red-300" : "border-transparent"} focus:border-primary/20 focus:bg-white rounded-2xl py-5 px-6 outline-none transition-all font-medium`}
+                      className={`w-full bg-gray-50 border ${fieldErrors.email ? "border-red-300" : "border-gray-200"} focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm`}
                     />
                     <FormError message={fieldErrors.email} />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                       Phone Number *
                     </label>
                     <input
@@ -275,13 +282,13 @@ export default function ContactPage() {
                         setFieldErrors((prev) => ({ ...prev, phone: "" }));
                       }}
                       placeholder="+91 98765 43210"
-                      className={`w-full bg-gray-50 border ${fieldErrors.phone ? "border-red-300" : "border-transparent"} focus:border-primary/20 focus:bg-white rounded-2xl py-5 px-6 outline-none transition-all font-medium`}
+                      className={`w-full bg-gray-50 border ${fieldErrors.phone ? "border-red-300" : "border-gray-200"} focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm`}
                     />
                     <FormError message={fieldErrors.phone} />
                   </div>
                   {activeTab === "corporate" && (
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                         Company Name
                       </label>
                       <input
@@ -291,14 +298,14 @@ export default function ContactPage() {
                           setFormData({ ...formData, company: e.target.value })
                         }
                         placeholder="Your Company"
-                        className="w-full bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white rounded-2xl py-5 px-6 outline-none transition-all font-medium"
+                        className="w-full bg-gray-50 border border-gray-200 focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm"
                       />
                     </div>
                   )}
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                     {activeTab === "general" ? "Subject" : "Enquiry Type"}
                   </label>
                   <select
@@ -306,7 +313,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, type: e.target.value })
                     }
-                    className="w-full bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white rounded-2xl py-5 px-6 outline-none transition-all font-medium appearance-none cursor-pointer"
+                    className="w-full bg-gray-50 border border-gray-200 focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm appearance-none cursor-pointer"
                   >
                     {activeTab === "general" ? (
                       <>
@@ -326,12 +333,12 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-text-body uppercase tracking-wider">
                     Message *
                   </label>
                   <textarea
-                    rows={6}
+                    rows={5}
                     required
                     value={formData.message}
                     onChange={(e) => {
@@ -343,7 +350,7 @@ export default function ContactPage() {
                         ? "How can we help you today?"
                         : "Tell us about your event, expected guest count, and requirements..."
                     }
-                    className={`w-full bg-gray-50 border ${fieldErrors.message ? "border-red-300" : "border-transparent"} focus:border-primary/20 focus:bg-white rounded-2xl py-6 px-6 outline-none transition-all font-medium resize-none`}
+                    className={`w-full bg-gray-50 border ${fieldErrors.message ? "border-red-300" : "border-gray-200"} focus:border-primary focus:bg-white rounded-lg py-3 px-4 outline-none transition-all text-sm resize-none`}
                   />
                   <FormError message={fieldErrors.message} />
                 </div>
@@ -351,7 +358,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-primary text-white py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-primary-dark transition-all shadow-xl active:scale-95 group disabled:opacity-70"
+                  className="w-full btn-primary py-4 text-base group disabled:opacity-70"
                 >
                   {loading ? (
                     "Sending..."
@@ -359,8 +366,8 @@ export default function ContactPage() {
                     <>
                       Send Message{" "}
                       <Send
-                        size={20}
-                        className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
+                        size={18}
+                        className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"
                       />
                     </>
                   )}

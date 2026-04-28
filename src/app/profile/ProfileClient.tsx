@@ -247,7 +247,7 @@ export default function ProfileClient() {
 
                 <form onSubmit={handleSetPassword} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-bold text-[#234d1b]/70 mb-2 uppercase tracking-widest text-[10px]">
+                    <label className="block text-sm font-bold text-[#D32F2F]/70 mb-2 uppercase tracking-widest text-[10px]">
                       New Password
                     </label>
                     <input
@@ -265,7 +265,7 @@ export default function ProfileClient() {
                     <FormError message={fieldErrors.password} />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-[#234d1b]/70 mb-2 uppercase tracking-widest text-[10px]">
+                    <label className="block text-sm font-bold text-[#D32F2F]/70 mb-2 uppercase tracking-widest text-[10px]">
                       Confirm Password
                     </label>
                     <input

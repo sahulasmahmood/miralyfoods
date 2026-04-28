@@ -314,14 +314,14 @@ export default function OrdersClient({
           <input
             type="text"
             placeholder="Search by order ID, name, phone..."
-            className="w-full bg-[#ece0cc] border-none rounded-xl py-2.5 sm:py-3 pl-10 sm:pl-12 pr-4 text-xs sm:text-sm font-bold text-primary-dark focus-visible:ring-2 focus-visible:ring-primary/20 transition-shadow placeholder:text-gray-400 outline-none"
+            className="w-full bg-[#F5F5F5] border-none rounded-xl py-2.5 sm:py-3 pl-10 sm:pl-12 pr-4 text-xs sm:text-sm font-bold text-primary-dark focus-visible:ring-2 focus-visible:ring-primary/20 transition-shadow placeholder:text-gray-400 outline-none"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-1 bg-[#ece0cc] p-1 rounded-lg sm:rounded-xl overflow-x-auto no-scrollbar max-w-full">
+        <div className="flex items-center gap-1 bg-[#F5F5F5] p-1 rounded-lg sm:rounded-xl overflow-x-auto no-scrollbar max-w-full">
           {["All", ...ORDER_STAGES].map((s) => (
             <button
               key={s}
@@ -338,7 +338,7 @@ export default function OrdersClient({
         </div>
 
         {/* Date Filter */}
-        <div className="flex gap-2 bg-[#ece0cc] p-1 rounded-lg sm:rounded-xl w-full sm:w-auto">
+        <div className="flex gap-2 bg-[#F5F5F5] p-1 rounded-lg sm:rounded-xl w-full sm:w-auto">
           <div className="relative flex-1 sm:flex-none">
             <select
               value={dateRange}
@@ -366,7 +366,7 @@ export default function OrdersClient({
         {/* Desktop Table View */}
         <div className="hidden lg:block overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-[#ece0cc] border-b border-gray-100">
+            <thead className="bg-[#F5F5F5] border-b border-gray-100">
               <tr className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
                 <th className="px-6 py-5">Order Details</th>
                 <th className="px-6 py-5">Customer</th>
@@ -405,7 +405,7 @@ export default function OrdersClient({
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="group hover:bg-[#ece0cc]/30 transition-colors"
+                    className="group hover:bg-[#F5F5F5]/30 transition-colors"
                   >
                     <td className="px-6 py-5">
                       <div className="flex flex-col gap-1">
@@ -484,7 +484,7 @@ export default function OrdersClient({
                           onChange={(e) =>
                             handleStatusChange(order._id, e.target.value)
                           }
-                          className={`appearance-none w-full bg-[#ece0cc] border-none rounded-xl py-2.5 pl-3 pr-8 text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-white transition-colors focus-visible:ring-2 focus-visible:ring-primary/20 touch-manipulation ${
+                          className={`appearance-none w-full bg-[#F5F5F5] border-none rounded-xl py-2.5 pl-3 pr-8 text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-white transition-colors focus-visible:ring-2 focus-visible:ring-primary/20 touch-manipulation ${
                             order.status === "Delivered"
                               ? "text-green-600"
                               : order.status === "Shipping"
@@ -597,7 +597,7 @@ export default function OrdersClient({
                     onChange={(e) =>
                       handleStatusChange(order._id, e.target.value)
                     }
-                    className={`appearance-none w-full bg-[#ece0cc] border-none rounded-xl py-2.5 pl-3 pr-8 text-[10px] font-black uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-primary/20 transition-all ${
+                    className={`appearance-none w-full bg-[#F5F5F5] border-none rounded-xl py-2.5 pl-3 pr-8 text-[10px] font-black uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-primary/20 transition-all ${
                       order.status === "Delivered"
                         ? "text-green-600"
                         : order.status === "Shipping"
@@ -621,7 +621,7 @@ export default function OrdersClient({
                 <div className="flex gap-2">
                   <button
                     onClick={() => setViewingOrder(order)}
-                    className="p-3 bg-white border border-gray-100 rounded-xl text-primary hover:bg-[#ece0cc] transition-all shadow-sm"
+                    className="p-3 bg-white border border-gray-100 rounded-xl text-primary hover:bg-[#F5F5F5] transition-all shadow-sm"
                   >
                     <Eye size={18} />
                   </button>
@@ -673,7 +673,7 @@ export default function OrdersClient({
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-2xl bg-[#ece0cc] shadow-2xl z-[101] overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 w-full max-w-2xl bg-[#F5F5F5] shadow-2xl z-[101] overflow-y-auto"
             >
               <div className="p-4 sm:p-8">
                 {/* Header */}
@@ -714,7 +714,7 @@ export default function OrdersClient({
                         onChange={(e) =>
                           handleStatusChange(viewingOrder._id, e.target.value)
                         }
-                        className={`appearance-none w-full bg-[#ece0cc] border-none rounded-xl py-3 pl-4 pr-10 text-xl font-black uppercase tracking-widest cursor-pointer hover:bg-white transition-all focus-visible:ring-2 focus-visible:ring-primary/20 ${
+                        className={`appearance-none w-full bg-[#F5F5F5] border-none rounded-xl py-3 pl-4 pr-10 text-xl font-black uppercase tracking-widest cursor-pointer hover:bg-white transition-all focus-visible:ring-2 focus-visible:ring-primary/20 ${
                           viewingOrder.status === "Delivered"
                             ? "text-green-600"
                             : viewingOrder.status === "Shipping"
@@ -822,7 +822,7 @@ export default function OrdersClient({
 
                 {/* Order Items */}
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden mb-6 sm:mb-8">
-                  <div className="p-4 sm:p-6 bg-[#ece0cc] border-b border-gray-100">
+                  <div className="p-4 sm:p-6 bg-[#F5F5F5] border-b border-gray-100">
                     <h4 className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
                       Order Items
                     </h4>
@@ -865,7 +865,7 @@ export default function OrdersClient({
                   </div>
 
                   {/* Price Breakdown */}
-                  <div className="p-4 sm:p-6 bg-[#ece0cc] space-y-2 sm:space-y-3">
+                  <div className="p-4 sm:p-6 bg-[#F5F5F5] space-y-2 sm:space-y-3">
                     <div className="flex justify-between text-sm font-bold text-gray-600">
                       <span>Subtotal</span>
                       <span>₹{viewingOrder.itemsPrice.toFixed(2)}</span>
@@ -965,7 +965,7 @@ export default function OrdersClient({
                       placeholder="Enter courier partner name (e.g., Blue Dart, DTDC, FedEx)"
                       value={trackingData.courierName}
                       onChange={(e) => setTrackingData({...trackingData, courierName: e.target.value})}
-                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#ece0cc]/30 transition-colors"
+                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#F5F5F5]/30 transition-colors"
                     />
                   </div>
                   <div>
@@ -975,7 +975,7 @@ export default function OrdersClient({
                       placeholder="Enter tracking number"
                       value={trackingData.awbNumber}
                       onChange={(e) => setTrackingData({...trackingData, awbNumber: e.target.value})}
-                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#ece0cc]/30 transition-colors"
+                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#F5F5F5]/30 transition-colors"
                     />
                   </div>
                   <div>
@@ -984,7 +984,7 @@ export default function OrdersClient({
                       placeholder="https://courier-website.com/tracking?trackingNumber={trackingNumber}"
                       value={trackingData.trackingLink}
                       onChange={(e) => setTrackingData({...trackingData, trackingLink: e.target.value})}
-                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#ece0cc]/30 transition-colors min-h-[80px]"
+                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#F5F5F5]/30 transition-colors min-h-[80px]"
                     />
                     <p className="text-[10px] text-gray-400 mt-1 font-medium">Use <span className="text-primary font-bold">{'{trackingNumber}'}</span> as placeholder for the tracking number</p>
                   </div>
@@ -994,7 +994,7 @@ export default function OrdersClient({
                       type="date" 
                       value={trackingData.estimatedDeliveryDate}
                       onChange={(e) => setTrackingData({...trackingData, estimatedDeliveryDate: e.target.value})}
-                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#ece0cc]/30 transition-colors"
+                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#F5F5F5]/30 transition-colors"
                     />
                   </div>
                   <div>
@@ -1003,7 +1003,7 @@ export default function OrdersClient({
                       placeholder="Any additional information for the customer..."
                       value={trackingData.shippingNotes}
                       onChange={(e) => setTrackingData({...trackingData, shippingNotes: e.target.value})}
-                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#ece0cc]/30 transition-colors min-h-[80px]"
+                      className="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm font-bold text-primary-dark outline-none border border-transparent focus:border-primary/20 focus:bg-[#F5F5F5]/30 transition-colors min-h-[80px]"
                     />
                   </div>
                 </div>

@@ -79,7 +79,7 @@ export async function POST(req: Request) {
         const base64Image = `data:${logoFile.type};base64,${buffer.toString("base64")}`;
         const result = await uploadToCloudinary(
           base64Image,
-          "sainandhini/brand",
+          "miralyfoods/brand",
         );
         data.logo = result.secure_url;
       }
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
         const base64Image = `data:${faviconFile.type};base64,${buffer.toString("base64")}`;
         const result = await uploadToCloudinary(
           base64Image,
-          "sainandhini/brand",
+          "miralyfoods/brand",
         );
         data.favicon = result.secure_url;
       }
@@ -99,29 +99,29 @@ export async function POST(req: Request) {
 
     // Upload any base64 images to Cloudinary (prevent MB+ document bloat)
     if (data.logo && data.logo.startsWith("data:")) {
-      const logoResult = await uploadToCloudinary(data.logo, "sainandhini/brand");
+      const logoResult = await uploadToCloudinary(data.logo, "miralyfoods/brand");
       data.logo = logoResult.secure_url;
     }
     if (data.favicon && data.favicon.startsWith("data:")) {
-      const faviconResult = await uploadToCloudinary(data.favicon, "sainandhini/brand");
+      const faviconResult = await uploadToCloudinary(data.favicon, "miralyfoods/brand");
       data.favicon = faviconResult.secure_url;
     }
     if (data.seo?.ogImage && data.seo.ogImage.startsWith("data:")) {
-      const ogResult = await uploadToCloudinary(data.seo.ogImage, "sainandhini/brand");
+      const ogResult = await uploadToCloudinary(data.seo.ogImage, "miralyfoods/brand");
       data.seo.ogImage = ogResult.secure_url;
     }
 
     // Process About Us images
     if (data.aboutUs?.heroImage && data.aboutUs.heroImage.startsWith("data:")) {
-      const heroResult = await uploadToCloudinary(data.aboutUs.heroImage, "sainandhini/about");
+      const heroResult = await uploadToCloudinary(data.aboutUs.heroImage, "miralyfoods/about");
       data.aboutUs.heroImage = heroResult.secure_url;
     }
     if (data.aboutUs?.journeyImage1 && data.aboutUs.journeyImage1.startsWith("data:")) {
-      const journey1Result = await uploadToCloudinary(data.aboutUs.journeyImage1, "sainandhini/about");
+      const journey1Result = await uploadToCloudinary(data.aboutUs.journeyImage1, "miralyfoods/about");
       data.aboutUs.journeyImage1 = journey1Result.secure_url;
     }
     if (data.aboutUs?.journeyImage2 && data.aboutUs.journeyImage2.startsWith("data:")) {
-      const journey2Result = await uploadToCloudinary(data.aboutUs.journeyImage2, "sainandhini/about");
+      const journey2Result = await uploadToCloudinary(data.aboutUs.journeyImage2, "miralyfoods/about");
       data.aboutUs.journeyImage2 = journey2Result.secure_url;
     }
 
