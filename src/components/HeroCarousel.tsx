@@ -121,6 +121,7 @@ export default function HeroCarousel({
                 alt={`${slide.title} ${slide.titleAccent}`}
                 fill
                 className="object-cover"
+                quality={90}
                 priority
                 sizes="100vw"
               />

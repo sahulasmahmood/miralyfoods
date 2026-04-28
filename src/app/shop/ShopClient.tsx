@@ -128,7 +128,7 @@ export default function ShopClient({
       {/* Breadcrumb Hero Banner */}
       <section className="relative w-full h-[300px] flex items-center overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/iaz/rth/7n3/turmeric-1-1024x683_1.jpg"
           alt="Shop Banner"
           fill
           className="object-cover"
@@ -340,7 +340,7 @@ export default function ShopClient({
             {/* Featured Banner */}
             <div className="rounded-lg overflow-hidden relative group cursor-pointer aspect-square">
               <Image
-                src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/oss/lad/169/spice-up-your-curry-with-aromatic-seasonings-generated-by-ai_188544-20552.jpg"
                 alt="Fresh Products"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"

@@ -9,12 +9,12 @@ export default function PromoSection() {
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="bg-brand-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center border border-primary/5">
+        <div className="bg-brand-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-stretch border border-primary/5">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 p-8 lg:p-16 flex flex-col gap-6"
+            className="lg:w-1/2 p-8 lg:p-12 flex flex-col gap-6 justify-center"
           >
             <div>
               <span className="text-accent font-bold text-lg inline-block mb-2 uppercase tracking-widest bg-accent/10 px-4 py-1 rounded-full">
@@ -71,13 +71,13 @@ export default function PromoSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex-1 h-full min-h-[400px] w-full relative"
+            className="lg:w-1/2 min-h-[350px] lg:min-h-[450px] w-full relative"
           >
             <Image
-              src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Special Combo Pack"
+              src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/2ww/akl/0i5/turmeric.jpg"
+              alt="Miraly Foods Turmeric"
               fill
-              className="object-cover object-center"
+              className="object-contain object-center p-4"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </motion.div>
