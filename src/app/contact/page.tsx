@@ -108,7 +108,7 @@ export default function ContactPage() {
       {/* Breadcrumb Hero Banner */}
       <section className="relative w-full h-[300px] flex items-center overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/uv1/1za/5st/1527661478banner.jpg"
           alt="Contact Banner"
           fill
           className="object-cover"

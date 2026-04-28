@@ -61,8 +61,8 @@ export default function BeforeAfter() {
             className="flex-1 relative aspect-[4/3] w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
           >
             <Image
-              src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Quality Products"
+              src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/6xn/dfh/i4j/dried-chili-pepper-pouring-out-from-sac-floor_1150-35720.jpg"
+              alt="Miraly Foods Products"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

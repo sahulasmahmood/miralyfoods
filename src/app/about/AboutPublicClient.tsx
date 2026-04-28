@@ -17,7 +17,7 @@ export default function AboutPublicClient({ initialAboutUs }: { initialAboutUs: 
       {/* Breadcrumb Hero Banner - matches /shop */}
       <section className="relative w-full h-[300px] flex items-center overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/4134783/pexels-photo-4134783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/7c2/5zz/0pe/Turmericandchilli.png"
           alt="About Banner"
           fill
           className="object-cover"
@@ -92,7 +92,7 @@ export default function AboutPublicClient({ initialAboutUs }: { initialAboutUs: 
               className="flex-1 relative aspect-[4/3] w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
-                src={aboutUs.heroImage || "https://images.pexels.com/photos/4134783/pexels-photo-4134783.jpeg?auto=compress&cs=tinysrgb&w=800"}
+                src={aboutUs.heroImage || "https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/7c2/5zz/0pe/Turmericandchilli.png"}
                 alt="Our Story"
                 fill
                 className="object-cover"

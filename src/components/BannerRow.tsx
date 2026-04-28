@@ -18,7 +18,7 @@ export default function BannerRow() {
             className="relative rounded-2xl overflow-hidden aspect-[16/9] group cursor-pointer"
           >
             <Image
-              src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/pmy/6nf/975/ai-generated-vibrant-colors-of-spices-in-a-close-up-culinary-variety-generated-by-ai-photo.jpg"
               alt="Fresh Products"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -49,7 +49,7 @@ export default function BannerRow() {
             className="relative rounded-2xl overflow-hidden aspect-[16/9] group cursor-pointer"
           >
             <Image
-              src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="https://6dfa0433ff.imgdist.com/pub/bfra/9ghkfuy7/3au/qzz/in3/spice-smoked-paprika-in-the-form-of-powder-in-bowls-and-spoons-photo.jpg"
               alt="Special Offers"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
