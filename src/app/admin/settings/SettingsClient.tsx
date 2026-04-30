@@ -145,6 +145,7 @@ export default function SettingsClient({
     seo: initialSettings?.seo || {},
     socialMedia: initialSettings?.socialMedia || {},
     googleMyBusiness: initialSettings?.googleMyBusiness || {},
+    googleMapEmbedUrl: initialSettings?.googleMapEmbedUrl || "",
   }));
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -162,6 +163,7 @@ export default function SettingsClient({
       seo: initialSettings?.seo || {},
       socialMedia: initialSettings?.socialMedia || {},
       googleMyBusiness: initialSettings?.googleMyBusiness || {},
+      googleMapEmbedUrl: initialSettings?.googleMapEmbedUrl || "",
     });
   }, [initialSettings]);
 
@@ -351,6 +353,71 @@ export default function SettingsClient({
                   <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
                     Recommended: 200×60px, PNG or SVG format, transparent background
+                  </p>
+                </div>
+
+                {/* Secondary Logo Upload */}
+                <div>
+                  <FieldLabel>Secondary Logo</FieldLabel>
+                  <div className="flex flex-col gap-3">
+                    {settings.logo2 ? (
+                      <div className="relative group w-full max-w-md h-32 bg-gray-50 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                        <Image
+                          src={settings.logo2}
+                          alt="Secondary Logo"
+                          className="w-full h-full object-contain p-4"
+                          fill
+                          unoptimized
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSettings({ ...settings, logo2: "" })
+                            }
+                            className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation"
+                          >
+                            <X size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <label className="w-full max-w-md h-32 border-2 border-dashed border-gray-200 hover:border-accent rounded-xl flex flex-col items-center justify-center cursor-pointer bg-gray-50/50 hover:bg-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none touch-manipulation">
+                        <ImageIcon size={24} className="text-gray-300 mb-2" />
+                        <p className="text-xs font-bold text-primary-dark">
+                          Upload Secondary Logo
+                        </p>
+                        <p className="text-[10px] text-gray-400">
+                          PNG, JPG or SVG
+                        </p>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              if (file.size > 2 * 1024 * 1024) {
+                                toast.error("File size must be less than 2MB");
+                                return;
+                              }
+                              const reader = new FileReader();
+                              reader.onloadend = () => {
+                                setSettings({
+                                  ...settings,
+                                  logo2: reader.result as string,
+                                });
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                      </label>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
+                    Displayed next to the main logo in navbar and footer
                   </p>
                 </div>
 
@@ -837,6 +904,28 @@ export default function SettingsClient({
                   <p className="text-xs text-gray-500 mt-1.5">
                     Your Google Maps API Key with Places API enabled (starts
                     with AIzaSy)
+                  </p>
+                </div>
+
+                {/* Google Map Embed URL */}
+                <div className="border-t border-gray-100 pt-6">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Google Map Embed URL
+                  </label>
+                  <input
+                    type="text"
+                    value={settings.googleMapEmbedUrl || ""}
+                    onChange={(e) =>
+                      setSettings({
+                        ...settings,
+                        googleMapEmbedUrl: e.target.value,
+                      })
+                    }
+                    placeholder="https://www.google.com/maps/embed?pb=..."
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                  />
+                  <p className="text-xs text-gray-500 mt-1.5">
+                    Go to Google Maps → Search your location → Click Share → Embed a map → Copy the src URL from the iframe code. This will display in the footer.
                   </p>
                 </div>
 

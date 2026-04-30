@@ -61,15 +61,7 @@ export default function GoogleReviewsCarousel() {
     };
   }, [data]);
 
-  if (loading) {
-    return (
-      <section className="py-20 bg-primary-dark">
-        <div className="container-custom flex justify-center items-center py-20">
-          <Loader2 className="w-12 h-12 text-white animate-spin" />
-        </div>
-      </section>
-    );
-  }
+  if (loading) return null;
 
   if (data?.error || !data?.reviews || data.reviews.length === 0) return null;
 

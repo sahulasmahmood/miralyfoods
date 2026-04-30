@@ -102,6 +102,10 @@ export async function POST(req: Request) {
       const logoResult = await uploadToCloudinary(data.logo, "miralyfoods/brand");
       data.logo = logoResult.secure_url;
     }
+    if (data.logo2 && data.logo2.startsWith("data:")) {
+      const logo2Result = await uploadToCloudinary(data.logo2, "miralyfoods/brand");
+      data.logo2 = logo2Result.secure_url;
+    }
     if (data.favicon && data.favicon.startsWith("data:")) {
       const faviconResult = await uploadToCloudinary(data.favicon, "miralyfoods/brand");
       data.favicon = faviconResult.secure_url;
@@ -200,6 +204,7 @@ export async function POST(req: Request) {
 
     // Safety net: never store base64 images in MongoDB
     if (data.logo && data.logo.startsWith("data:")) delete data.logo;
+    if (data.logo2 && data.logo2.startsWith("data:")) delete data.logo2;
     if (data.favicon && data.favicon.startsWith("data:")) delete data.favicon;
     if (data.seo?.ogImage && data.seo.ogImage.startsWith("data:")) delete data.seo.ogImage;
     if (data.aboutUs?.heroImage && data.aboutUs.heroImage.startsWith("data:")) delete data.aboutUs.heroImage;

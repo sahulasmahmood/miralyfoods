@@ -71,9 +71,9 @@ export default function RegisterPage() {
       >
         <div className="glass-card p-6 md:p-10">
           <div className="text-center mb-6 md:mb-10">
-            <Link href="/" className="inline-block mb-4 md:mb-6">
+            <Link href="/" className="inline-flex items-center justify-center gap-2 mb-4 md:mb-6">
               {settings?.logo ? (
-                <div className="h-14 md:h-20 w-48 md:w-64 relative mx-auto">
+                <div className="h-14 md:h-20 w-48 md:w-64 relative">
                   <Image
                     src={settings.logo}
                     alt={settings.shopName || "Miraly Foods"}
@@ -86,6 +86,11 @@ export default function RegisterPage() {
                 <span className="text-xl md:text-2xl font-serif font-bold text-primary-dark">
                   {settings?.shopName || "Miraly Foods"}
                 </span>
+              )}
+              {settings?.logo2 && (
+                <div className="h-14 md:h-20 w-48 md:w-64 relative flex-shrink-0">
+                  <Image src={settings.logo2} alt="Secondary Logo" fill className="object-contain" />
+                </div>
               )}
             </Link>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary-dark">

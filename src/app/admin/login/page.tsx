@@ -70,9 +70,9 @@ export default function AdminLoginPage() {
       >
         <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-white/20">
           <div className="text-center mb-8">
-            <Link href="/" className="inline-block mb-6">
+            <Link href="/" className="inline-flex items-center justify-center gap-2 mb-6">
               {settings?.logo ? (
-                <div className="h-14 md:h-20 w-48 md:w-64 relative mx-auto">
+                <div className="h-14 md:h-20 w-48 md:w-64 relative">
                   <Image
                     src={settings.logo}
                     alt={settings.shopName || "Miraly Foods"}
@@ -85,6 +85,11 @@ export default function AdminLoginPage() {
                 <span className="text-2xl font-serif font-black text-primary-dark">
                   {settings?.shopName || "Miraly Foods"}
                 </span>
+              )}
+              {settings?.logo2 && (
+                <div className="h-14 md:h-20 w-48 md:w-64 relative flex-shrink-0">
+                  <Image src={settings.logo2} alt="Secondary Logo" fill className="object-contain" />
+                </div>
               )}
             </Link>
             <div className="flex items-center justify-center gap-2 mb-2">
