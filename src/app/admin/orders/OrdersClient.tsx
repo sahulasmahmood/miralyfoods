@@ -63,6 +63,31 @@ export default function OrdersClient({
     estimatedDeliveryDate: "",
     shippingNotes: "",
   });
+  const [selectedOrders, setSelectedOrders] = useState<Set<string>>(new Set());
+  const [bulkStatus, setBulkStatus] = useState("Processing");
+  const [bulkUpdating, setBulkUpdating] = useState(false);
+  const [backwardConfirm, setBackwardConfirm] = useState<{ orderId: string; currentStatus: string; newStatus: string } | null>(null);
+  const bulkEnabled = statusFilter !== "All";
+
+  // Get allowed forward statuses for bulk (no Shipping, no backward)
+  const bulkAllowedStatuses = useMemo(() => {
+    if (!bulkEnabled) return [];
+    const currentIndex = ORDER_STAGES.indexOf(statusFilter);
+    return ORDER_STAGES.filter((s, i) => i > currentIndex && s !== "Shipping");
+  }, [statusFilter, bulkEnabled]);
+
+  // Clear selection when filter changes
+  useEffect(() => {
+    setSelectedOrders(new Set());
+    setBulkStatus("");
+  }, [statusFilter]);
+
+  // Set default bulk status when allowed statuses change
+  useEffect(() => {
+    if (bulkAllowedStatuses.length > 0) {
+      setBulkStatus(bulkAllowedStatuses[0]);
+    }
+  }, [bulkAllowedStatuses]);
 
   useEffect(() => {
     setMounted(true);
@@ -87,8 +112,18 @@ export default function OrdersClient({
   };
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
+    const order = orders.find((o) => o._id === orderId);
+    if (!order) return;
+
+    // Check if moving backward
+    const currentIndex = ORDER_STAGES.indexOf(order.status);
+    const newIndex = ORDER_STAGES.indexOf(newStatus);
+    if (newIndex < currentIndex) {
+      setBackwardConfirm({ orderId, currentStatus: order.status, newStatus });
+      return;
+    }
+
     if (newStatus === "Shipping") {
-      const order = orders.find((o) => o._id === orderId);
       setTrackingOrder(order);
       setTrackingData({
         courierName: order?.courierName || "",
@@ -98,10 +133,13 @@ export default function OrdersClient({
         shippingNotes: order?.shippingNotes || "",
       });
       setTrackingModalOpen(true);
-      // Wait for modal save to make API call
       return;
     }
 
+    await executeStatusChange(orderId, newStatus);
+  };
+
+  const executeStatusChange = async (orderId: string, newStatus: string) => {
     const previousOrders = [...orders];
     const updatedOrders = orders.map((o) =>
       o._id === orderId ? { ...o, status: newStatus } : o,
@@ -127,6 +165,28 @@ export default function OrdersClient({
       }
       toast.error("Failed to update status");
     }
+  };
+
+  const confirmBackwardChange = async () => {
+    if (!backwardConfirm) return;
+    const { orderId, newStatus } = backwardConfirm;
+    setBackwardConfirm(null);
+
+    if (newStatus === "Shipping") {
+      const order = orders.find((o) => o._id === orderId);
+      setTrackingOrder(order);
+      setTrackingData({
+        courierName: order?.courierName || "",
+        awbNumber: order?.awbNumber || "",
+        trackingLink: order?.trackingLink || "",
+        estimatedDeliveryDate: order?.estimatedDeliveryDate ? new Date(order.estimatedDeliveryDate).toISOString().split('T')[0] : "",
+        shippingNotes: order?.shippingNotes || "",
+      });
+      setTrackingModalOpen(true);
+      return;
+    }
+
+    await executeStatusChange(orderId, newStatus);
   };
 
   const handleSaveTracking = async () => {
@@ -160,6 +220,70 @@ export default function OrdersClient({
         setViewingOrder(previousOrders.find(o => o._id === viewingOrder._id) || viewingOrder);
       }
       toast.error("Failed to update status and tracking info");
+    }
+  };
+
+  const toggleSelectOrder = (orderId: string) => {
+    setSelectedOrders((prev) => {
+      const next = new Set(prev);
+      if (next.has(orderId)) next.delete(orderId);
+      else next.add(orderId);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedOrders.size === paginatedOrders.length) {
+      setSelectedOrders(new Set());
+    } else {
+      setSelectedOrders(new Set(paginatedOrders.map((o: any) => o._id)));
+    }
+  };
+
+  const handleBulkStatusChange = async () => {
+    if (selectedOrders.size === 0 || !bulkStatus) return;
+
+    const stageIndex = ORDER_STAGES.indexOf(bulkStatus);
+
+    // Block backward status changes
+    const backwardOrders = orders.filter(
+      (o) => selectedOrders.has(o._id) && ORDER_STAGES.indexOf(o.status) > stageIndex
+    );
+    if (backwardOrders.length > 0) {
+      toast.error(
+        `${backwardOrders.length} order${backwardOrders.length > 1 ? "s" : ""} already past "${bulkStatus}". Bulk update only moves orders forward.`
+      );
+      return;
+    }
+
+    // Filter out orders already at the target status
+    const eligibleIds = orders
+      .filter((o) => selectedOrders.has(o._id) && o.status !== bulkStatus)
+      .map((o) => o._id);
+
+    if (eligibleIds.length === 0) {
+      toast.error("All selected orders are already at this status.");
+      return;
+    }
+
+    setBulkUpdating(true);
+    try {
+      const res = await fetch("/api/admin/orders", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderIds: eligibleIds,
+          status: bulkStatus,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      toast.success(`${eligibleIds.length} order${eligibleIds.length > 1 ? "s" : ""} updated to ${bulkStatus}`);
+      setSelectedOrders(new Set());
+      await fetchOrders();
+    } catch (err) {
+      toast.error("Failed to update orders");
+    } finally {
+      setBulkUpdating(false);
     }
   };
 
@@ -360,14 +484,82 @@ export default function OrdersClient({
 
 
 
+      {/* Bulk Action Bar */}
+      <AnimatePresence>
+        {bulkEnabled && selectedOrders.size > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="bg-primary text-white p-4 rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4"
+          >
+            <span className="text-sm font-bold">
+              {selectedOrders.size} {statusFilter} order{selectedOrders.size > 1 ? "s" : ""} selected
+            </span>
+            <div className="flex items-center gap-3 flex-wrap">
+              {bulkAllowedStatuses.length > 0 && (
+                <>
+                  <select
+                    value={bulkStatus}
+                    onChange={(e) => setBulkStatus(e.target.value)}
+                    className="bg-white text-primary-dark rounded-lg px-3 py-2 text-sm font-bold outline-none cursor-pointer"
+                  >
+                    {bulkAllowedStatuses.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                  <button
+                    onClick={handleBulkStatusChange}
+                    disabled={bulkUpdating}
+                    className="bg-white text-primary font-bold text-sm px-5 py-2 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
+                  >
+                    {bulkUpdating ? "Updating..." : "Update All"}
+                  </button>
+                </>
+              )}
+              <a
+                href={`/bulk-print?ids=${[...selectedOrders].join(",")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-primary font-bold text-sm px-5 py-2 rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-2"
+              >
+                <Printer size={14} /> Print Thermal
+              </a>
+              <button
+                onClick={() => setSelectedOrders(new Set())}
+                className="text-white/80 hover:text-white text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                Clear
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Bulk info note */}
+      {bulkEnabled && (
+        <p className="text-xs text-gray-400 -mt-4">
+          <span className="font-bold">Note:</span> &quot;Shipping&quot; status requires individual tracking info (AWB, courier) — use the per-order dropdown for shipping updates.
+        </p>
+      )}
+
       {/* Orders Table */}
-      {/* Orders View */}
       <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
         {/* Desktop Table View */}
         <div className="hidden lg:block overflow-x-auto">
           <table className="w-full text-left">
             <thead className="bg-[#F5F5F5] border-b border-gray-100">
               <tr className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                {bulkEnabled && (
+                  <th className="px-4 py-5 w-12">
+                    <input
+                      type="checkbox"
+                      checked={paginatedOrders.length > 0 && selectedOrders.size === paginatedOrders.length}
+                      onChange={toggleSelectAll}
+                      className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer accent-primary"
+                    />
+                  </th>
+                )}
                 <th className="px-6 py-5">Order Details</th>
                 <th className="px-6 py-5">Customer</th>
                 <th className="px-6 py-5">Items</th>
@@ -382,14 +574,14 @@ export default function OrdersClient({
                   .fill(0)
                   .map((_, i) => (
                     <tr key={i} className="animate-pulse">
-                      <td className="px-6 py-8" colSpan={6}>
+                      <td className="px-6 py-8" colSpan={bulkEnabled ? 7 : 6}>
                         <div className="h-12 bg-gray-50 rounded-2xl w-full" />
                       </td>
                     </tr>
                   ))
               ) : filteredOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-6 py-32 text-center">
+                  <td colSpan={bulkEnabled ? 7 : 6} className="px-6 py-32 text-center">
                     <div className="flex flex-col items-center gap-4 opacity-30">
                       <Package size={48} className="text-primary" />
                       <span className="text-sm font-black uppercase tracking-widest text-primary-dark">
@@ -407,6 +599,16 @@ export default function OrdersClient({
                     animate={{ opacity: 1 }}
                     className="group hover:bg-[#F5F5F5]/30 transition-colors"
                   >
+                    {bulkEnabled && (
+                      <td className="px-4 py-5 w-12">
+                        <input
+                          type="checkbox"
+                          checked={selectedOrders.has(order._id)}
+                          onChange={() => toggleSelectOrder(order._id)}
+                          className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer accent-primary"
+                        />
+                      </td>
+                    )}
                     <td className="px-6 py-5">
                       <div className="flex flex-col gap-1">
                         <span className="text-sm font-black text-primary-dark">
@@ -919,6 +1121,57 @@ export default function OrdersClient({
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Backward Status Confirmation Modal */}
+      <AnimatePresence>
+        {backwardConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4"
+            onClick={() => setBackwardConfirm(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                  <AlertCircle size={24} className="text-amber-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-primary-dark">Reverse Status Change</h3>
+                  <p className="text-xs text-gray-400">This action may notify the customer</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                Are you sure you want to move this order from{" "}
+                <span className="font-bold text-primary-dark">{backwardConfirm.currentStatus}</span> back to{" "}
+                <span className="font-bold text-primary-dark">{backwardConfirm.newStatus}</span>?
+                This is a backward status change and the customer will be notified.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setBackwardConfirm(null)}
+                  className="flex-1 py-3 rounded-xl border border-gray-200 text-sm font-bold text-gray-600 hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmBackwardChange}
+                  className="flex-1 py-3 rounded-xl bg-amber-500 text-white text-sm font-bold hover:bg-amber-600 transition-colors"
+                >
+                  Yes, Change Status
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 

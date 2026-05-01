@@ -36,7 +36,7 @@ export async function PUT(
       }
     }
 
-    const uom = await UOM.findByIdAndUpdate(id, body, { new: true });
+    const uom = await UOM.findByIdAndUpdate(id, body, { returnDocument: "after" });
     if (!uom) {
       return NextResponse.json({ error: "UOM not found" }, { status: 404 });
     }

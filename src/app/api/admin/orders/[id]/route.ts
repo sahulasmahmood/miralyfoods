@@ -68,7 +68,7 @@ export async function PUT(
       updateData.paidAt = body.isPaid ? Date.now() : null;
     }
 
-    const order = await Order.findByIdAndUpdate(id, updateData, { new: true });
+    const order = await Order.findByIdAndUpdate(id, updateData, { returnDocument: "after" });
 
     if (!order)
       return NextResponse.json({ error: "Order not found" }, { status: 404 });

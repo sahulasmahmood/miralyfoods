@@ -68,7 +68,7 @@ export async function PUT(req: NextRequest) {
     const review = await Review.findByIdAndUpdate(
       id,
       { isApproved },
-      { new: true },
+      { returnDocument: "after" },
     );
 
     if (!review) {
