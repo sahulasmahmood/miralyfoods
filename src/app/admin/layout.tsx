@@ -144,6 +144,17 @@ export default function AdminLayout({
               </span>
             )}
           </div>
+          {settings?.logo2 && (
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-0.5 overflow-hidden">
+              <Image
+                src={settings.logo2}
+                className="w-full h-full object-contain"
+                alt="Secondary Logo"
+                width={32}
+                height={32}
+              />
+            </div>
+          )}
           <h1 className="text-sm font-serif font-black tracking-tight uppercase text-[#F5F5F5] truncate max-w-[180px]">
             {settings?.shopName || "Miraly Foods"}
           </h1>
@@ -267,7 +278,7 @@ export default function AdminLayout({
         </button>
 
         <div
-          className={`flex items-center gap-4 mb-8 p-6 ${isCollapsed ? "justify-center" : ""}`}
+          className={`flex items-center gap-3 mb-8 p-6 ${isCollapsed ? "justify-center" : ""}`}
         >
           <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg shrink-0 relative">
             {settings?.logo ? (
@@ -282,6 +293,17 @@ export default function AdminLayout({
               <span className="text-[#D32F2F] font-black italic">MF</span>
             )}
           </div>
+          {!isCollapsed && settings?.logo2 && (
+            <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg shrink-0 relative">
+              <Image
+                src={settings.logo2}
+                className="w-full h-full object-contain p-1"
+                alt="Secondary Logo"
+                width={64}
+                height={64}
+              />
+            </div>
+          )}
           {!isCollapsed && (
             <motion.div
               initial={{ opacity: 0 }}

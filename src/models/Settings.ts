@@ -25,6 +25,7 @@ const SettingsSchema = new Schema(
     lowStockThreshold: { type: Number, default: 10 },
     manageInventory: { type: Boolean, default: true },
     logo: { type: String, default: "" },
+    logo2: { type: String, default: "" },
     favicon: { type: String, default: "" },
     socialMedia: {
       facebook: { type: String, default: "" },
@@ -68,6 +69,7 @@ const SettingsSchema = new Schema(
       apiKey: { type: String, default: "" },
       enabled: { type: Boolean, default: false },
     },
+    googleMapEmbedUrl: { type: String, default: "" },
     aboutUs: {
       heroTitle: { type: String, default: "Delivering Quality Food Products from Salem." },
       heroDescription: { type: String, default: "At Miraly Foods, we believe that food is more than just sustenance; it's a legacy. Founded on the principles of authenticity and purity, we bring the finest quality food products to your doorstep." },

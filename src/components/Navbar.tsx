@@ -140,14 +140,14 @@ export default function Navbar() {
               >
                 <Menu size={24} />
               </button>
-              <Link href="/" className="flex-shrink-0">
+              <Link href="/" className="flex-shrink-0 flex items-center gap-0">
                 {settings?.logo ? (
-                  <div className="h-12 md:h-16 w-40 md:w-56 relative">
+                  <div className="h-12 md:h-16 w-32 md:w-44 relative">
                     <Image
                       src={settings.logo}
                       alt={settings.shopName || "Miraly Foods"}
                       fill
-                      className="object-contain"
+                      className="object-contain object-left"
                       priority
                     />
                   </div>
@@ -155,6 +155,16 @@ export default function Navbar() {
                   <span className="text-xl md:text-2xl font-serif font-bold text-white">
                     {settings?.shopName || "Miraly Foods"}
                   </span>
+                )}
+                {settings?.logo2 && (
+                  <div className="h-12 md:h-16 w-32 md:w-44 relative flex-shrink-0">
+                    <Image
+                      src={settings.logo2}
+                      alt="Secondary Logo"
+                      fill
+                      className="object-contain object-left"
+                    />
+                  </div>
                 )}
               </Link>
             </div>
@@ -374,20 +384,27 @@ export default function Navbar() {
               className="fixed inset-y-0 left-0 w-4/5 max-w-xs bg-white z-[70] p-6 flex flex-col gap-6"
             >
               <div className="flex justify-between items-center">
-                {settings?.logo ? (
-                  <div className="h-12 w-40 relative">
-                    <Image
-                      src={settings.logo}
-                      alt={settings.shopName || "Miraly Foods"}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <span className="text-lg font-serif font-bold text-text-heading">
-                    {settings?.shopName || "Miraly Foods"}
-                  </span>
-                )}
+                <div className="flex items-center gap-2">
+                  {settings?.logo ? (
+                    <div className="h-12 w-40 relative">
+                      <Image
+                        src={settings.logo}
+                        alt={settings.shopName || "Miraly Foods"}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <span className="text-lg font-serif font-bold text-text-heading">
+                      {settings?.shopName || "Miraly Foods"}
+                    </span>
+                  )}
+                  {settings?.logo2 && (
+                    <div className="h-10 w-10 relative flex-shrink-0">
+                      <Image src={settings.logo2} alt="Secondary Logo" fill className="object-contain" />
+                    </div>
+                  )}
+                </div>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="text-text-body"

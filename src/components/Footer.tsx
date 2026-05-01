@@ -13,10 +13,32 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white pt-16 pb-8">
       <div className="container-custom">
+        {/* Google Map */}
+        {settings?.googleMapEmbedUrl && (() => {
+          let mapSrc = settings.googleMapEmbedUrl.trim();
+          const srcMatch = mapSrc.match(/src=["']([^"']+)["']/);
+          if (srcMatch) mapSrc = srcMatch[1];
+          if (!mapSrc.startsWith("https://")) return null;
+          return (
+            <div className="mb-12 rounded-lg overflow-hidden">
+              <iframe
+                src={mapSrc}
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Store Location"
+              />
+            </div>
+          );
+        })()}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="flex flex-col gap-6">
-            <Link href="/">
+            <Link href="/" className="flex flex-col gap-3">
               {settings?.logo ? (
                 <div className="w-48 h-16 relative">
                   <Image
@@ -30,6 +52,16 @@ export default function Footer() {
                 <span className="text-2xl font-serif font-bold text-white">
                   {settings?.shopName || "Miraly Foods"}
                 </span>
+              )}
+              {settings?.logo2 && (
+                <div className="w-48 h-16 relative flex-shrink-0">
+                  <Image
+                    src={settings.logo2}
+                    alt="Secondary Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               )}
             </Link>
             <p className="text-white/90 text-sm leading-relaxed">

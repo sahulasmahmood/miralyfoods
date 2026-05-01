@@ -75,7 +75,7 @@ const getNavbarData = withCache(CACHE_KEYS.NAVBAR, 60_000, async () => {
     await connectDB();
     const [settings, categories] = await Promise.all([
       Settings.findOne()
-        .select("logo shopName contactPhone contactEmail socialMedia address")
+        .select("logo logo2 shopName contactPhone contactEmail socialMedia address googleMapEmbedUrl")
         .lean(),
       Category.find({ isActive: { $ne: false } })
         .select("_id name slug")

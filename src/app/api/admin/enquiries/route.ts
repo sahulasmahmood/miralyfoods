@@ -49,7 +49,7 @@ export async function PATCH(req: Request) {
     const enquiry = await Enquiry.findByIdAndUpdate(
       id,
       { status },
-      { new: true },
+      { returnDocument: "after" },
     );
 
     if (!enquiry) {

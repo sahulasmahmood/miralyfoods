@@ -67,7 +67,7 @@ export async function PUT(req: Request) {
         rate: body.rate,
         estimatedDelivery: body.estimatedDelivery,
       },
-      { new: true }
+      { returnDocument: "after" }
     );
 
     if (!rate) {
