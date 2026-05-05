@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ShoppingCart, Eye, Heart, ArrowRight } from "lucide-react";
+import { ShoppingCart, Eye, Heart, ArrowRight, Minus, Plus } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -22,6 +22,10 @@ export default function FeaturedProducts({
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [products] = useState<any[]>(initialProducts);
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const getQty = (id: string) => quantities[id] || 1;
+  const setQty = (id: string, val: number) =>
+    setQuantities((prev) => ({ ...prev, [id]: Math.max(1, val) }));
 
   if (products.length === 0) return null;
 
@@ -120,18 +124,36 @@ export default function FeaturedProducts({
                   </Link>
                 </div>
 
-                {/* Add to Cart Overlay */}
-                <div className="absolute inset-x-4 bottom-4 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+              </div>
+
+              {/* Quantity and Add to Cart Row */}
+              <div className="flex gap-2 p-4 pb-0">
+                <div className="flex-1 flex items-center justify-between bg-gray-50 rounded-sm px-4 py-2 border border-gray-100">
                   <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      addToCart(product, 1);
-                    }}
-                    className="w-full bg-primary text-white py-2 rounded font-bold text-sm tracking-wider hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
+                    onClick={() => setQty(product._id, getQty(product._id) - 1)}
+                    className="text-text-body hover:text-primary transition-colors h-full flex items-center"
                   >
-                    <ShoppingCart size={16} /> ADD TO CART
+                    <Minus size={14} strokeWidth={3} />
+                  </button>
+                  <span className="text-sm font-bold text-text-heading mx-2">
+                    {getQty(product._id)}
+                  </span>
+                  <button
+                    onClick={() => setQty(product._id, getQty(product._id) + 1)}
+                    className="text-text-body hover:text-primary transition-colors h-full flex items-center"
+                  >
+                    <Plus size={14} strokeWidth={3} />
                   </button>
                 </div>
+                <button
+                  onClick={() => {
+                    addToCart(product, getQty(product._id));
+                    setQty(product._id, 1);
+                  }}
+                  className="bg-primary text-white p-3 rounded-sm hover:bg-primary-dark transition-colors shadow-md flex items-center justify-center aspect-square"
+                >
+                  <ShoppingCart size={18} />
+                </button>
               </div>
 
               <Link href={`/shop/${product.slug}`} className="block p-4 text-center">
