@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ShoppingCart } from "lucide-react";
+import { ArrowRight, Star, ShoppingCart, Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import toast from "react-hot-toast";
@@ -37,6 +37,10 @@ export default function RelatedProducts({
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const getQty = (id: string) => quantities[id] || 1;
+  const setQty = (id: string, val: number) =>
+    setQuantities((prev) => ({ ...prev, [id]: Math.max(1, val) }));
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
@@ -122,7 +126,7 @@ export default function RelatedProducts({
               className="group"
             >
               <Link href={`/shop/${p.slug}`}>
-                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-secondary/10 mb-6 relative border border-primary/5">
+                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-secondary/10 relative border border-primary/5">
                   {p.images?.[0] ? (
                     <Image
                       src={p.images[0]}
@@ -148,6 +152,49 @@ export default function RelatedProducts({
                     <span className="text-xs font-bold">{p.rating || 5}</span>
                   </div>
                 </div>
+              </Link>
+
+              {/* Quantity and Add to Cart Row */}
+              {!isOutOfStock && (
+                <div className="flex gap-2 pt-4 mb-4">
+                  <div className="flex-1 flex items-center justify-between bg-gray-50 rounded-sm px-4 py-2 border border-gray-100">
+                    <button
+                      onClick={() => setQty(p._id, getQty(p._id) - 1)}
+                      className="text-text-body hover:text-primary transition-colors h-full flex items-center"
+                    >
+                      <Minus size={14} strokeWidth={3} />
+                    </button>
+                    <span className="text-sm font-bold text-text-heading mx-2">
+                      {getQty(p._id)}
+                    </span>
+                    <button
+                      onClick={() => setQty(p._id, getQty(p._id) + 1)}
+                      className="text-text-body hover:text-primary transition-colors h-full flex items-center"
+                    >
+                      <Plus size={14} strokeWidth={3} />
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => {
+                      if (p.variants && p.variants.length > 0) {
+                        const bestVariant = p.variants[0];
+                        addToCart(
+                          { ...p, price: bestVariant.price, uom: bestVariant.uom },
+                          getQty(p._id)
+                        );
+                      } else {
+                        addToCart(p, getQty(p._id));
+                      }
+                      setQty(p._id, 1);
+                    }}
+                    className="bg-primary text-white p-3 rounded-sm hover:bg-primary-dark transition-colors shadow-md flex items-center justify-center aspect-square"
+                  >
+                    <ShoppingCart size={18} />
+                  </button>
+                </div>
+              )}
+
+              <Link href={`/shop/${p.slug}`}>
                 <h3 className="text-lg font-serif font-black text-primary-dark mb-1 group-hover:text-primary transition-colors leading-tight">
                   {p.name}
                 </h3>
