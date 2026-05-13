@@ -201,7 +201,7 @@ export const sendAdminNewOrderEmail = async (order: any, invoicePDFBuffer: Buffe
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-        <h2 style="color: #D32F2F;">New Order Received!</h2>
+        <h2 style="color: #007D71;">New Order Received!</h2>
         <p>A new order has been confirmed from <strong>${order.shippingAddress?.fullName}</strong>.</p>
         
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
@@ -211,7 +211,7 @@ export const sendAdminNewOrderEmail = async (order: any, invoicePDFBuffer: Buffe
           </tr>
           <tr>
             <td style="padding: 10px; border: 1px solid #ddd;"><strong>Total Amount:</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd; color: #D32F2F; font-weight: bold;">₹${order.totalPrice}</td>
+            <td style="padding: 10px; border: 1px solid #ddd; color: #007D71; font-weight: bold;">₹${order.totalPrice}</td>
           </tr>
           <tr>
             <td style="padding: 10px; border: 1px solid #ddd;"><strong>Customer Email:</strong></td>
@@ -219,10 +219,10 @@ export const sendAdminNewOrderEmail = async (order: any, invoicePDFBuffer: Buffe
           </tr>
         </table>
 
-        <h3 style="margin-top: 20px; color: #D32F2F;">Order Items</h3>
+        <h3 style="margin-top: 20px; color: #007D71;">Order Items</h3>
         <ul>${itemsHtml}</ul>
 
-        <p style="margin-top: 30px; padding: 15px; background: #fff5e6; border-radius: 8px;">
+        <p style="margin-top: 30px; padding: 15px; background: #E6F2F0; border-radius: 8px;">
           Log in to the Admin Dashboard to process this order and update its status.
         </p>
       </div>

@@ -12,7 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           position="top-right"
           toastOptions={{
             style: {
-              background: "#D32F2F",
+              background: "#007D71",
               color: "#fff",
               borderRadius: "16px",
               fontSize: "14px",
@@ -21,7 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             },
             success: {
               iconTheme: {
-                primary: "#D4A373",
+                primary: "#C4743F",
                 secondary: "#fff",
               },
             },

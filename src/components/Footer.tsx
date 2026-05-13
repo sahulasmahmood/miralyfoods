@@ -81,7 +81,7 @@ export default function Footer() {
               {settings?.contactEmail && (
                 <a
                   href={`mailto:${settings.contactEmail}`}
-                  className="text-white hover:text-yellow-300 transition-colors"
+                  className="text-white hover:text-white/80 transition-colors"
                 >
                   {settings.contactEmail}
                 </a>
@@ -89,7 +89,7 @@ export default function Footer() {
               {settings?.contactPhone && (
                 <a
                   href={`tel:${settings.contactPhone}`}
-                  className="text-white hover:text-yellow-300 transition-colors"
+                  className="text-white hover:text-white/80 transition-colors"
                 >
                   {settings.contactPhone}
                 </a>
@@ -104,7 +104,7 @@ export default function Footer() {
                     href={settings.socialMedia.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   >
                     <Instagram size={16} />
                   </a>
@@ -114,7 +114,7 @@ export default function Footer() {
                     href={settings.socialMedia.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   >
                     <Facebook size={16} />
                   </a>
@@ -124,7 +124,7 @@ export default function Footer() {
                     href={settings.socialMedia.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   >
                     <Twitter size={16} />
                   </a>
@@ -142,7 +142,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -150,7 +150,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   Terms & Conditions
                 </Link>
@@ -158,7 +158,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/shipping-policy"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   Shipping Policy
                 </Link>
@@ -166,7 +166,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/return-and-refund"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   Return & Refund Policy
                 </Link>
@@ -174,7 +174,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/track"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   Track Order
                 </Link>
@@ -182,7 +182,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-yellow-300 cursor-pointer transition-colors"
+                  className="hover:text-white/80 cursor-pointer transition-colors"
                 >
                   About Us
                 </Link>
@@ -209,7 +209,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="absolute right-0 top-0 h-full px-4 text-primary-dark hover:text-yellow-300 transition-colors"
+                className="absolute right-0 top-0 h-full px-4 text-primary-dark hover:text-white/80 transition-colors"
                 aria-label="Submit"
               >
                 <Send size={18} />

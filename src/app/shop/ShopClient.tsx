@@ -155,7 +155,7 @@ export default function ShopClient({
                 Home
               </Link>
               <span className="w-4 h-[1px] bg-white" />
-              <span className="text-yellow-300 font-bold">Shop</span>
+              <span className="text-white font-bold">Shop</span>
             </nav>
           </motion.div>
         </div>

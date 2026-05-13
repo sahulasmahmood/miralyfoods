@@ -9,7 +9,7 @@
 }
 
 body {
-  color: #1A1A1A;
+  color: #000000;
   background: #ffffff;
   min-height: 100vh;
   font-family: var(--font-inter), "Inter", sans-serif;
@@ -19,7 +19,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), "Cormorant Garamond", serif;
-  color: #1A1A1A;
+  color: #000000;
   font-weight: 600;
   letter-spacing: -0.025em;
 }
@@ -60,12 +60,12 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D32F2F;
+  background: #007D71;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C62828;
+  background: #025D53;
 }
 
 /* Custom scrollbar for order summary */
@@ -128,9 +128,9 @@ section {
 
 .shimmer-text {
   background: linear-gradient(90deg,
-      #D32F2F 0%,
-      #D4A373 50%,
-      #D32F2F 100%);
+      #007D71 0%,
+      #C4743F 50%,
+      #007D71 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -156,12 +156,12 @@ section {
 
 /* Selection colors */
 ::selection {
-  background: #D32F2F;
+  background: #007D71;
   color: #ffffff;
 }
 
 ::-moz-selection {
-  background: #D32F2F;
+  background: #007D71;
   color: #ffffff;
 }
 

@@ -30,16 +30,16 @@ export default function FeaturedProducts({
   if (products.length === 0) return null;
 
   return (
-    <section className="py-16">
+    <section className="py-6 md:py-16">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-          <div className="text-center md:text-left">
+        <div className="flex flex-row justify-between items-center mb-4 md:mb-10 gap-2">
+          <div>
             {subtitle && (
-              <p className="text-accent font-medium mb-1">{subtitle}</p>
+              <p className="text-accent font-medium mb-1 text-sm">{subtitle}</p>
             )}
-            <h2 className="text-3xl md:text-4xl text-text-heading relative inline-block">
+            <h2 className="text-xl md:text-4xl text-text-heading relative inline-block">
               {title}
-              <div className="absolute -bottom-2 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 w-24 h-1 bg-primary/20 rounded-full overflow-hidden">
+              <div className="absolute -bottom-2 left-0 w-16 md:w-24 h-1 bg-primary/20 rounded-full overflow-hidden">
                 <div className="w-1/2 h-full bg-primary" />
               </div>
             </h2>
@@ -48,11 +48,11 @@ export default function FeaturedProducts({
           {viewAllLink && (
             <Link
               href={viewAllLink}
-              className="text-text-body flex items-center gap-2 hover:text-primary font-semibold transition-colors group"
+              className="text-text-body flex items-center gap-1 md:gap-2 hover:text-primary font-semibold transition-colors group text-xs md:text-base whitespace-nowrap"
             >
               View all products{" "}
               <ArrowRight
-                size={18}
+                size={16}
                 className="group-hover:translate-x-1 transition-transform"
               />
             </Link>

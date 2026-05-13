@@ -49,7 +49,7 @@ export default function CTASection() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
                 <Link
                   href="/shop"
-                  className="group bg-accent hover:bg-[#FFCDD2] text-primary-dark px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg w-full sm:w-auto"
+                  className="group bg-accent hover:bg-[#E8B89D] text-primary-dark px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-3 shadow-lg w-full sm:w-auto"
                 >
                   Shop All Products
                   <ArrowRight

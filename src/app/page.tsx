@@ -35,22 +35,22 @@ export default function Home() {
 
       <Suspense
         fallback={
-          <div className="h-[400px] md:h-[600px] bg-gray-100 animate-pulse" />
+          <div className="h-[200px] md:h-[400px] bg-gray-100 animate-pulse" />
         }
       >
         <HeroSection />
       </Suspense>
 
       <Suspense
-        fallback={<div className="h-64 bg-gray-50 animate-pulse" />}
-      >
-        <CategoriesSection />
-      </Suspense>
-
-      <Suspense
         fallback={<div className="h-96 bg-white animate-pulse" />}
       >
         <ProductsSection />
+      </Suspense>
+
+      <Suspense
+        fallback={<div className="h-64 bg-gray-50 animate-pulse" />}
+      >
+        <CategoriesSection />
       </Suspense>
 
       <PromoSection />

@@ -38,7 +38,7 @@ export default function AboutPublicClient({ initialAboutUs }: { initialAboutUs: 
                 Home
               </Link>
               <span className="w-4 h-[1px] bg-white" />
-              <span className="text-yellow-300 font-bold">About</span>
+              <span className="text-white font-bold">About</span>
             </nav>
           </motion.div>
         </div>

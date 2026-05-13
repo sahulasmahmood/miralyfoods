@@ -21,20 +21,20 @@ export default function WishlistClient() {
 
   if (wishlistItems.length === 0) {
     return (
-      <div className="min-h-screen bg-[#FCFCFA] pt-32">
+      <div className="min-h-screen bg-[#F5F5F5] pt-32">
         <div className="max-w-4xl mx-auto px-4 py-20 text-center">
           <div className="w-32 h-32 bg-[#F5F5F5]/30 rounded-full flex items-center justify-center mx-auto mb-8">
-            <Heart size={48} className="text-[#D32F2F]/30" />
+            <Heart size={48} className="text-[#007D71]/30" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-serif font-black text-[#D32F2F] mb-4">
+          <h1 className="text-3xl md:text-4xl font-serif font-black text-[#007D71] mb-4">
             Your Wishlist is Empty
           </h1>
-          <p className="text-[#D32F2F]/60 mb-8 max-w-md mx-auto">
+          <p className="text-[#007D71]/60 mb-8 max-w-md mx-auto">
             Start adding your favorite products to your wishlist and never lose track of what you love.
           </p>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 bg-[#D32F2F] hover:bg-[#D4A373] text-white hover:text-[#D32F2F] px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-[#007D71] hover:bg-[#C4743F] text-white hover:text-[#007D71] px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             <Package size={20} />
             Explore Products
@@ -46,15 +46,15 @@ export default function WishlistClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FCFCFA] pt-32">
+    <div className="min-h-screen bg-[#F5F5F5] pt-32">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-serif font-black text-[#D32F2F] mb-2">
+            <h1 className="text-3xl md:text-4xl font-serif font-black text-[#007D71] mb-2">
               My Wishlist
             </h1>
-            <p className="text-[#D32F2F]/60">
+            <p className="text-[#007D71]/60">
               {wishlistItems.length} {wishlistItems.length === 1 ? 'item' : 'items'} saved
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function WishlistClient() {
 
                   {/* Discount Badge */}
                   {item.mrp && item.mrp > item.price && (
-                    <div className="absolute top-3 left-3 bg-[#D4A373] text-[#D32F2F] px-2 py-1 rounded-lg text-xs font-bold">
+                    <div className="absolute top-3 left-3 bg-[#C4743F] text-[#007D71] px-2 py-1 rounded-lg text-xs font-bold">
                       {Math.round(((item.mrp - item.price) / item.mrp) * 100)}% OFF
                     </div>
                   )}
@@ -112,11 +112,11 @@ export default function WishlistClient() {
                 {/* Product Info */}
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs font-bold text-[#D32F2F]/50 uppercase tracking-wider">
+                    <p className="text-xs font-bold text-[#007D71]/50 uppercase tracking-wider">
                       {item.category}
                     </p>
                     <Link href={`/shop/${item.slug}`}>
-                      <h3 className="text-sm font-bold text-[#D32F2F] line-clamp-2 hover:text-[#D4A373] transition-colors">
+                      <h3 className="text-sm font-bold text-[#007D71] line-clamp-2 hover:text-[#C4743F] transition-colors">
                         {item.name}
                       </h3>
                     </Link>
@@ -124,19 +124,19 @@ export default function WishlistClient() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-lg font-black text-[#D32F2F]">
+                      <span className="text-lg font-black text-[#007D71]">
                         ₹{item.price}
                       </span>
                       {item.mrp && item.mrp > item.price && (
-                        <span className="text-xs text-[#D32F2F]/30 line-through">
+                        <span className="text-xs text-[#007D71]/30 line-through">
                           ₹{item.mrp}
                         </span>
                       )}
                     </div>
                     {item.rating && (
-                      <div className="flex items-center gap-1 bg-[#D4A373]/15 px-2 py-1 rounded-full">
-                        <Star size={10} className="text-[#D4A373] fill-[#D4A373]" />
-                        <span className="text-xs font-bold text-[#D32F2F]">
+                      <div className="flex items-center gap-1 bg-[#C4743F]/15 px-2 py-1 rounded-full">
+                        <Star size={10} className="text-[#C4743F] fill-[#C4743F]" />
+                        <span className="text-xs font-bold text-[#007D71]">
                           {item.rating}
                         </span>
                       </div>
@@ -158,7 +158,7 @@ export default function WishlistClient() {
                         addToCart(item, 1);
                       }
                     }}
-                    className="w-full bg-[#D32F2F] hover:bg-[#D4A373] text-white hover:text-[#D32F2F] py-3 px-4 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95"
+                    className="w-full bg-[#007D71] hover:bg-[#C4743F] text-white hover:text-[#007D71] py-3 px-4 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-95"
                   >
                     <ShoppingCart size={16} />
                     Add to Cart
@@ -173,7 +173,7 @@ export default function WishlistClient() {
         <div className="text-center mt-12">
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 text-[#D32F2F] hover:text-[#D4A373] font-medium transition-colors"
+            className="inline-flex items-center gap-2 text-[#007D71] hover:text-[#C4743F] font-medium transition-colors"
           >
             <ArrowRight size={16} className="rotate-180" />
             Continue Shopping

@@ -244,7 +244,7 @@ export default function TrackOrderClient() {
                                                 <div key={i} className="py-6 first:pt-0 last:pb-0 flex gap-6 items-center">
                                                     <div className="w-20 h-20 rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden flex-shrink-0 relative">
                                                         <Image
-                                                            src={item.image || "https://placehold.co/400x400/F5F5F5/B71C1C?text=" + item.name}
+                                                            src={item.image || "https://placehold.co/400x400/F5F5F5/007D71?text=" + item.name}
                                                             className="w-full h-full object-cover"
                                                             alt={item.name}
                                                             fill
@@ -299,7 +299,7 @@ export default function TrackOrderClient() {
                                                 <div className="mt-8 pt-6 border-t border-gray-100">
                                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-4">AWB Tracking</p>
                                                     <div className="flex flex-col gap-4">
-                                                        <div className="flex items-center gap-4 bg-[#f4f8ff] px-6 py-4 rounded-2xl border border-blue-100/50 shadow-sm shadow-blue-500/5">
+                                                        <div className="flex items-center gap-4 bg-[#E6F2F0] px-6 py-4 rounded-2xl border border-[#d1e5e3] shadow-sm shadow-primary/5">
                                                             <Truck size={22} className="text-blue-500 shrink-0" />
                                                             <div className="flex-grow flex flex-col justify-center">
                                                               <p className="text-xl font-bold text-blue-800 tracking-tight leading-none mb-1.5">{order.awbNumber}</p>
@@ -322,8 +322,8 @@ export default function TrackOrderClient() {
                                                             </p>
                                                         )}
                                                         {order.shippingNotes && (
-                                                            <div className="bg-[#fffdfa] p-4 rounded-xl text-xs text-gray-600 border border-[#f5e6d3] mt-2">
-                                                                <span className="font-bold uppercase text-[10px] tracking-widest block mb-1 text-[#b08b5e]">Tracking Note</span>
+                                                            <div className="bg-[#F5F5F5] p-4 rounded-xl text-xs text-gray-600 border border-[#E8E8E8] mt-2">
+                                                                <span className="font-bold uppercase text-[10px] tracking-widest block mb-1 text-[#4E7A75]">Tracking Note</span>
                                                                 {order.shippingNotes}
                                                             </div>
                                                         )}

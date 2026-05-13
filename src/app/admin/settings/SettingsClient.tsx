@@ -351,7 +351,7 @@ export default function SettingsClient({
                     )}
                   </div>
                   <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C4743F] shrink-0"></span>
                     Recommended: 200×60px, PNG or SVG format, transparent background
                   </p>
                 </div>
@@ -416,7 +416,7 @@ export default function SettingsClient({
                     )}
                   </div>
                   <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C4743F] shrink-0"></span>
                     Displayed next to the main logo in navbar and footer
                   </p>
                 </div>
@@ -478,7 +478,7 @@ export default function SettingsClient({
                     )}
                   </div>
                   <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C4743F] shrink-0"></span>
                     Recommended: 32×32px or 64×64px, ICO or PNG format
                   </p>
                 </div>
@@ -1063,7 +1063,7 @@ export default function SettingsClient({
                           Upload OG Image
                         </p>
                         <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373] shrink-0"></span>
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C4743F] shrink-0"></span>
                           Recommended: 1200×630px
                         </p>
                         <input

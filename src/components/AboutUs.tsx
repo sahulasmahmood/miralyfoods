@@ -47,7 +47,7 @@ export default function AboutUs({ ourStory }: { ourStory?: any }) {
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(135deg, #D32F2F, #D32F2F 1px, transparent 1px, transparent 60px)",
+            "repeating-linear-gradient(135deg, #007D71, #007D71 1px, transparent 1px, transparent 60px)",
         }}
       />
 

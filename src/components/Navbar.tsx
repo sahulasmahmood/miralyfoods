@@ -69,7 +69,7 @@ export default function Navbar() {
       <header className="fixed w-full z-50 transition-all duration-300">
         {/* Top Bar */}
         {!isScrolled && (
-          <div className="bg-primary-dark text-white py-2 px-4 text-xs">
+          <div className="hidden md:block bg-primary-dark text-white py-2 px-4 text-xs">
             <div className="container-custom flex justify-between items-center">
               <div className="flex gap-4 items-center">
                 {settings?.socialMedia?.instagram && (
@@ -128,7 +128,7 @@ export default function Navbar() {
         {/* Main Header */}
         <div
           className={`bg-primary text-white border-b border-white/10 transition-all duration-300 ${
-            isScrolled ? "py-2 shadow-xl backdrop-blur-md bg-primary/95" : "py-4"
+            isScrolled ? "py-2 shadow-xl backdrop-blur-md bg-primary/95" : "py-2 md:py-4"
           }`}
         >
           <div className="container-custom flex flex-wrap items-center justify-between gap-4">
@@ -142,7 +142,7 @@ export default function Navbar() {
               </button>
               <Link href="/" className="flex-shrink-0 flex items-center gap-0">
                 {settings?.logo ? (
-                  <div className="h-12 md:h-16 w-32 md:w-44 relative">
+                  <div className="h-9 md:h-16 w-24 md:w-44 relative">
                     <Image
                       src={settings.logo}
                       alt={settings.shopName || "Miraly Foods"}
@@ -157,7 +157,7 @@ export default function Navbar() {
                   </span>
                 )}
                 {settings?.logo2 && (
-                  <div className="h-12 md:h-16 w-32 md:w-44 relative flex-shrink-0">
+                  <div className="h-9 md:h-16 w-24 md:w-44 relative flex-shrink-0">
                     <Image
                       src={settings.logo2}
                       alt="Secondary Logo"
@@ -224,7 +224,7 @@ export default function Navbar() {
                 </div>
               )}
 
-              <div className="flex items-center gap-3 md:gap-5">
+              <div className="flex items-center gap-2 md:gap-5">
                 {session ? (
                   <Link
                     href={
@@ -234,36 +234,36 @@ export default function Navbar() {
                           ? "/profile"
                           : "/login"
                     }
-                    className="hover:text-yellow-300 transition-colors"
+                    className="hover:text-white/80 transition-colors"
                   >
-                    <User size={24} />
+                    <User size={20} className="md:w-6 md:h-6" />
                   </Link>
                 ) : (
                   <Link
                     href="/login"
-                    className="hover:text-yellow-300 transition-colors"
+                    className="hover:text-white/80 transition-colors"
                   >
-                    <User size={24} />
+                    <User size={20} className="md:w-6 md:h-6" />
                   </Link>
                 )}
                 <Link
                   href="/wishlist"
-                  className="hover:text-yellow-300 transition-colors relative"
+                  className="hover:text-white/80 transition-colors relative"
                 >
-                  <Heart size={24} />
+                  <Heart size={20} className="md:w-6 md:h-6" />
                   {mounted && (
-                    <span className="absolute -top-1 -right-1 bg-yellow-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                       {wishlistCount}
                     </span>
                   )}
                 </Link>
                 <button
                   onClick={() => setIsCartOpen(true)}
-                  className="hover:text-yellow-300 transition-colors relative"
+                  className="hover:text-white/80 transition-colors relative"
                 >
-                  <ShoppingBag size={24} />
+                  <ShoppingBag size={20} className="md:w-6 md:h-6" />
                   {mounted && (
-                    <span className="absolute -top-1 -right-1 bg-yellow-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                       {cartCount}
                     </span>
                   )}
@@ -280,10 +280,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/"
-                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-white/80 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/") && pathname === "/"
-                      ? "border-yellow-300 text-yellow-300"
-                      : "border-transparent hover:border-yellow-300"
+                      ? "border-white text-white"
+                      : "border-transparent hover:border-white/60"
                   }`}
                 >
                   Home
@@ -292,10 +292,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/shop"
-                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-white/80 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/shop")
-                      ? "border-yellow-300 text-yellow-300"
-                      : "border-transparent hover:border-yellow-300"
+                      ? "border-white text-white"
+                      : "border-transparent hover:border-white/60"
                   }`}
                 >
                   All Products
@@ -305,7 +305,7 @@ export default function Navbar() {
                 <li key={cat._id} className="group relative py-1">
                   <Link
                     href={`/shop?category=${encodeURIComponent(cat.name)}`}
-                    className="hover:text-yellow-300 transition-colors cursor-pointer flex items-center gap-1 uppercase"
+                    className="hover:text-white/80 transition-colors cursor-pointer flex items-center gap-1 uppercase"
                   >
                     {cat.name}
                   </Link>
@@ -314,10 +314,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/about"
-                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-white/80 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/about")
-                      ? "border-yellow-300 text-yellow-300"
-                      : "border-transparent hover:border-yellow-300"
+                      ? "border-white text-white"
+                      : "border-transparent hover:border-white/60"
                   }`}
                 >
                   About
@@ -326,10 +326,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/contact"
-                  className={`hover:text-yellow-300 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
+                  className={`hover:text-white/80 transition-colors cursor-pointer border-b-2 py-1 uppercase ${
                     isActive("/contact")
-                      ? "border-yellow-300 text-yellow-300"
-                      : "border-transparent hover:border-yellow-300"
+                      ? "border-white text-white"
+                      : "border-transparent hover:border-white/60"
                   }`}
                 >
                   Contact
@@ -340,7 +340,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Search */}
-        <div className="md:hidden bg-primary px-4 pb-4">
+        <div className="md:hidden bg-primary px-4 pb-2">
           <form
             onSubmit={handleSearch}
             className="flex items-center bg-white rounded overflow-hidden"
@@ -363,7 +363,7 @@ export default function Navbar() {
       </header>
 
       {/* Spacer for fixed header */}
-      <div className={isScrolled ? "h-[70px]" : "h-[130px] md:h-[150px] lg:h-[160px]"} />
+      <div className={isScrolled ? "h-[70px]" : "h-[80px] md:h-[150px] lg:h-[160px]"} />
 
       {/* Mobile Drawer */}
       <AnimatePresence>

@@ -113,7 +113,7 @@ export const DecayCard: React.FC<DecayCardProps> = ({
               }}
               className="absolute w-1.5 h-1.5 bg-accent rounded-full"
               style={{
-                boxShadow: "0 0 6px rgba(46,125,50,0.8)",
+                boxShadow: "0 0 6px rgba(0,125,113,0.8)",
               }}
             />
           ))}
@@ -126,7 +126,7 @@ export const DecayCard: React.FC<DecayCardProps> = ({
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
           style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(46,125,50,0.2) 0%, transparent 70%)",
+            background: "radial-gradient(circle at 50% 50%, rgba(0,125,113,0.2) 0%, transparent 70%)",
             filter: "blur(30px)",
           }}
         />

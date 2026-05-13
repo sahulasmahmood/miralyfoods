@@ -27,7 +27,7 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const COLORS = ["#D32F2F", "#D4A373", "#8B4513", "#D2691E", "#CD853F"];
+const COLORS = ["#007D71", "#C4743F", "#3D5A56", "#025D53", "#A85D30"];
 
 export default function AnalyticsClient({ initialData }: { initialData: any }) {
   const [data] = useState<any>(initialData);
@@ -207,7 +207,7 @@ export default function AnalyticsClient({ initialData }: { initialData: any }) {
                     dataKey="name"
                     type="category"
                     width={100}
-                    tick={{ fontSize: 10, fontWeight: 700, fill: "#D32F2F" }}
+                    tick={{ fontSize: 10, fontWeight: 700, fill: "#007D71" }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -223,7 +223,7 @@ export default function AnalyticsClient({ initialData }: { initialData: any }) {
                   />
                   <Bar
                     dataKey="totalSales"
-                    fill="#D4A373"
+                    fill="#C4743F"
                     radius={[0, 4, 4, 0]}
                     barSize={20}
                   />
@@ -284,7 +284,7 @@ export default function AnalyticsClient({ initialData }: { initialData: any }) {
                     {data.paymentMethods.map((entry: any, index: number) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={index === 0 ? "#D32F2F" : "#D4A373"}
+                        fill={index === 0 ? "#007D71" : "#C4743F"}
                       />
                     ))}
                   </Pie>
@@ -311,7 +311,7 @@ export default function AnalyticsClient({ initialData }: { initialData: any }) {
                     <div
                       className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
                       style={{
-                        backgroundColor: index === 0 ? "#D32F2F" : "#D4A373",
+                        backgroundColor: index === 0 ? "#007D71" : "#C4743F",
                       }}
                     >
                       <Zap size={12} className="sm:w-[14px] sm:h-[14px]" />
