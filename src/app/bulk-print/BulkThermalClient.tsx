@@ -94,7 +94,7 @@ export default function BulkThermalClient({
           cursor: pointer;
         }
         .btn-print {
-          background: #D32F2F;
+          background: #007D71;
           color: white;
         }
         .btn-close {

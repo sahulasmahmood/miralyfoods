@@ -197,8 +197,8 @@ export default function OrderDetailsClient({
                     )}
                     
                     {order.shippingNotes && (
-                      <div className="bg-[#fffdfa] p-5 rounded-xl text-sm text-gray-600 border border-[#f5e6d3]">
-                        <span className="font-bold uppercase text-[10px] tracking-widest block mb-2 text-[#b08b5e]">Important Note</span>
+                      <div className="bg-[#F5F5F5] p-5 rounded-xl text-sm text-gray-600 border border-[#E8E8E8]">
+                        <span className="font-bold uppercase text-[10px] tracking-widest block mb-2 text-[#4E7A75]">Important Note</span>
                         <p className="leading-relaxed">{order.shippingNotes}</p>
                       </div>
                     )}

@@ -65,7 +65,7 @@ export default function WhyChooseUs({ configuration }: { configuration?: any }) 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(46,125,50,0.5) 1px, transparent 1px)",
+            "radial-gradient(circle, rgba(0,125,113,0.5) 1px, transparent 1px)",
           backgroundSize: "30px 30px",
         }}
       />

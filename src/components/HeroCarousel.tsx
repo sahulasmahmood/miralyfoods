@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -75,36 +75,35 @@ export default function HeroCarousel({
   const [slides] = useState<Slide[]>(
     initialSlides && initialSlides.length > 0 ? initialSlides : fallbackSlides
   );
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startAutoPlay = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-  }, [slides.length]);
-
-  useEffect(() => {
-    startAutoPlay();
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [startAutoPlay]);
+  const touchStartX = useRef(0);
 
   const prev = () => {
     setCurrent((p) => (p - 1 + slides.length) % slides.length);
-    startAutoPlay();
   };
 
   const next = () => {
     setCurrent((p) => (p + 1) % slides.length);
-    startAutoPlay();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
   };
 
   const slide = slides[current];
 
   return (
-    <section className="relative h-[450px] md:h-[650px] w-full overflow-hidden group">
+    <section
+      className="relative h-[200px] md:h-[400px] w-full overflow-hidden group"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -144,14 +143,14 @@ export default function HeroCarousel({
         <>
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-2 md:p-3 rounded-full md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
             aria-label="Previous slide"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-2 md:p-3 rounded-full md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
             aria-label="Next slide"
           >
             <ChevronRight size={24} />
@@ -159,22 +158,6 @@ export default function HeroCarousel({
         </>
       )}
 
-      {/* Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              setCurrent(i);
-              startAutoPlay();
-            }}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === current ? "bg-primary w-8" : "bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
     </section>
   );
 }

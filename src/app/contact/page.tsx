@@ -129,7 +129,7 @@ export default function ContactPage() {
                 Home
               </Link>
               <span className="w-4 h-[1px] bg-white" />
-              <span className="text-yellow-300 font-bold">Contact</span>
+              <span className="text-white font-bold">Contact</span>
             </nav>
           </motion.div>
         </div>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   { icon: Calendar, text: "Festival Specials" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm">
-                    <item.icon size={16} className="text-yellow-300" />
+                    <item.icon size={16} className="text-white" />
                     <span className="text-white/90 font-medium">
                       {item.text}
                     </span>
@@ -185,7 +185,7 @@ export default function ContactPage() {
               </div>
               <button
                 onClick={() => setActiveTab("corporate")}
-                className="text-xs font-bold uppercase tracking-widest text-yellow-300 hover:underline"
+                className="text-xs font-bold uppercase tracking-widest text-white hover:underline"
               >
                 Request Quote →
               </button>

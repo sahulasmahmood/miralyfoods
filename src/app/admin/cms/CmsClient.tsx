@@ -152,7 +152,7 @@ export default function CmsClient({
       </div>
       {hint && (
         <p className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4A373]"></span>
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C4743F]"></span>
           Recommended: {hint}
         </p>
       )}
@@ -187,7 +187,7 @@ export default function CmsClient({
           onClick={() => setActiveTab("about")}
           className={`px-6 py-2.5 rounded-full font-bold uppercase tracking-wide text-xs transition-all ${
             activeTab === "about"
-              ? "bg-[#D32F2F] text-white shadow-md shadow-[#D32F2F]/20"
+              ? "bg-[#007D71] text-white shadow-md shadow-[#007D71]/20"
               : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
           }`}
         >
@@ -197,7 +197,7 @@ export default function CmsClient({
           onClick={() => setActiveTab("ourStory")}
           className={`px-6 py-2.5 rounded-full font-bold uppercase tracking-wide text-xs transition-all ${
             activeTab === "ourStory"
-              ? "bg-[#D32F2F] text-white shadow-md shadow-[#D32F2F]/20"
+              ? "bg-[#007D71] text-white shadow-md shadow-[#007D71]/20"
               : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
           }`}
         >
@@ -207,7 +207,7 @@ export default function CmsClient({
           onClick={() => setActiveTab("whyChooseUs")}
           className={`px-6 py-2.5 rounded-full font-bold uppercase tracking-wide text-xs transition-all ${
             activeTab === "whyChooseUs"
-              ? "bg-[#D32F2F] text-white shadow-md shadow-[#D32F2F]/20"
+              ? "bg-[#007D71] text-white shadow-md shadow-[#007D71]/20"
               : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
           }`}
         >

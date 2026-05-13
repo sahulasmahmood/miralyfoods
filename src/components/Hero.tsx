@@ -29,7 +29,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-[#D32F2F]">
+    <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-[#007D71]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -40,8 +40,8 @@ export default function Hero() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#D32F2F] via-[#D32F2F]/85 to-[#D32F2F]/40" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#D32F2F] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#007D71] via-[#007D71]/85 to-[#007D71]/40" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#007D71] to-transparent" />
       </div>
 
       {/* Content */}
@@ -54,7 +54,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2.5 mb-8"
           >
-            <Sparkles size={14} className="text-[#D4A373]" />
+            <Sparkles size={14} className="text-[#C4743F]" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/90">
               Trusted by 5,000+ Families in Salem
             </span>
@@ -69,7 +69,7 @@ export default function Hero() {
           >
             Authentic Flavours, <br className="hidden md:block" />
             Crafted with{" "}
-            <span className="relative inline-block text-[#D4A373]">
+            <span className="relative inline-block text-[#C4743F]">
               Love
               <svg
                 className="absolute -bottom-2 left-0 w-full"
@@ -78,7 +78,7 @@ export default function Hero() {
               >
                 <path
                   d="M2 8 C 40 2, 80 12, 120 6 S 180 2, 198 8"
-                  stroke="#D4A373"
+                  stroke="#C4743F"
                   strokeWidth="3"
                   strokeLinecap="round"
                   opacity="0.5"
@@ -107,7 +107,7 @@ export default function Hero() {
           >
             <Link
               href="/shop"
-              className="bg-[#D4A373] text-[#D32F2F] px-10 py-5 rounded-2xl font-bold uppercase tracking-wider text-[12px] shadow-xl shadow-[#D4A373]/20 hover:bg-[#1B5E20] transition-all active:scale-95 flex items-center gap-3 group"
+              className="bg-[#C4743F] text-[#007D71] px-10 py-5 rounded-2xl font-bold uppercase tracking-wider text-[12px] shadow-xl shadow-[#C4743F]/20 hover:bg-[#A85D30] transition-all active:scale-95 flex items-center gap-3 group"
             >
               Shop Now
               <ArrowRight
@@ -137,7 +137,7 @@ export default function Hero() {
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                  <item.icon size={16} className="text-[#D4A373]" />
+                  <item.icon size={16} className="text-[#C4743F]" />
                 </div>
                 <span className="text-xs font-bold text-white/60 uppercase tracking-wider">
                   {item.text}

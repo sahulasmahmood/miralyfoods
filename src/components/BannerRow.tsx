@@ -28,7 +28,7 @@ export default function BannerRow() {
               <span className="text-xs font-bold uppercase tracking-[10px] mb-4 text-white/80">
                 Fresh & Natural
               </span>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-yellow-300">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-white">
                 Discover Our <br />
                 Best Sellers
               </h3>
@@ -59,7 +59,7 @@ export default function BannerRow() {
               <span className="text-xs font-bold uppercase tracking-[10px] mb-4 text-white/80">
                 Special Offer
               </span>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-yellow-300">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 font-serif text-white">
                 Great Deals <br />
                 Await You
               </h3>
