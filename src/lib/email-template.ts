@@ -123,7 +123,7 @@ function buildStatusConfig(
     hdrBg: "#007D71",
     badgeLabel: "Confirmed",
     badgeStyle:
-      "background:rgba(0,125,113,0.15);color:#007D71;border:1px solid rgba(0,125,113,0.3);",
+      "background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.3);",
     badgeColor: "#C4743F",
     title: "Thank You for Your Order",
     desc:
@@ -220,7 +220,7 @@ function buildStatusConfig(
         hdrBg: "#0A2E2A",
         badgeLabel: "Out for Delivery",
         badgeStyle:
-          "background:rgba(0,125,113,0.15);color:#007D71;border:1px solid rgba(0,125,113,0.3);",
+          "background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.3);",
         badgeColor: "#C4743F",
         title: "Almost there — delivery today! 📦",
         desc:
@@ -254,8 +254,8 @@ function buildStatusConfig(
         hdrBg: "#025D53",
         badgeLabel: "Delivered ✓",
         badgeStyle:
-          "background:rgba(0,125,113,0.15);color:#007D71;border:1px solid rgba(0,125,113,0.3);",
-        badgeColor: "#007D71",
+          "background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.3);",
+        badgeColor: "#ffffff",
         title: "Your order has arrived! 🎉",
         desc:
           statusMessage ??
@@ -287,8 +287,8 @@ function buildStatusConfig(
         hdrBg: "#1e1212",
         badgeLabel: "Cancelled",
         badgeStyle:
-          "background:rgba(224,82,82,0.15);color:#e05252;border:1px solid rgba(224,82,82,0.3);",
-        badgeColor: "#e05252",
+          "background:rgba(255,100,100,0.2);color:#ff9999;border:1px solid rgba(255,100,100,0.4);",
+        badgeColor: "#ff6b6b",
         title: "Your order has been cancelled",
         desc:
           statusMessage ??
