@@ -42,7 +42,7 @@ export default function InvoiceClient({
           }
           body {
             margin: 0;
-            padding: 0;
+            padding: 0 !important;
             background: white;
             color: black;
           }
@@ -145,6 +145,7 @@ export default function InvoiceClient({
         @media print {
           body {
             -webkit-print-color-adjust: exact;
+            padding-bottom: 0 !important;
           }
         }
       `}</style>

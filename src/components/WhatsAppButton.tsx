@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const { settings } = useNavbarData();
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") || pathname?.includes("/invoice") || pathname?.includes("/bulk-print")) return null;
 
   const phone = settings?.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")

@@ -11,7 +11,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
 
   return (
-    <footer className="bg-primary text-white pt-16 pb-8">
+    <footer className="bg-primary text-white pt-16 pb-8 print:hidden">
       <div className="container-custom">
         {/* Google Map */}
         {settings?.googleMapEmbedUrl && (() => {

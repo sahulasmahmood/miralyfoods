@@ -66,7 +66,7 @@ export default function Navbar() {
     <>
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      <header className="fixed w-full z-50 transition-all duration-300">
+      <header className="fixed w-full z-50 transition-all duration-300 print:hidden">
         {/* Top Bar */}
         {!isScrolled && (
           <div className="hidden md:block bg-primary-dark text-white py-2 px-4 text-xs">
