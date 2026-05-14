@@ -102,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
-        className={`${inter.variable} ${cormorant.variable} font-sans antialiased text-text-body bg-white pb-16 lg:pb-0`}
+        className={`${inter.variable} ${cormorant.variable} font-sans antialiased text-text-body bg-white pb-16 lg:pb-0 print:pb-0`}
       >
         <Providers>
           <Suspense>

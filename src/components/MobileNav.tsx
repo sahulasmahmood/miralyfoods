@@ -17,6 +17,11 @@ export default function MobileNav() {
     setMounted(true);
   }, []);
 
+  // Hide on invoice, bulk-print, and admin pages
+  if (pathname?.includes("/invoice") || pathname?.includes("/bulk-print") || pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
     return pathname?.startsWith(path);
@@ -29,7 +34,7 @@ export default function MobileNav() {
     : "/login";
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-50 px-4 py-2">
+    <div className="lg:hidden print:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-50 px-4 py-2">
       <div className="flex justify-between items-center max-w-md mx-auto">
         <Link
           href="/"
